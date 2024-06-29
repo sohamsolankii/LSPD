@@ -1,0 +1,3 @@
+add
+	type : module in package.josn for use of import module
+
