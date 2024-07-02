@@ -34,19 +34,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
 
-
-// this is for the learning perpose
-// const router = createBrowserRouter([
-//     {
-//         path: '/',
-//         element: (
-//             <Navbar />
-//         ),
-//     },
-//     {
-//         path: '/test',
-//         element: (
-// 			<Test />
-// 		),
-//     },
-// ])
