@@ -1,16 +1,18 @@
 import React from 'react'
 import Navbar from './Header/Navbar'
+// import Dashboard from './Header/Dashboard'
 import Footer from './Footer/Footer'
 import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
-  return (
-	<>
-		<Navbar />
+	return (
+		<>
+			<Navbar />
+			{/* <Dashboard /> */}
 			<Outlet />
-		<Footer/>
-	</>
-  )
+			<Footer />
+		</>
+	)
 }
 
 export default Layout

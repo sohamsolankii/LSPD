@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+// import Dashboard from './Header/Dashboard'
 import './index.css'
 import {
     createBrowserRouter,
     RouterProvider,
     Route,
-	Routes,
-	createRoutesFromElements,
+    Routes,
+    createRoutesFromElements,
 } from 'react-router-dom'
 import Login from './components/Header/Login.jsx'
 import Register from './components/Header/Register.jsx'
@@ -18,8 +19,8 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
             <Route path="/login" element={<Login />} />,
-            <Route path="/register" element={<Register />}/>
-			<Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
         </Route>,
     ),
 )
