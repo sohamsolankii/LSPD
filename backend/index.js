@@ -8,18 +8,17 @@ import cors from 'cors'
 import auth from './routes/auth.route.js'
 
 // Middleware setup
-dotenv.config({
-    path: './.env',
-})
+dotenv.config({path: './backend/.env'})
 
 const app = express()
 const PORT = process.env.PORT || 3000
+
 
 // CORS setup
 app.use(
     cors({
         credentials: true,
-        origin: 'http://localhost:5173',
+        origin: process.env.CORS_ORIGIN,
     }),
 )
 
