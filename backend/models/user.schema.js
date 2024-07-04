@@ -20,3 +20,4 @@ const User = mongoose.model('User', userSchema)
 // User -> user thai jase  but refernce mate sme name aapvu
 
 export default User
+// Use a fucking English

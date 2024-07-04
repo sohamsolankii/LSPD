@@ -1,103 +1,143 @@
-import User from '../models/user.schema.js'
-import {hassPassword, comparePassword} from '../validators/auth.js'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import User from '../models/user.schema.js'
+import {AsyncHandler} from '../utils/AsyncHandler.js'
+import {ApiError} from '../utils/ApiError.js'
+import {ApiResponse} from './../utils/ApiResponse.js'
+const saltRounds = 10
 
-export const test = (req, res) => {
-    res.json('test is working')
-}
+// * Sign Up
+export const signUp = AsyncHandler(async (req, res) => {
+    const {username, email, password} = req?.body
+    const validEmail = await User.findOne({email: email})
+    if (validEmail) throw new ApiError(409, 'Email already in use')
 
-// register user
-export const registerUser = async (req, res) => {
-    try {
-        const {name, email, password} = req.body
-        // like if name was entered
-        if (!name) {
-            return res.json({
-                error: 'name is required',
-            })
-        }
-        // check is password is good
-        if (!password || password.length < 6) {
-            return res.json({
-                error: 'password is required and should be atleast 6 characters long',
-            })
-        }
-        // check email
-        const exist = await User.findOne({email})
-        if (exist) {
-            return res.json({
-                error: 'email already exists',
-            })
-        }
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
 
-        // hash password
-        const hashedPassword = await hassPassword(password)
-
-        // create user into database
-        const user = await User.create({
-            name,
-            email,
-            password: hashedPassword,
-        })
-
-        return res.json({user})
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-// login user
-export const loginUser = async (req, res) => {
-    try {
-        const {email, password} = req.body
-
-        // Check if user exists
-        const user = await User.findOne({email})
-        if (!user) {
-            return res.status(400).json({
-                error: 'No user found!',
-            })
-        }
-
-        // Check if the password matches
-        const match = await comparePassword(password, user.password)
-        if (!match) {
-            return res.status(400).json({
-                error: 'Password not matched!',
-            })
-        }
-
-        // If password matches, proceed
-        // res.json({
-        //     message: 'Login successful',
-        //     user: {name: user.name, email: user.email}, // Do not send password
-        // })
-        jwt.sign(
-            {email: user.email, id: user._id, name: user.name},
-            process.env.JWT_SECRET,
-            {},
-            (err, token) => {
-                if (err) throw err
-                res.cookie('token', token).json(user)
+    const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+    })
+    await newUser.save()
+    const accessToken = jwt.sign(
+        {
+            user: {
+                username: newUser.username,
+                email: newUser.email,
+                id: newUser.id,
             },
-        )
-    } catch (err) {
-        console.log(err)
-        res.status(500).json({
-            error: 'Server error. Please try again later.',
-        })
-    }
-}
+        },
+        process.env.ACCESS_TOKEN,
+        // {expiresIn: process.env.EXPIRE_IN},
+    )
 
-export const getProfile = async (req, res) => {
-	const {token} = req.cookies
-	if(token){
-		jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-			if(err) throw err
-			res.json(user)
-		})
-	}
-	else{
-		res.json(null)
-	}
-}
+    req.user = {
+        username: newUser.username,
+        email: newUser.email,
+        id: newUser.id,
+    }
+
+    res.cookie('userCookie', accessToken, {
+        httpOnly: true,
+    })
+
+    res.status(201).json(
+        new ApiResponse(201, newUser, 'User logged in successfully'),
+    )
+})
+
+// * Log in
+export const logIn = AsyncHandler(async (req, res) => {
+    const {email, password} = req.body
+    const user = await User.findOne({email: email})
+
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+        throw new ApiError(401, 'Invalid Details')
+    }
+
+    const accessToken = jwt.sign(
+        {
+            user: {
+                username: user.username,
+                email: user.email,
+                id: user.id,
+            },
+        },
+        process.env.ACCESS_TOKEN,
+        // {expiresIn: process.env.EXPIRE_IN},
+    )
+
+    req.user = {
+        username: user.username,
+        email: user.email,
+        id: user.id,
+    }
+
+    const hundredYearsInMilliseconds = 100 * 365.25 * 24 * 60 * 60 * 1000
+
+    res.cookie('userCookie', accessToken, {
+        httpOnly: true,
+        maxAge: hundredYearsInMilliseconds,
+    })
+        .status(200)
+        .json({user, accessToken})
+})
+
+// * LogOut
+export const logOut = AsyncHandler(async (req, res) => {
+    res.clearCookie('userCookie').send('Cookie deleted')
+})
+
+// * Fetch User profile
+// export const getUserInfo = asyncHandler(async (req, res) => {
+//     const user = req?.user
+//     if (!user) {
+//         return res.status(404).json({message: 'User not found in request'})
+//     }
+//     const isMerchant = await Merchant.findOne({merchant: user.id})
+//     if (!isMerchant) {
+//         console.log('User is not merchant')
+//     }
+//     const findUser = await User.findById(user.id)
+//     const order = await Order.find({userId: user.id}).populate('productId')
+//     const address = await Address.find({userId: user.id})
+//     if (!findUser) {
+//         return res.status(404).json({message: 'User not found'})
+//     }
+//     res.status(200).json({
+//         user: findUser,
+//         merchant: isMerchant,
+//         order: order,
+//         address: address,
+//     })
+// })
+
+// ! Update Profile
+// export const updateUser = asyncHandler(async (req, res) => {
+//     const user = req.user
+//     const email = req.body.email
+//     const password = req.body.password
+//     const updateUser = await User.findByIdAndUpdate(
+//         {_id: user.id},
+//         {password: password, email: email},
+//         {new: true},
+//     )
+//     if (!updateUser) {
+//         return res.status(404).json({message: 'User not found'})
+//     }
+
+//     res.status(200).json({
+//         message: 'User updated successfully',
+//         user: updateUser,
+//     })
+// })
+
+// // * Fetch a logged in user data
+// export const currentUser = asyncHandler(async (req, res) => {
+//     const user = req?.user
+//     if (!user) {
+//         return res.status(404).json('User not logged in')
+//     }
+//     res.status(200).json(user)
+// })
