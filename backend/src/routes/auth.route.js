@@ -9,7 +9,7 @@ import {
 const router = express.Router()
 
 // router.get('/', test)
-router.post('/register', signUp)
+router.post('/signUp', signUp)
 router.post('/login', logIn)
 
 // router.get('/profile', getProfile);
