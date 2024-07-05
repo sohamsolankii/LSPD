@@ -8,9 +8,10 @@ import morgan from 'morgan'
 // Routes
 import authRoutes from './routes/auth.route.js'
 import commentRoutes from './routes/comment.route.js'
+import tipRoutes from './routes/tip.route.js'
 
 // Middleware setup
-dotenv.config({path: '.env'})
+dotenv.config({path: 'backend/.env'})
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -31,6 +32,7 @@ app.use(cookieParser())
 
 app.use('/', authRoutes)
 app.use('/comment', commentRoutes)
+app.use('/tip', tipRoutes)
 
 app.listen(PORT, () => {
     connectDB()
