@@ -23,3 +23,35 @@
 .sign {
     font-family: 'Sign', sans-serif;
 }
+
+:root {
+    --bg1: #0E182F;
+    --bg2: #081022;
+    --bg2op: rgba(6, 16, 34, 0.6);
+    --lblue: #75AAF1;
+    --ltext: #D2E5FF;
+    --lgold: #FCD672;
+    --llgold: #F7F8DF;
+    --bg1l: #18284B;
+    --hover-bg-gradient-start: #18284B;
+    --hover-bg-gradient-end: #263E74;
+    --ggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
+    --hover-border-color: #263E74;
+    --gold: gold;
+}
+
+.grad-text {
+    background: linear-gradient(to right, #FCD672, #F7F8DF, rgba#FCD672);
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* color: transparent; */
+}
+
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.gradgold {
+    background: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
+}
