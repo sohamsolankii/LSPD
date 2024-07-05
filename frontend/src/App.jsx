@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Header/Navbar.jsx';
 import { UserContextProvider } from './context/userContext.jsx';
 import Starter from './components/Starter.jsx';
+import WantedList from './components/WantedList.jsx';
 import Dashboard from './components/Header/Dashboard.jsx';
 
 axios.defaults.baseURL = 'http://localhost:3000';
@@ -25,6 +26,7 @@ const App = () => {
             <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
             <Starter />
             <Dashboard></Dashboard>
+            <WantedList></WantedList>
             <Outlet />
         </UserContextProvider>
     );

@@ -3,7 +3,7 @@ import LSPDLogo from '/src/assets/lspd-logo.png';
 
 const Starter = () => {
     return (
-        <section className="relative h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url('/path/to/background-image.jpg')` }}>
+        <section className="relative h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url('/frontend/Photos/IMG_Starter/StarterBG.jpg')` }}>
             <div className="absolute inset-0 bg-black opacity-50"></div>
             <div className="relative text-center text-white p-8">
                 <img src={LSPDLogo} alt="LSPD Logo" className="mx-auto mb-4 w-24 h-24" />

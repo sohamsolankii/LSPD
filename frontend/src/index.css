@@ -5,3 +5,21 @@
 .navbar-transition {
     transition: transform 0.5s ease-in-out;
 }
+
+@font-face {
+    font-family: 'Pricedown';
+    src: url('assets/fonts/Pricedown.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Sign';
+    src: url('assets/fonts/Sign.ttf') format('truetype');
+}
+
+.pricedown {
+    font-family: 'Pricedown', sans-serif;
+}
+
+.sign {
+    font-family: 'Sign', sans-serif;
+}
