@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { Link as ScrollLink, Element } from 'react-scroll';
 
 const characters = [
@@ -24,7 +24,7 @@ const WantedList = () => {
                     <h1 className="text-3xl poppins font-medium text-[var(--ltext)] m-12 mt-20">You didn’t obey the rule, huh? Just kidding... Welcome to the 'Most Wanted' list!
                         Check out these notorious troublemakers
                     </h1>
-                    <p className="text-5xl sign mb-10 text-[var(--lblue)]">and remember – crime doesn’t pay (unless you’re in GTA V!)</p>
+                    <p className="text-5xl sign mb-10 text-[var(--lblue)]">and remember - crime doesn't pay (unless you’re in GTA V!)</p>
                 </div>
             </section>
             <Element name="mostWanted" className=" border-y-4 border-[var(--lgold)] py-8 px-4">
