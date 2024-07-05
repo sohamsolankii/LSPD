@@ -47,6 +47,23 @@
     /* color: transparent; */
 }
 
+/* @layer utilities {
+    .bg-gradient-to-r {
+        background-image: linear-gradient(to right, #FFD700, #FFFACD, #FFD700);
+    }
+
+    .from-gold {
+        --tw-gradient-from: #FFD700;
+    }
+
+    .via-light-gold {
+        --tw-gradient-via: #FFFACD;
+    }
+
+    .to-gold {
+        --tw-gradient-to: #FFD700;
+    }
+} */
 
 .poppins {
     font-family: 'Poppins', sans-serif;
