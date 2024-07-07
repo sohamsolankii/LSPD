@@ -18,7 +18,7 @@ const Register = () => {
         // Handle registration logic here
         const {name, email, password} = data
         try {
-            const {data} = await axios.post('/register', {
+            const {data} = await axios.post('/api/v1/auth/signUp', {
                 name,
                 email,
                 password,

@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 // import Dashboard from './Header/Dashboard'
-import WantedList from './components/WantedList.jsx'
 import './index.css'
 import {
     createBrowserRouter,

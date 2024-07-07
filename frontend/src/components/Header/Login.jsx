@@ -13,21 +13,26 @@ const Login = () => {
 
     const loginUser = async (e) => {
         e.preventDefault()
+        console.log('1')
         // Handle login logic here
-        const {email, password} = data
+        // const {email, password} = data
         try {
-            const response = await axios.post('/login', {
-                email,
-                password,
-            })
+            const response = await axios.post(
+                'http://localhost:3000/api/v1/auth/login',
+                data,
+                {
+                    withCredentials: true,
+                },
+            )
+            console.log(response)
             const data = response.data // get data from the response
-            if (data.error) {
-                toast.error(data.error)
-            } else {
-                setData({})
-                toast.success('Login successful. Welcome!')
-                navigate('/dashboard')
-            }
+            // if (data.error) {
+            //     toast.error(data.error)
+            // } else {
+            //     setData({})
+            //     toast.success('Login successful. Welcome!')
+            //     navigate('/dashboard')
+            // }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.error) {
                 toast.error(err.response.data.error) // Show specific error message from server

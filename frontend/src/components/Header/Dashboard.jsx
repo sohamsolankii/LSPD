@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { UserContext } from '../../context/userContext'
+import React, {useContext} from 'react'
+import {UserContext} from '../../context/userContext'
 import LSPDLogo from '/src/assets/lspd-logo.png'
 import Starter from '../Starter'
 // import Dashboard from './components/Header/Dashboard.jsx'
@@ -31,7 +31,7 @@ const dashboardData = [
 ]
 
 const Dashboard = () => {
-    const { user } = useContext(UserContext)
+    const {user} = useContext(UserContext)
 
     return (
         <div className="bg-[var(--bg1)] text-[var(--lblue)] min-h-screen">
@@ -48,17 +48,26 @@ const Dashboard = () => {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-10 pr-4 md:px-20">
                     {dashboardData.map((item, index) => (
-                        <Link key={index} to={item.link} className="no-underline">
-                            <div className="flex bg-[var(--bg1l)] p-3 rounded-2xl shadow-2xl text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)]">
-                                <img src={item.image} alt={`Image ${index + 1}`} className="w-[30%] rounded-lg mr-6" />
-                                <div>
-                                    <h3 className={`pricedown text-4xl mb-2 ${item.title === "Most Wanted List" || item.title === "News and Alerts" ? "text-[var(--lgold)]" : ""}`}>
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-[var(--ltext)] text-xl">{item.description}</p>
-                                </div>
+                        <div
+                            key={index}
+                            className="flex bg-[var(--bg1l)] p-3 rounded-2xl shadow-2xl text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)]"
+                        >
+                            <img
+                                src={item.image}
+                                alt={`Image ${index + 1}`}
+                                className="w-[30%] rounded-lg mr-6"
+                            />
+                            <div>
+                                <h3
+                                    className={`pricedown text-4xl mb-2 ${item.title === 'Most Wanted List' || item.title === 'News and Alerts' ? 'text-[var(--lgold)]' : ''}`}
+                                >
+                                    {item.title}
+                                </h3>
+                                <p className="text-[var(--ltext)] text-xl">
+                                    {item.description}
+                                </p>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
                 <div className="bg-[var(--bg1l)] p-12 rounded-2xl shadow-2xl text-left mt-10 mb-10 mx-4 md:mx-20">
