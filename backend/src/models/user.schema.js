@@ -9,6 +9,12 @@ const userSchema = new Schema(
             unique: true,
         },
         password: String,
+        crimes: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Crime',
+            },
+        ],
     },
     {
         timestamps: true,

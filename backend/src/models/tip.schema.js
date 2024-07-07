@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const tipSchema = new Schema(
     {
-        userID: {
+        user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
         },

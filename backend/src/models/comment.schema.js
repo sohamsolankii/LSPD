@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const commentSchema = new Schema(
     {
-        userID: {
+        user: {
             type: Schema.Types.ObjectId,
             require: [true, 'User is required for comment'],
             ref: 'User',

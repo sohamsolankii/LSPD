@@ -8,14 +8,14 @@ const saltRounds = 10
 
 // * Sign Up
 export const signUp = AsyncHandler(async (req, res) => {
-    const {username, email, password} = req?.body
+    const {name, email, password} = req?.body
     const validEmail = await User.findOne({email: email})
     if (validEmail) throw new ApiError(409, 'Email already in use')
 
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
     const newUser = new User({
-        username,
+        name,
         email,
         password: hashedPassword,
     })
@@ -23,7 +23,7 @@ export const signUp = AsyncHandler(async (req, res) => {
     const accessToken = jwt.sign(
         {
             user: {
-                username: newUser.username,
+                name: newUser.name,
                 email: newUser.email,
                 id: newUser.id,
             },
@@ -33,7 +33,7 @@ export const signUp = AsyncHandler(async (req, res) => {
     )
 
     req.user = {
-        username: newUser.username,
+        name: newUser.name,
         email: newUser.email,
         id: newUser.id,
     }
