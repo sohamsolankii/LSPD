@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 // import Dashboard from './Header/Dashboard'
+import WantedList from './components/WantedList.jsx'
 import './index.css'
 import {
     createBrowserRouter,
@@ -18,9 +19,10 @@ import Dashboard from './components/Header/Dashboard.jsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-            <Route path="/login" element={<Login />} />,
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/WantedList" element={<WantedList />} />
         </Route>,
     ),
 )

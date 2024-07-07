@@ -9,8 +9,6 @@ const characters = [
     { id: 2, name: "Michael De Santa", image: "src/assets/trevor.png" },
     { id: 3, name: "Franklin Clinton", image: "src/assets/trevor.png" },
     { id: 3, name: "Franklin Clinton", image: "src/assets/trevor.png" }
-
-    // Add more characters as needed
 ];
 
 const WantedList = () => {

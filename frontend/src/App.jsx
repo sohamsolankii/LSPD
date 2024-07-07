@@ -12,8 +12,6 @@ import Dashboard from './components/Header/Dashboard.jsx';
 axios.defaults.baseURL = 'http://localhost:3000';
 axios.defaults.withCredentials = true;
 
-
-
 const App = () => {
     const { pathname } = useLocation()
 
