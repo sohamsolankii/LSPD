@@ -1,4 +1,4 @@
-import {AsyncHandler} from '../utils/asyncHandler.js'
+import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {ApiError} from '../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import Comment from '../models/comment.schema.js'
@@ -32,7 +32,7 @@ export const fetchComment = AsyncHandler(async (req, res) => {
 
     checkParams(req, 'news')
 
-    // const comments = await Comment.find({news}).populate('userID')
+    // const comments = await Comment.find().populate('userID')
 
     const comments = await Comment.aggregate([
         {

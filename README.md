@@ -23,6 +23,8 @@
 
 ### Most Wanted List
 
+#### done
+
 | Route Name      | Method | URL Pattern             |
 | --------------- | ------ | ----------------------- |
 | List Criminals  | GET    | `/api/most-wanted`      |
@@ -32,6 +34,8 @@
 | Delete Criminal | DELETE | `/api/most-wanted/{id}` |
 
 ### News & Announcements
+
+#### done
 
 | Route Name          | Method | URL Pattern      |
 | ------------------- | ------ | ---------------- |
@@ -54,12 +58,16 @@
 
 ### Tips Submission
 
+#### done
+
 | Route Name             | Method | URL Pattern |
 | ---------------------- | ------ | ----------- |
 | Submit Tip             | POST   | `/api/tips` |
 | List Tips (Admin Only) | GET    | `/api/tips` |
 
 ### Authentication
+
+#### done
 
 | Route Name       | Method | URL Pattern         |
 | ---------------- | ------ | ------------------- |
