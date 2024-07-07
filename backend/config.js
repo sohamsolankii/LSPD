@@ -10,7 +10,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 export const appConfig = () => {
-    dotenv.config({path: 'backend/.env'})
+    dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
+    dotenv.config({path: '.env'}) // !when runnig only the backend server
 
     app.use(express.json())
         .use(cors(corsOptions))
@@ -19,8 +20,17 @@ export const appConfig = () => {
         .use(express.static('public'))
         .use(cookieParser())
         .listen(PORT, () => {
-            connectDB()
             console.log(`Port is running on ${PORT}`)
+            connectDB()
+                .then(() => {
+                    console.log(`database is connected`)
+                })
+                .catch((error) => {
+                    console.error(
+                        'Server is running but failed to connect to database',
+                    )
+                    console.error(error)
+                })
         })
 }
 
