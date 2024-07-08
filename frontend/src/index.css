@@ -38,6 +38,21 @@
     --ggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
     --hover-border-color: #263E74;
     --gold: gold;
+
+    --dbg1: #ffffff;
+    --dbg2: #fff8e6;
+    --dbg2op: rgba(6, 16, 34, 0.1);
+    --dlblue: #4f74ca;
+    --dltext: #284062;
+    --dlgold: #f2b417;
+    --dllgold: rgb(132, 22, 0);
+    --dbg1l: #fff8e6;
+    --dhover-bg-gradient-start: #f2b417;
+    --dhover-bg-gradient-end: #f2b417;
+    --dggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
+    --dhover-border-color: #f2b417;
+    --dgold: gold;
+
 }
 
 .grad-text {

@@ -5,4 +5,5 @@ export default {
 		extend: {},
 	},
 	plugins: [],
+	darkMode: 'class', // Add this line to enable dark mode class
 };
