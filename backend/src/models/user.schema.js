@@ -15,6 +15,12 @@ const userSchema = new Schema(
                 ref: 'Crime',
             },
         ],
+        jobs: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Job',
+            },
+        ],
     },
     {
         timestamps: true,

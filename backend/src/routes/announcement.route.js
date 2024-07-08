@@ -1,4 +1,5 @@
 import express from 'express'
+import {validateAdmin} from './../middleware/validateAdmin.middleware.js'
 import {
     updateAnnouncement,
     createAnnouncement,
@@ -8,13 +9,14 @@ import {
 
 const router = express.Router()
 
+router.route('/').post(validateAdmin, createAnnouncement).get(fetchAnnouncement)
+
 router
-    .route('/createAnnouncement')
-    .post(createAnnouncement)
-    .get(fetchAnnouncement)
+    .route('/updateAnnouncement/:announcementID')
+    .post(validateAdmin, updateAnnouncement)
 
-router.route('/updateAnnouncement/:announcementID').post(updateAnnouncement)
-
-router.route('/deleteAnnouncement/:announcementID').get(deleteAnnouncement)
+router
+    .route('/deleteAnnouncement/:announcementID')
+    .get(validateAdmin, deleteAnnouncement)
 
 export default router
