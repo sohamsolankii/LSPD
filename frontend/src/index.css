@@ -47,28 +47,18 @@
     /* color: transparent; */
 }
 
-/* @layer utilities {
-    .bg-gradient-to-r {
-        background-image: linear-gradient(to right, #FFD700, #FFFACD, #FFD700);
-    }
-
-    .from-gold {
-        --tw-gradient-from: #FFD700;
-    }
-
-    .via-light-gold {
-        --tw-gradient-via: #FFFACD;
-    }
-
-    .to-gold {
-        --tw-gradient-to: #FFD700;
-    }
-} */
-
 .poppins {
     font-family: 'Poppins', sans-serif;
 }
 
 .gradgold {
     background: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
+}
+
+.bgpattern {
+    background-color: #0E182F;
+    opacity: 1;
+    background-image: linear-gradient(30deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(150deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(30deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(150deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(60deg, #08102277 25%, transparent 25.5%, transparent 75%, #08102277 75%, #08102277), linear-gradient(60deg, #08102277 25%, transparent 25.5%, transparent 75%, #08102277 75%, #08102277);
+    background-size: 46px 81px;
+    background-position: 0 0, 0 0, 23px 40px, 23px 40px, 0 0, 23px 40px;
 }

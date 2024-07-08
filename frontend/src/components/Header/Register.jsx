@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import {toast} from 'react-hot-toast'
-import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -16,9 +16,9 @@ const Register = () => {
     const registerUser = async (e) => {
         e.preventDefault()
         // Handle registration logic here
-        const {name, email, password} = data
+        const { name, email, password } = data
         try {
-            const {data} = await axios.post('/api/v1/auth/signUp', {
+            const { data } = await axios.post('/api/v1/auth/signUp', {
                 name,
                 email,
                 password,
@@ -27,70 +27,74 @@ const Register = () => {
                 toast.error(data.error)
             } else {
                 setData({})
-                toast.success('Login sucessful. Welcome!')
+                toast.success(`Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`, {
+                    className: 'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
+                });
                 navigate('/login')
             }
         } catch (err) {
             console.log(err)
-            toast.error('Registration failed, please try again')
+            toast.error(`Uh-oh, registration hit a snag! Give it another shot, rookie. The LSPD is waiting for you!`, {
+                className: 'bg-[var(--lblue)] mx-4 poppins pricedown font-medium text-[var(--bg1)] rounded-lg shadow-md',
+            });
         }
     }
 
     return (
-        <div className="flex items-center justify-center h-screen bg-gray-900">
-            <div className="bg-gray-800 p-8 rounded-lg shadow-md w-96">
-                <h2 className="text-2xl font-bold text-white mb-6 text-center">
+        <div className="flex poppins items-center justify-center drop-shadow-2xl h-screen bg-[var(--bg2)] bgpattern">
+            <div className="bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]">
+                <h2 className="text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
                     Register
                 </h2>
                 <form onSubmit={registerUser}>
                     <div className="mb-4">
-                        <label className="block text-white mb-2">Name</label>
+                        <label className="block mb-2">Name</label>
                         <input
                             type="text"
                             placeholder="Enter your name"
-                            className="w-full p-3 rounded bg-gray-700 text-white"
+                            className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.name}
                             onChange={(e) =>
-                                setData({...data, name: e.target.value})
+                                setData({ ...data, name: e.target.value })
                             }
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white mb-2">Email</label>
+                        <label className="block mb-2">Email</label>
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="w-full p-3 rounded bg-gray-700 text-white"
+                            className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.email}
                             onChange={(e) =>
-                                setData({...data, email: e.target.value})
+                                setData({ ...data, email: e.target.value })
                             }
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white mb-2">
+                        <label className="block mb-2">
                             Password
                         </label>
                         <input
                             type="password"
                             placeholder="Enter your password"
-                            className="w-full p-3 rounded bg-gray-700 text-white"
+                            className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.password}
                             onChange={(e) =>
-                                setData({...data, password: e.target.value})
+                                setData({ ...data, password: e.target.value })
                             }
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full p-3 bg-blue-500 text-white rounded hover:bg-blue-600"
+                        className="w-full p-3 mt-8 bg-[var(--lblue)] font-medium text-[var(--bg2)] rounded-lg hover:bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400"
                     >
                         Register
                     </button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link to="/login" className="text-blue-400 hover:underline">
-                        Already have an account? Login
+                    <Link to="/login" className="text-[var(--lblue)] hover:text-[var(--lgold)]">
+                        Already have an account? Login Now
                     </Link>
                 </div>
             </div>
