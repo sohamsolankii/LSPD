@@ -24,13 +24,13 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-[var(--bg2op)] backdrop-blur-xl border-b-2 border-[var(--lgold)] text-white p-4 fixed w-full top-0 z-50">
+        <nav className="bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white p-4 fixed w-full top-0 z-50">
             <div className="container mx-auto flex justify-between items-center">
                 <Link to="/Dashboard" className="md:p-2 p-1">
-                    <MenuIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] text-sm" />
+                    <MenuIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)] text-sm" />
                 </Link>
 
-                <Link to="/" className="flex items-center md:text-2xl text-lg font-bold md:text-[var(--lgold)] text-[var(--lblue)]">
+                <Link to="/" className="flex items-center md:text-2xl text-lg font-bold md:text-[var(--lgold)] text-[var(--lblue)] dark:text-[var(--dltext)]">
                     <img src={logo} alt="LSPD Logo" className="h-10 mr-2 md:block hidden" />
                     LSPD EAGLE-EYE
                 </Link>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 <div className="flex items-center gap-2 md:gap-7">
                     {isDarkMode ? (
                         <button onClick={toggleTheme} className="md:p-2 p-1">
-                            <LightModeIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)]" />
+                            <LightModeIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
                         </button>
                     ) : (
                         <button onClick={toggleTheme} className="md:p-2 p-1">
@@ -46,7 +46,7 @@ const Navbar = () => {
                         </button>
                     )}
                     <Link to="/register" className="md:p-2 p-1">
-                        <PersonRoundedIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)]" />
+                        <PersonRoundedIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
                     </Link>
                 </div>
             </div>

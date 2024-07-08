@@ -12,7 +12,7 @@ const Starter = () => {
                 loop={false}
                 muted
             ></video>
-            <div className="absolute inset-0 bg-black opacity-10"></div> {/* Adjusted overlay opacity */}
+            <div className="absolute inset-0 bg-black opacity-10 dark:bg-white dark:opacity-50"></div> {/* Adjusted overlay opacity */}
             <div className="relative md:flex grid md:items-center justify-center text-white w-full max-w-screen-xl px-10">
                 <img src={LSPDLogo} alt="LSPD logo" className="w-[25%] mr-10" />
                 <div className="text-left">

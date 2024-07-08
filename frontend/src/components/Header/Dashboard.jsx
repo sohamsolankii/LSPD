@@ -33,14 +33,14 @@ const Dashboard = () => {
     const { user } = useContext(UserContext);
 
     return (
-        <div className="bg-[var(--bg1)] text-[var(--lblue)] min-h-screen">
+        <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             <Starter />
             <section className="p-4 md:p-12">
                 <div className="text-center m-4 md:m-8 p-4 md:p-12">
-                    <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] mb-2 md:mb-4">
+                    <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
                         Welcome to LSPD Eagle-eye
                     </h2>
-                    <p className="text-lg md:text-2xl poppins mb-2 text-[var(--ltext)]">
+                    <p className="text-lg md:text-2xl poppins mb-2 text-[var(--ltext)] dark:text-[var(--dgold)]">
                         Your Digital Hotline for All Things Los Santos! (Yes,
                         Even the Crazy Stuff)
                     </p>
@@ -49,7 +49,8 @@ const Dashboard = () => {
                     {dashboardData.map((item, index) => (
                         <div
                             key={index}
-                            className="flex bg-[var(--bg1l)] p-4 rounded-2xl shadow-2xl text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)]"
+                            className="flex bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
+                            hover:dark:border-[var(--dllgold)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)]"
                         >
                             <img
                                 src={item.image}
@@ -58,22 +59,22 @@ const Dashboard = () => {
                             />
                             <div>
                                 <h3
-                                    className={`pricedown text-lg md:text-4xl mb-1 md:mb-2 ${item.title === 'Most Wanted List' || item.title === 'News and Alerts' ? 'text-[var(--lgold)]' : ''}`}
+                                    className={`pricedown text-lg md:text-4xl mb-1 md:mb-2 ${item.title === 'Most Wanted List' || item.title === 'News and Alerts' ? 'text-[var(--lgold)] dark:text-[#F6B922]' : ''}`}
                                 >
                                     {item.title}
                                 </h3>
-                                <p className="text-[var(--ltext)] poppins text-sm md:text-xl">
+                                <p className="text-[var(--ltext)] dark:text-[var(--dlblue)] poppins text-sm md:text-xl">
                                     {item.description}
                                 </p>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="bg-[var(--bg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
-                    <h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] font-bold mb-4">
+                <div className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
+                    <h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
                         Why LSPD Eagle-eye?
                     </h3>
-                    <p className="my-2 poppins md:my-8 text-[var(--ltext)] text-sm md:text-xl">
+                    <p className="my-2 poppins md:my-8 text-[var(--ltext)] dark:text-[var(--dlblue)] text-sm md:text-xl">
                         The LSPD Eagle-eye portal was created to connect the Los
                         Santos Police Department with its vibrant community. In
                         a dynamic and unpredictable city like Los Santos,
@@ -87,14 +88,14 @@ const Dashboard = () => {
                         suspicious activity or crucial information, your input
                         can make a difference.
                     </p>
-                    <p className="mb-2 poppins md:mb-8 text-[var(--ltext)] text-sm md:text-xl">
+                    <p className="mb-2 poppins md:mb-8 text-[var(--ltext)] text-sm dark:text-[var(--dlblue)] md:text-xl">
                         Join us in keeping Los Santos safe and lively, one tip
                         at a time!
                     </p>
                     <img
                         src="/src/assets/place.png"
                         alt="Place"
-                        className="rounded-xl shadow-xl w-full md:w-[80%] mx-auto"
+                        className="rounded-xl shadow-xl w-full mx-auto"
                     />
                 </div>
             </section>
