@@ -49,7 +49,7 @@ const Dashboard = () => {
                     {dashboardData.map((item, index) => (
                         <div
                             key={index}
-                            className="flex bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
+                            className="flex bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-sm dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
                             hover:dark:border-[var(--dllgold)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)]"
                         >
                             <img
@@ -70,7 +70,7 @@ const Dashboard = () => {
                         </div>
                     ))}
                 </div>
-                <div className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
+                <div className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl dark:shadow-sm shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
                     <h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
                         Why LSPD Eagle-eye?
                     </h3>
