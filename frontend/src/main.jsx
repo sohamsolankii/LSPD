@@ -14,7 +14,7 @@ import Login from './components/Forms/Login.jsx'
 import Register from './components/Forms/Register.jsx'
 import Dashboard from './components/Pages/Dashboard.jsx'
 import Starter from './components/Starter'
-import News from './components/News.jsx'
+import News from './components/Pages/News.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
