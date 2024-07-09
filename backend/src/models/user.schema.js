@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
+const saltRounds = 10
+import bcrypt from 'bcryptjs'
 
 const userSchema = new Schema(
     {
@@ -26,10 +28,18 @@ const userSchema = new Schema(
         timestamps: true,
     },
 )
+const hashPassword = async (password) => {
+    return await bcrypt.hash(password, saltRounds)
+}
 
-// exporting model so that we can perfoem CRUD operations on it
+// * Presave hook for hashedPassword not directly saved
+userSchema.pre('save', async function (next) {
+    if (this.isModified('password') || this.isNew) {
+        this.password = await hashPassword(this.password)
+    }
+    next()
+})
+
 const User = mongoose.model('User', userSchema)
 // User -> user thai jase  but refernce mate sme name aapvu
-
 export default User
-// Use a fucking English

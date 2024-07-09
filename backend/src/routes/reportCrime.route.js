@@ -8,7 +8,7 @@ import {authValidator} from '../middleware/auth.middleware.js'
 const router = express.Router()
 
 router
-    .route('/reportCrime')
+    .route('/report-crime')
     .post(authValidator, createCrimeDetails)
     .get(authValidator, fetchCrimeDetails)
 

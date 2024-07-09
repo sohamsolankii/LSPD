@@ -9,10 +9,10 @@ import {
 
 const router = express.Router()
 
-router.route('/addCrime/:userID').post(validateAdmin, addCrime)
+router.route('/add-crime/:userID').post(validateAdmin, addCrime)
 
-router.route('/wantedListUser/:userID').get(fetchSpecificWantedUser)
+router.route('/wanted-list-user/:userID').get(fetchSpecificWantedUser)
 
-router.route('/wantedList').get(fetchMostWantedList)
+router.route('/wanted-list').get(fetchMostWantedList)
 
 export default router

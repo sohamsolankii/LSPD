@@ -14,6 +14,12 @@ const announcementSchema = new Schema({
         type: String,
         required: [true, 'Description is Required'],
     },
+    comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment',
+        },
+    ],
 })
 
 const Announcement = mongoose.model('Announcement', announcementSchema)

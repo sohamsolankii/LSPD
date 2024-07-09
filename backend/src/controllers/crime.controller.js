@@ -4,7 +4,7 @@ import {AsyncHandler} from './../utils/AsyncHandler.js'
 import {ApiError} from './../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import mongoose from 'mongoose'
-const ObjectId = mongoose.Types.ObjectId
+import {intoObjectId} from './../utils/ObjectId.js'
 
 // * Add Crime for Specific User
 export const addCrime = AsyncHandler(async (req, res) => {
@@ -67,7 +67,7 @@ export const fetchMostWantedList = AsyncHandler(async (req, res) => {
 
 export const fetchSpecificWantedUser = AsyncHandler(async (req, res) => {
     const userID = req.params.userID
-    const userObjectID = new ObjectId(userID)
+    const userObjectID = intoObjectId(userID)
 
     // const user = await Crime.aggregate([
     //     {

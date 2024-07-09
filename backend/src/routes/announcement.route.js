@@ -5,18 +5,21 @@ import {
     createAnnouncement,
     fetchAnnouncement,
     deleteAnnouncement,
+    fetchSpecificAnnouncement,
 } from '../controllers/announcement.controller.js'
 
 const router = express.Router()
 
 router.route('/').post(validateAdmin, createAnnouncement).get(fetchAnnouncement)
 
+router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
+
 router
-    .route('/updateAnnouncement/:announcementID')
+    .route('/update-announcement/:announcementID')
     .post(validateAdmin, updateAnnouncement)
 
 router
-    .route('/deleteAnnouncement/:announcementID')
+    .route('/delete-announcement/:announcementID')
     .get(validateAdmin, deleteAnnouncement)
 
 export default router

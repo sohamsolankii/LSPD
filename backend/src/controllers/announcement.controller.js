@@ -1,19 +1,18 @@
 import {AsyncHandler} from '../utils/AsyncHandler.js'
 import Announcement from './../models/announcement.schema.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
+import {checkParams} from './../validators/checkParams.js'
+import {intoObjectId} from './../utils/ObjectId.js'
 
 // * Create announcement
 export const createAnnouncement = AsyncHandler(async (req, res) => {
     const {title, description} = req.body
-    console.log(title, description)
 
     const newAnnouncement = await Announcement.create({
         image: '1',
         title,
         description,
     })
-
-    console.log(newAnnouncement)
 
     res.status(200).json(
         new ApiResponse(
@@ -24,13 +23,53 @@ export const createAnnouncement = AsyncHandler(async (req, res) => {
     )
 })
 
+export const fetchSpecificAnnouncement = AsyncHandler(async (req, res) => {
+    await checkParams(req, 'announcementID', Announcement)
+    const announcementID = req.params.announcementID
+
+    const announcementObjID = intoObjectId(announcementID)
+
+    const announcement = await Announcement.aggregate([
+        {
+            $match: {
+                _id: announcementObjID,
+            },
+        },
+        {
+            $lookup: {
+                from: 'comments',
+                localField: 'comments',
+                foreignField: '_id',
+                as: 'comments',
+                pipeline: [
+                    {
+                        $lookup: {
+                            from: 'users',
+                            localField: 'user',
+                            foreignField: '_id',
+                            as: 'user',
+                        },
+                    },
+                    {
+                        $unwind: '$user',
+                    },
+                ],
+            },
+        },
+    ])
+
+    if (!announcement[0]) throw new ApiError(404, `Announcement not found`)
+
+    res.status(200).json(
+        new ApiResponse(200, announcement[0], 'fetched successfully'),
+    )
+})
+
 // * Fetch announcement
 export const fetchAnnouncement = AsyncHandler(async (req, res) => {
     // const announcements = await Announcement.aggregate([{$match: '_id'}])
 
     const announcements = await Announcement.find()
-
-    console.log(announcements)
 
     res.status(202).json(
         new ApiResponse(

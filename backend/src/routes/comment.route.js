@@ -5,9 +5,11 @@ import {authValidator} from '../middleware/auth.middleware.js'
 const router = express.Router()
 
 // * Create a new comment
-router.route('/addComment/:news').post(authValidator, addComment)
+router.route('/add-comment/:news').post(authValidator, addComment)
 
 // * Fetch Comments for a specific news
-router.route('/fetchComment/:news').get(fetchComment)
+router.route('/fetch-comment/:news').get(fetchComment)
 
+// TODO : Display a Specific Announcement with Comments
+// TODO : Add Comment for a specific Announcement
 export default router

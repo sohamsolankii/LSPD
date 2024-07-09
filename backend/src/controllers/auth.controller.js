@@ -1,50 +1,38 @@
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 import User from '../models/user.schema.js'
 import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {ApiError} from '../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
-const saltRounds = 10
+import {setToken} from './../utils/setReqToken.js'
 
 // * Sign Up
 export const signUp = AsyncHandler(async (req, res) => {
     const {name, email, password} = req?.body
     const validEmail = await User.findOne({email: email})
-    if (validEmail) throw new ApiError(409, 'Email already in use')
 
-    const hashedPassword = await bcrypt.hash(password, saltRounds)
+    // ! Check if email is available
+    if (validEmail) throw new ApiError(409, 'Email already in use')
 
     const newUser = new User({
         name,
         email,
-        password: hashedPassword,
+        password,
     })
     await newUser.save()
-    const accessToken = jwt.sign(
-        {
-            user: {
-                name: newUser.name,
-                email: newUser.email,
-                id: newUser.id,
-            },
-        },
-        process.env.ACCESS_TOKEN,
-        // {expiresIn: process.env.EXPIRE_IN},
-    )
 
-    req.user = {
-        name: newUser.name,
-        email: newUser.email,
-        id: newUser.id,
-    }
+    const accessToken = setToken(req, newUser)
 
     res.cookie('userCookie', accessToken, {
         httpOnly: true,
     })
-
-    res.status(201).json(
-        new ApiResponse(201, newUser, 'User logged in successfully'),
-    )
+        .status(201)
+        .json(
+            new ApiResponse(
+                201,
+                {newUser, accessToken},
+                'User logged in successfully',
+            ),
+        )
 })
 
 // * Log in
@@ -56,23 +44,7 @@ export const logIn = AsyncHandler(async (req, res) => {
         throw new ApiError(401, 'Invalid Details')
     }
 
-    const accessToken = jwt.sign(
-        {
-            user: {
-                name: user.name,
-                email: user.email,
-                id: user.id,
-            },
-        },
-        process.env.ACCESS_TOKEN,
-        // {expiresIn: process.env.EXPIRE_IN},
-    )
-
-    req.user = {
-        name: user.name,
-        email: user.email,
-        id: user.id,
-    }
+    const accessToken = setToken(req, user)
 
     const hundredYearsInMilliseconds = 100 * 365.25 * 24 * 60 * 60 * 1000
 
