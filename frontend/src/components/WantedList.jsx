@@ -1,14 +1,14 @@
 import React from 'react'
-import {Element} from 'react-scroll'
-import styled, {keyframes, css} from 'styled-components'
+import { Element } from 'react-scroll'
+import styled, { keyframes, css } from 'styled-components'
 
 const characters = [
-    {id: 1, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
-    {id: 2, name: 'Michael De Santa', image: '/src/assets/trevor.png'},
-    {id: 3, name: 'Franklin Clinton', image: '/src/assets/trevor.png'},
-    {id: 4, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
-    {id: 5, name: 'Michael De Santa', image: '/src/assets/trevor.png'},
-    {id: 6, name: 'Franklin Clinton', image: '/src/assets/trevor.png'},
+    { id: 1, name: 'Trevor Philips', image: '/src/assets/trevor.png' },
+    { id: 2, name: 'Michael De Santa', image: '/src/assets/trevor.png' },
+    { id: 3, name: 'Franklin Clinton', image: '/src/assets/trevor.png' },
+    { id: 4, name: 'Trevor Philips', image: '/src/assets/trevor.png' },
+    { id: 5, name: 'Michael De Santa', image: '/src/assets/trevor.png' },
+    { id: 6, name: 'Franklin Clinton', image: '/src/assets/trevor.png' },
     // Add more characters as needed
 ]
 
