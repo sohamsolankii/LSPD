@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, {useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
-import { toast } from 'react-hot-toast'
+import {toast} from 'react-hot-toast'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -13,35 +13,40 @@ const Login = () => {
 
     const loginUser = async (e) => {
         e.preventDefault()
-        console.log('1')
         // Handle login logic here
-        const { email, password } = data
+
         try {
-            const response = await axios.post(
-                'http://localhost:3000/api/v1/auth/login',
-                data,
-                {
-                    withCredentials: true,
-                },
-            )
-            console.log(response)
-            const data = response.data // get data from the response
-            if (data.error) {
-                toast.error(data.error)
+            const response = await axios.post('/api/v1/auth/login', data, {
+                withCredentials: true,
+            })
+            const responseData = response.data // get data from the response
+            if (responseData.error) {
+                toast.error(responseData.error)
             } else {
-                setData({})
-                toast.success(`Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`, {
-                    className: 'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
-                });
-                navigate('/dashboard')
+                setData({
+                    email: '',
+                    password: '',
+                })
+                toast.success(
+                    `Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`,
+                    {
+                        className:
+                            'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
+                    },
+                )
+                navigate('/')
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.error) {
                 toast.error(err.response.data.error) // Show specific error message from server
             } else {
-                toast.error(`Busted! Something went sideways. Please try again, Dear NPC.`, {
-                    className: 'bg-[var(--lblue)] mx-4 poppins pricedown font-medium text-[var(--bg1)] rounded-lg shadow-md',
-                })
+                toast.error(
+                    `Busted! Something went sideways. Please try again, Dear NPC.`,
+                    {
+                        className:
+                            'bg-[var(--lblue)] mx-4 poppins pricedown font-medium text-[var(--bg1)] rounded-lg shadow-md',
+                    },
+                )
             }
             console.log(err)
         }
@@ -62,7 +67,7 @@ const Login = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.email}
                             onChange={(e) =>
-                                setData({ ...data, email: e.target.value })
+                                setData({...data, email: e.target.value})
                             }
                         />
                     </div>
@@ -74,7 +79,7 @@ const Login = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.password}
                             onChange={(e) =>
-                                setData({ ...data, password: e.target.value })
+                                setData({...data, password: e.target.value})
                             }
                         />
                     </div>
@@ -86,7 +91,10 @@ const Login = () => {
                     </button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link to="/register" className="text-[var(--lblue)] hover:text-[var(--lgold)]">
+                    <Link
+                        to="/register"
+                        className="text-[var(--lblue)] hover:text-[var(--lgold)]"
+                    >
                         Create new account
                     </Link>
                 </div>

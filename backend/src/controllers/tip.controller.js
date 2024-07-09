@@ -15,8 +15,6 @@ export const addTip = AsyncHandler(async (req, res) => {
 
     await newTip.save()
 
-    console.log(newTip)
-
     res.status(200).json(new ApiResponse(200, newTip, 'New Tip Created'))
 })
 

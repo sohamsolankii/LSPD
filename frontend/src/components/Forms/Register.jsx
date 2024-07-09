@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { toast } from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import {toast} from 'react-hot-toast'
+import {useNavigate} from 'react-router-dom'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -15,28 +15,32 @@ const Register = () => {
 
     const registerUser = async (e) => {
         e.preventDefault()
-        // Handle registration logic here
-        const { name, email, password } = data
         try {
-            const { data } = await axios.post('/api/v1/auth/signUp', {
-                name,
-                email,
-                password,
+            const response = await axios.post('/api/v1/auth/signup', data, {
+                withCredentials: true,
             })
-            if (data.error) {
-                toast.error(data.error)
+            if (response.error) {
+                toast.error(response.error)
             } else {
                 setData({})
-                toast.success(`Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`, {
-                    className: 'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
-                });
+                toast.success(
+                    `Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`,
+                    {
+                        className:
+                            'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
+                    },
+                )
                 navigate('/login')
             }
         } catch (err) {
             console.log(err)
-            toast.error(`Uh-oh, registration hit a snag! Give it another shot, rookie. The LSPD is waiting for you!`, {
-                className: 'bg-[var(--lblue)] mx-4 poppins pricedown font-medium text-[var(--bg1)] rounded-lg shadow-md',
-            });
+            toast.error(
+                `Uh-oh, registration hit a snag! Give it another shot, rookie. The LSPD is waiting for you!`,
+                {
+                    className:
+                        'bg-[var(--lblue)] mx-4 poppins pricedown font-medium text-[var(--bg1)] rounded-lg shadow-md',
+                },
+            )
         }
     }
 
@@ -55,7 +59,7 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.name}
                             onChange={(e) =>
-                                setData({ ...data, name: e.target.value })
+                                setData({...data, name: e.target.value})
                             }
                         />
                     </div>
@@ -67,21 +71,19 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.email}
                             onChange={(e) =>
-                                setData({ ...data, email: e.target.value })
+                                setData({...data, email: e.target.value})
                             }
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block mb-2">
-                            Password
-                        </label>
+                        <label className="block mb-2">Password</label>
                         <input
                             type="password"
                             placeholder="Enter your password"
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.password}
                             onChange={(e) =>
-                                setData({ ...data, password: e.target.value })
+                                setData({...data, password: e.target.value})
                             }
                         />
                     </div>
@@ -93,7 +95,10 @@ const Register = () => {
                     </button>
                 </form>
                 <div className="mt-4 text-center">
-                    <Link to="/login" className="text-[var(--lblue)] hover:text-[var(--lgold)]">
+                    <Link
+                        to="/login"
+                        className="text-[var(--lblue)] hover:text-[var(--lgold)]"
+                    >
                         Already have an account? Login Now
                     </Link>
                 </div>

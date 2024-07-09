@@ -10,18 +10,19 @@ import {
     Routes,
     createRoutesFromElements,
 } from 'react-router-dom'
-import Login from './components/Header/Login.jsx'
-import Register from './components/Header/Register.jsx'
-import Dashboard from './components/Header/Dashboard.jsx'
+import Login from './components/Forms/Login.jsx'
+import Register from './components/Forms/Register.jsx'
+import Dashboard from './components/Pages/Dashboard.jsx'
+import Starter from './components/Starter'
 import News from './components/News.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-            <Route path="/" element={<Dashboard />} />,
+            <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />,
-            <Route path="/News" element={<News />} />,
             <Route path="/register" element={<Register />} />
+            <Route path="/News" element={<News />} />,
         </Route>,
     ),
 )

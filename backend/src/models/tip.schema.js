@@ -6,6 +6,7 @@ const tipSchema = new Schema(
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User',
+            default: null,
         },
         tips: {
             type: String,

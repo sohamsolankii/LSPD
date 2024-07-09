@@ -30,7 +30,7 @@ const Navbar = () => {
                     <MenuIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)] text-sm" />
                 </Link>
 
-                <Link to="/" className="flex items-center md:text-2xl text-lg font-bold md:text-[var(--lgold)] text-[var(--lblue)] dark:text-[var(--dlblue)]">
+                <Link to="/" className="flex items-center md:text-2xl text-lg font-bold md:text-[var(--lgold)] text-[var(--lblue)] dark:text-[var(--dltext)]">
                     <img src={logo} alt="LSPD Logo" className="h-10 mr-2 md:block hidden" />
                     LSPD EAGLE-EYE
                 </Link>
