@@ -45,31 +45,42 @@ const Dashboard = () => {
                         Even the Crazy Stuff)
                     </p>
                 </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
                     {dashboardData.map((item, index) => (
                         <div
                             key={index}
-                            className="flex bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
+                            onClick={() => {
+                                index === 0
+                                    ? (window.location.href = '/most-wanted')
+                                    : index === 1
+                                      ? (window.location.href = '/submit-tip')
+                                      : index === 2
+                                        ? (window.location.href = '/careers')
+                                        : (window.location.href = '/news')
+                            }}
+                            className="flex cursor-pointer bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
                             hover:dark:border-[var(--dllgold)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)]"
                         >
                             <img
                                 src={item.image}
                                 alt={`Image ${index + 1}`}
-                                className="w-1/3 md:w-1/4 rounded-lg mr-4 md:mr-6"
+                                className="w-1/3 cursor-pointer md:w-1/4 rounded-lg mr-4 md:mr-6"
                             />
                             <div>
                                 <h3
-                                    className={`pricedown text-lg md:text-4xl mb-1 md:mb-2 ${item.title === 'Most Wanted List' || item.title === 'News and Alerts' ? 'text-[var(--lgold)] dark:text-[#F6B922]' : ''}`}
+                                    className={`pricedown cursor-pointer text-lg md:text-4xl mb-1 md:mb-2 ${item.title === 'Most Wanted List' || item.title === 'News and Alerts' ? 'text-[var(--lgold)] dark:text-[#F6B922]' : ''}`}
                                 >
                                     {item.title}
                                 </h3>
-                                <p className="text-[var(--ltext)] dark:text-[var(--dlblue)] poppins text-sm md:text-xl">
+                                <p className="text-[var(--ltext)] cursor-pointer dark:text-[var(--dlblue)] poppins text-sm md:text-xl">
                                     {item.description}
                                 </p>
                             </div>
                         </div>
                     ))}
                 </div>
+
                 <div className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
                     <h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
                         Why LSPD Eagle-eye?
