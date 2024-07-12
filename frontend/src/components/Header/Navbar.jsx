@@ -31,7 +31,7 @@ const Navbar = () => {
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className={`navbar ${sidebar ? 'sidebar-active' : ''}`}>
-                <div className="container flex justify-between items-center p-4 fixed w-full top-0 z-50 bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white">
+                <div className="flex justify-between items-center p-5 fixed w-full top-0 z-50 bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white">
                     <Link to="#" className="menu-bars" onClick={showSidebar}>
                         <MenuIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
                     </Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
                         LSPD EAGLE-EYE
                     </Link>
 
-                    <div className="flex items-center gap-7">
+                    <div className="flex items-center gap-7 pr-6">
                         {isDarkMode ? (
                             <button onClick={toggleTheme}>
                                 <LightModeIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
