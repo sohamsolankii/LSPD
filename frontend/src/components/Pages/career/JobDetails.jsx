@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Rating from '../Rating'; // Assuming you have a Reviews component
+import Rating from '../career/Rating'; // Assuming you have a Reviews component
 import CSIImage from '/src/assets/place.png';
 
 const JobDetails = () => {

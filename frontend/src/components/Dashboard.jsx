@@ -1,11 +1,7 @@
 import React, {useContext} from 'react'
-import {UserContext} from '../../context/userContext'
-import LSPDLogo from '/src/assets/lspd-logo.png'
-import Starter from '../Starter'
-import AdminDashboard from './AdminDashboard'
-import Careers from './Careers'
-import JobDetails from './JobDetails'
-import WantedList from './WantedList'
+import {UserContext} from '../context/userContext'
+import LSPDLogo from '../assets/lspd-logo.png'
+
 
 const dashboardData = [
     {
@@ -37,8 +33,6 @@ const Dashboard = () => {
 
     return (
         <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
-            <Starter />
-            {/* <AdminDashboard /> */}
             <section className="p-4 md:p-12">
                 <div className="text-center m-4 md:m-8 p-4 md:p-12">
                     <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
@@ -60,7 +54,7 @@ const Dashboard = () => {
                                     : index === 1
                                       ? (window.location.href = '/submit-tip')
                                       : index === 2
-                                        ? (window.location.href = '/careers')
+                                        ? (window.location.href = '/career')
                                         : (window.location.href = '/news')
                             }}
                             className="flex cursor-pointer bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
@@ -114,9 +108,6 @@ const Dashboard = () => {
                     />
                 </div>
             </section>
-            <WantedList />
-            <Careers />
-            <JobDetails />
         </div>
     )
 }

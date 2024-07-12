@@ -12,17 +12,42 @@ import {
 } from 'react-router-dom'
 import Login from './components/Forms/Login.jsx'
 import Register from './components/Forms/Register.jsx'
-import Dashboard from './components/Pages/Dashboard.jsx'
-import Starter from './components/Starter'
-import News from './components/Pages/News.jsx'
+import Starter from './components/Starter.jsx'
+import Dashboard from './components/Dashboard.jsx'
+import WantedList from './components/WantedList.jsx'
+import News from './components/Pages/news/News.jsx'
+import Careers from './components/Pages/career/Careers.jsx'
+import JobDetails from './components/Pages/career/JobDetails.jsx'
+import Footer from './components/Footer/Footer.jsx'
+
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-            <Route path="/" element={<Dashboard />} />
+            <Route
+                path="/"
+                element={
+                    <>
+                        <Starter />
+                        <Dashboard />
+                        <WantedList />
+						<Footer/>
+                    </>
+                }
+            />
             <Route path="/login" element={<Login />} />,
             <Route path="/register" element={<Register />} />
-            <Route path="/News" element={<News />} />,
+            <Route path="/news" element={<News />} />,
+            <Route
+                path="/career"
+                element={
+                    <>
+                        <Careers />
+                        <JobDetails />
+                    </>
+                }
+            />
+            {/* ,<Route path="/admin" element={<AdminDashboard />}></Route> */}
         </Route>,
     ),
 )
