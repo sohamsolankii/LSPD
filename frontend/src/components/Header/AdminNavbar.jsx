@@ -10,7 +10,7 @@ import { IconContext } from 'react-icons';
 import logo from '/src/assets/lspd-logo.png';
 import './Navbar.css';
 
-const Navbar = ({ isAdmin = true}) => { //I set this "true" temporarily, logic baad mein...
+const Navbar = ({ isAdmin }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [sidebar, setSidebar] = useState(false);
 
@@ -40,9 +40,7 @@ const Navbar = ({ isAdmin = true}) => { //I set this "true" temporarily, logic b
                         <img src={logo} alt="LSPD Logo" className="invisible md:visible h-8 md:h-10 mr-2" />
                         {isAdmin ? (
                             <span className="relative">
-LSPD EAGLE-EYE 
-<span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-3 py-1 rounded-md hidden md:inline-block">ADMIN</span>
-
+                                LSPD EAGLE-EYE <span className="bg-[var(--lgold)] dark:bg-[var(--dltext)] text-[var(--lblue)] dark:text-[var(--dlblue)] px-2 py-1 rounded-md">ADMIN</span>
                             </span>
                         ) : (
                             "LSPD EAGLE-EYE"
