@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import {toast} from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -31,7 +31,7 @@ const Login = () => {
                     `Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`,
                     {
                         className:
-                            'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
+                            'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[80%] md:w-[60%] lg:w-[25%]',
                     },
                 )
                 navigate('/')
@@ -54,8 +54,8 @@ const Login = () => {
 
     return (
         <div className="flex poppins items-center justify-center drop-shadow-2xl h-screen bg-[var(--bg2)] bgpattern">
-            <div className="bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]">
-                <h2 className="text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
+            <div className="bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[90%] md:w-[60%] lg:w-[25%]">
+                <h2 className="text-3xl lg:text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
                     Login
                 </h2>
                 <form onSubmit={loginUser}>
@@ -67,7 +67,7 @@ const Login = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.email}
                             onChange={(e) =>
-                                setData({...data, email: e.target.value})
+                                setData({ ...data, email: e.target.value })
                             }
                         />
                     </div>
@@ -79,7 +79,7 @@ const Login = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.password}
                             onChange={(e) =>
-                                setData({...data, password: e.target.value})
+                                setData({ ...data, password: e.target.value })
                             }
                         />
                     </div>

@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import {toast} from 'react-hot-toast'
-import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -24,10 +24,10 @@ const Register = () => {
             } else {
                 setData({})
                 toast.success(
-                    `Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`,
+                    `Welcome, rookie! You've successfully registered. Let's keep Los Santos in check!`,
                     {
                         className:
-                            'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]',
+                            'bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[80%] md:w-[60%] lg:w-[25%]',
                     },
                 )
                 navigate('/login')
@@ -46,8 +46,8 @@ const Register = () => {
 
     return (
         <div className="flex poppins items-center justify-center drop-shadow-2xl h-screen bg-[var(--bg2)] bgpattern">
-            <div className="bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[25%]">
-                <h2 className="text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
+            <div className="bg-[var(--bg1l)] p-8 text-[var(--lblue)] rounded-lg shadow-md w-[90%] md:w-[60%] lg:w-[25%]">
+                <h2 className="text-3xl lg:text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
                     Register
                 </h2>
                 <form onSubmit={registerUser}>
@@ -59,7 +59,7 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.name}
                             onChange={(e) =>
-                                setData({...data, name: e.target.value})
+                                setData({ ...data, name: e.target.value })
                             }
                         />
                     </div>
@@ -71,7 +71,7 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.email}
                             onChange={(e) =>
-                                setData({...data, email: e.target.value})
+                                setData({ ...data, email: e.target.value })
                             }
                         />
                     </div>
@@ -83,7 +83,7 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--bg1)] text-[var(--ltext)]"
                             value={data.password}
                             onChange={(e) =>
-                                setData({...data, password: e.target.value})
+                                setData({ ...data, password: e.target.value })
                             }
                         />
                     </div>

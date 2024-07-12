@@ -12,27 +12,21 @@ const JobDetails = () => {
     return (
         <div className={`${darkMode ? 'dark' : ''}`}>
             <div className="bg-[var(--bg1)] dark:bg-[var(--dbg1)] min-h-screen text-[var(--lblue)] dark:text-[var(--dlgold)] p-4 md:p-12">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl md:text-5xl pricedown mb-4 text-[var(--lblue)] dark:text-[var(--dltext)]">
+                <div className="flex flex-col md:flex-row items-center md:items-start bg-[var(--bg2)] dark:bg-[var(--dbg2)] rounded-2xl">
+
+                    <div className="text-left w-full md:w-2/3 p-4 md:p-7">
+                    <h1 className="text-2xl md:text-4xl poppins font-semibold text-[var(--lgold)] dark:text-[var(--dltext)]">
                         Crime Scene Investigator
                     </h1>
-                </div>
-                
-                <div className="flex flex-col md:flex-row items-center md:items-start">
-                    <img
-                        src={CSIImage}
-                        alt="Crime Scene Investigator"
-                        className="w-full md:w-1/3 rounded-lg mb-4 md:mb-0 md:mr-8"
-                    />
-                    <div className="text-left w-full md:w-2/3">
-                        <h2 className="text-2xl md:text-4xl poppins mb-4">
+                    <h2 className="text-lg md:text-2xl poppins">
                             Forensics Department
                         </h2>
-                        <p className="text-lg md:text-xl poppins mb-4">
+                        <hr className="h-px my-8 bg-gray-100 border-0 dark:bg-gray-700"></hr>
+                        <p className="text-md md:text-xl poppins mb-4 text-[var(--ltext)] dark:text-[var(--dltext)]">
                             As a Crime Scene Investigator (CSI), you will be responsible for collecting, preserving, and analyzing physical evidence from crime scenes. Your work will play a crucial role in solving crimes and bringing justice to victims.
                         </p>
                         <h3 className="text-xl md:text-2xl poppins mb-2">
-                            Responsibilities:
+                            Responsibilities
                         </h3>
                         <ul className="list-disc list-inside poppins mb-4">
                             <li>Collect and preserve physical evidence from crime scenes.</li>
@@ -41,7 +35,7 @@ const JobDetails = () => {
                             <li>Testify in court as an expert witness.</li>
                         </ul>
                         <h3 className="text-xl md:text-2xl poppins mb-2">
-                            Requirements:
+                            Requirements
                         </h3>
                         <ul className="list-disc list-inside poppins mb-4">
                             <li>Bachelor's degree in Forensic Science, Criminal Justice, or a related field.</li>
@@ -49,13 +43,18 @@ const JobDetails = () => {
                             <li>Strong analytical and observational skills.</li>
                             <li>Excellent written and verbal communication skills.</li>
                         </ul>
-                        <div className="mt-8">
-                    <h3 className="text-xl md:text-2xl poppins mb-4">
-                        Employee Reviews:
+                        <div>
+                    <h3 className="text-xl md:text-2xl poppins mb-2">
+                        Employee Reviews
                     </h3>
                     <Rating />
                 </div>
                     </div>
+                    <img
+                        src={CSIImage}
+                        alt="Crime Scene Investigator"
+                        className="w-full md:w-1/3 rounded-md md:rounded-lg m-4 md:m-7"
+                    />
                 </div>
             </div>
         </div>
