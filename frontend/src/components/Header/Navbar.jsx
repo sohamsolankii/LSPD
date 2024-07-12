@@ -31,28 +31,28 @@ const Navbar = () => {
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className={`navbar ${sidebar ? 'sidebar-active' : ''}`}>
-                <div className="flex justify-between items-center p-5 fixed w-full top-0 z-50 bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white">
-                    <Link to="#" className="menu-bars" onClick={showSidebar}>
-                        <MenuIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
+                <div className="flex justify-between items-center p-3 fixed w-full top-0 z-50 bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white">
+                    <Link to="#" className="menu-bars ml-3 group" onClick={showSidebar}>
+                        <MenuIcon sx={{ fontSize: 25, md: { fontSize: 30 } }} className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300" />
                     </Link>
 
-                    <Link to="/" className="flex items-center text-2xl font-bold text-[var(--lgold)] dark:text-[var(--dltext)]">
-                        <img src={logo} alt="LSPD Logo" className="h-10 mr-2" />
+                    <Link to="/" className="flex items-center text-xl md:text-2xl font-bold sm:text-[var(--lgold)] text-[var(--lblue)] sm:dark:text-[var(--dltext)] dark:text-[var(--dlblue)]">
+                        <img src={logo} alt="LSPD Logo" className="invisible md:visible h-8 md:h-10 mr-2" />
                         LSPD EAGLE-EYE
                     </Link>
 
-                    <div className="flex items-center gap-7 pr-6">
+                    <div className="flex items-center gap-4 md:gap-7 pr-4 md:pr-6">
                         {isDarkMode ? (
-                            <button onClick={toggleTheme}>
-                                <LightModeIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
+                            <button onClick={toggleTheme} className="group">
+                                <LightModeIcon sx={{ fontSize: 25, md: { fontSize: 30 } }} className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300" />
                             </button>
                         ) : (
-                            <button onClick={toggleTheme}>
-                                <DarkModeRoundedIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)]" />
+                            <button onClick={toggleTheme} className="group">
+                                <DarkModeRoundedIcon sx={{ fontSize: 25, md: { fontSize: 30 } }} className="text-[var(--lgold)] group-hover:text-[var(--lblue)] transition-colors duration-300" />
                             </button>
                         )}
-                        <Link to="/register">
-                            <PersonRoundedIcon sx={{ fontSize: 30 }} className="text-[var(--lgold)] dark:text-[var(--dltext)]" />
+                        <Link to="/register" className="group">
+                            <PersonRoundedIcon sx={{ fontSize: 25, md: { fontSize: 30 } }} className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300" />
                         </Link>
                     </div>
                 </div>

@@ -4,8 +4,6 @@ import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
 
-
-
 export const SidebarData = [
     {
         title: 'Home',
