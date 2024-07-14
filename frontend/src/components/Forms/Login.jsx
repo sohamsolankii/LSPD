@@ -58,7 +58,7 @@ const Login = () => {
             style={{ backgroundImage: "url('/src/assets/formbg3.jpeg')" }}
         >            
          <div className="absolute inset-0 bg-[var(--bg2)] opacity-80"></div>
-            <div className="bg-[var(--bg3op)] relative z-10 p-8 text-[var(--lblue)] glassgrad rounded-2xl backdrop-blur-md border-2 border-[#475569] transition ease-in-out delay-300 hover:backdrop-blur-2xl shadow-5xl w-[90%] md:w-[70%] lg:w-[25%]">
+            <div className="bg-[var(--bg3op)] relative z-10 p-8 text-[var(--lblue)] glassgrad rounded-2xl backdrop-blur-md border-2 border-[#475569] transition ease-in-out delay-300 hover:backdrop-blur-2xl shadow-black/70 shadow-2xl w-[90%] md:w-[70%] lg:w-[25%]">
                 <h2 className="text-3xl lg:text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
                     Login
                 </h2>
@@ -89,7 +89,7 @@ const Login = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full p-3 mt-8 bg-[var(--lblue)] glassgrad2 backdrop-blur-sm font-medium text-[var(--ltext)] hover:text-[var(--bg2)] rounded-lg hover:bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400"
+                        className="w-full p-3 mt-8 bg-[var(--lblue)] glassgrad2 shadow-black/70 shadow-2xl backdrop-blur-sm font-medium text-[var(--ltext)] hover:text-[var(--bg2)] rounded-lg hover:bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400"
                     >
                         Login
                     </button>
