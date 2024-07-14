@@ -5,7 +5,7 @@ const Starter = () => {
     return (
         <section className="relative h-screen flex items-center justify-center">
             <video
-                className="absolute inset-0 md:w-full h-full w-[20%] object-cover"
+                className="absolute inset-0 md:w-full h-full object-cover"
                 src="/src/assets/videobg.mp4"
                 type="video/mp4"
                 autoPlay

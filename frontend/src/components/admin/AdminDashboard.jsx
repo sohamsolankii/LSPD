@@ -85,11 +85,6 @@ const AdminDashboard = () => {
                     <p className="my-2 poppins md:my-8 text-[var(--ltext)] dark:text-[var(--dlblue)] text-sm md:text-xl">
                         The Admin Dashboard of LSPD Eagle-eye provides you with the tools and resources you need to manage and oversee all activities within Los Santos. From handling critical updates to ensuring that the most wanted list is always current, your role is crucial in maintaining order and safety. This dashboard streamlines your tasks and helps you perform your duties effectively.
                     </p>
-                    <img
-                        src="/src/assets/admin-dashboard.png"
-                        alt="Admin Dashboard"
-                        className="rounded-xl shadow-xl w-full mx-auto"
-                    />
                 </div>
             </section>
             {/* <AdminWantedList />  Include admin-specific component for managing most wanted list */}

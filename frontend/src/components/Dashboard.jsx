@@ -79,8 +79,8 @@ const Dashboard = () => {
                     ))}
                 </div>
 
-                <div className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
-                    <h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
+                <div className="bg-[var(--bg1l)] md:flex block dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
+                    <div className="lg:w-2/3 w-[100%] pr-0 lg:pr-10 pb-5 lg:pb-0"><h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
                         Why LSPD Eagle-eye?
                     </h3>
                     <p className="my-2 poppins md:my-8 text-[var(--ltext)] dark:text-[var(--dlblue)] text-sm md:text-xl">
@@ -100,12 +100,13 @@ const Dashboard = () => {
                     <p className="mb-2 poppins md:mb-8 text-[var(--ltext)] text-sm dark:text-[var(--dlblue)] md:text-xl">
                         Join us in keeping Los Santos safe and lively, one tip
                         at a time!
-                    </p>
-                    <img
+                    </p></div>
+                    <div className="w-[100%] lg:w-1/3"><img
                         src="/src/assets/place.png"
                         alt="Place"
-                        className="rounded-xl shadow-xl w-full mx-auto"
+                        className="md:rounded-xl rounded-lg shadow-xl"
                     />
+                    </div>
                 </div>
             </section>
         </div>
