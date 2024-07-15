@@ -9,15 +9,17 @@ import {setToken} from './../utils/setReqToken.js'
 export const signUp = AsyncHandler(async (req, res) => {
     const {name, email, password} = req.body
 
-	if(!name || !email || !password){
-		return res.status(400).json({message: "All fields are required"})
-	}
+    if (!name || !email || !password) {
+        return res.status(400).json({message: 'All fields are required'})
+    }
 
     const validEmail = await User.findOne({email: email})
 
     // ! Check if email is available
-    if (validEmail) throw new ApiError(409, 'Email already in use')
-		
+    if (validEmail) {
+        return res.status(409).json(new ApiError(409, 'Email already in use'))
+    }
+
     const newUser = new User({
         name,
         email,

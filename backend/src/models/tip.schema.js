@@ -8,7 +8,7 @@ const tipSchema = new Schema(
             ref: 'User',
             default: null,
         },
-        tips: {
+        tip: {
             type: String,
             require: [true, 'Comment is required'],
         },
