@@ -3,7 +3,6 @@ import User from '../models/user.schema.js'
 import {AsyncHandler} from './../utils/AsyncHandler.js'
 import {ApiError} from './../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
-import mongoose from 'mongoose'
 import {intoObjectId} from './../utils/ObjectId.js'
 
 // * Add Crime for Specific User

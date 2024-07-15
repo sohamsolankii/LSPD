@@ -3,7 +3,6 @@ import {ApiError} from '../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import Comment from '../models/comment.schema.js'
 import {checkParams} from '../validators/checkParams.js'
-import {mongoose} from 'mongoose'
 import Announcement from './../models/announcement.schema.js'
 
 // * Create a new comment
