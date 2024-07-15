@@ -35,7 +35,7 @@
     --lgold: #FCD672;
     --llgold: #F7F8DF;
     --bg1l: #18284B;
-    --opac: rgba(123, 182, 255, 0.15);
+    --opac: rgba(123, 182, 255, 0.1);
     --hover-bg-gradient-start: #18284B;
     --hover-bg-gradient-end: #263E74;
     --ggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
@@ -82,5 +82,12 @@
 }
 
 .glassgrad2 {
-    background: linear-gradient(to right, rgba(123, 182, 255, 0.2),rgba(132, 187, 255, 0), rgba(123, 182, 255, 0.2));
+    background: linear-gradient(to right, rgba(123, 182, 255, 0.1),rgba(132, 187, 255, 0), rgba(123, 182, 255, 0.1));
+}
+
+.bgp{
+    background: linear-gradient(0deg, transparent 45%, #0E182F 45%, #0E182F 55%, transparent 55%, transparent 20%, #0E182F 20%, #0E182F 30%,transparent 30%), linear-gradient(90deg, transparent 45%, #0E182F 45%, #0E182F 55%, transparent 55%, transparent 20%, #0E182F 20%, #0E182F 30%,transparent 30%);
+    background-size: 1em 1em;
+    background-color: #081022;
+    opacity: 1
 }
