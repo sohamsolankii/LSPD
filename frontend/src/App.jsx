@@ -5,7 +5,6 @@ import {Toaster} from 'react-hot-toast'
 
 import Navbar from './components/Header/Navbar.jsx'
 import {UserContextProvider} from './context/userContext.jsx'
-import Starter from './components/Starter.jsx'
 
 axios.defaults.baseURL = 'http://localhost:3000'
 axios.defaults.withCredentials = true

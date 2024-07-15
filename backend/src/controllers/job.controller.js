@@ -45,7 +45,7 @@ export const showLatestJobs = AsyncHandler(async (req, res) => {
         },
     ])
 
-    if (jobs.length == 0) throw new ApiError(404, 'Job not found')
+    if (jobs.length == 0) return res.status(404).json(new ApiError(404, 'Job not found'))
 
     res.status(200).json(new ApiResponse(200, jobs, 'Job fetched'))
 })

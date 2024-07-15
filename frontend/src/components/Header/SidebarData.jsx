@@ -19,7 +19,7 @@ export const SidebarData = [
     },
     {
         title: 'Submit a Tip',
-        path: '/SubmitTip',
+        path: '/submit-tip',
         icon: <IoIcons.IoIosText />,
         cName: 'nav-text',
     },
