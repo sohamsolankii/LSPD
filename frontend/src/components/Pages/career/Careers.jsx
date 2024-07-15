@@ -104,7 +104,7 @@ const Careers = () => {
                     <div
                         key={index}
                         className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left transform transition-transform duration-300 hover:border-[var(--hover-border-color)] 
-                        hover:dark:border-[var(--dllgold)] hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)]"
+                        hover:dark:border-[var(--dllgold)] hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)] hover:shadow-black/70 hover:shadow-4xl"
                     >
                         <img
                             src={job.image}
@@ -122,7 +122,7 @@ const Careers = () => {
                         </div>
                         <button
                             onClick={() => window.location.href = `/job-details/${index}`}
-                            className="mt-4 p-2 text-2xl hover:bg-[var(--bg1)] text-[var(--lgold)] dark:text-[var(--dltext)] rounded-md hover:dark:bg-[var(--dlgold)] hover:bg-[var(--hover-border-color)] hover:dark:bg-[var(--dllgold)] transition duration-200"
+                            className="mt-4 p-2 text-2xl hover:bg-[var(--bg1)] text-[var(--lgold)] dark:text-[var(--dltext)] rounded-md hover:dark:bg-[var(--dlgold)] hover:bg-[var(--bg1)] hover:dark:bg-[var(--dllgold)] transition duration-200"
                         >
                             <CgChevronRightO />
                         </button>
