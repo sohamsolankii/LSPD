@@ -67,9 +67,9 @@ const AddJob = () => {
     };
   
     return (
-      <div className="p-4 md:p-6 poppins bg-[var(--bg2)]">
-        <div className="mb-6 rounded-2xl shadow-black/70 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
-  <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] text-center shadow-black/70 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
+      <div className="p-4 md:p-6 poppins dark:bg-gray-100 bg-[var(--bg2)]">
+        <div className="mb-6 rounded-2xl shadow-black/70  dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
+  <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70 dark:bg-gray-100 dark:border-gray-400 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
     {isEditing ? 'Edit Job' : 'Add Job'}
   </h2>
   <form className="grid grid-cols-1 gap-5 md:grid-cols-2 p-5" onSubmit={(e) => e.preventDefault()}>
@@ -81,7 +81,7 @@ const AddJob = () => {
         value={newJob.title}
         onChange={handleChange}
         placeholder="Job Title"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -93,7 +93,7 @@ const AddJob = () => {
         value={newJob.location}
         onChange={handleChange}
         placeholder="Location"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -105,7 +105,7 @@ const AddJob = () => {
         value={newJob.jobType}
         onChange={handleChange}
         placeholder="Job Type"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -116,7 +116,7 @@ const AddJob = () => {
         value={newJob.description}
         onChange={handleChange}
         placeholder="Description"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -127,7 +127,7 @@ const AddJob = () => {
         value={newJob.requirements}
         onChange={handleChange}
         placeholder="Requirements"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -139,7 +139,7 @@ const AddJob = () => {
         value={newJob.salaryRange}
         onChange={handleChange}
         placeholder="Salary Range"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -151,7 +151,7 @@ const AddJob = () => {
         value={newJob.applicationDeadline}
         onChange={handleChange}
         placeholder="Application Deadline"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -163,7 +163,7 @@ const AddJob = () => {
         value={newJob.contactEmail}
         onChange={handleChange}
         placeholder="Contact Email"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
@@ -175,14 +175,14 @@ const AddJob = () => {
         value={newJob.postedDate}
         onChange={handleChange}
         placeholder="Posted Date"
-        className="p-2 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--opac)] backdrop-blur-md shadow-black/30 shadow-md text-gray-200"
+        className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
         required
       />
     </div>
     <div className="md:col-span-2 flex justify-center">
       <button
         type="submit"
-        className="p-2 px-5 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--bg4op)] backdrop-blur-md shadow-black/30 hover:shadow-black/40 hover:bg-[var(--opac)] shadow-md hover:shadow-xl text-gray-200 flex items-center justify-center"
+        className="p-2 px-5 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--bg4op)] dark:bg-[var(--bg1l)] backdrop-blur-md shadow-black/30 hover:shadow-black/40 hover:bg-[var(--opac)] hover:dark:bg-[var(--bg1)] shadow-md hover:shadow-xl text-gray-200 flex items-center justify-center"
         onClick={handleAddJob}
       >
         {isEditing ? 'Update Job' : 'Add Job'} <FaPlus className="ml-2" />
@@ -192,8 +192,8 @@ const AddJob = () => {
 </div>
 
 
-        <div className="mb-6 rounded-2xl shadow-black/70 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
-        <h2 className="text-2xl rounded-xl z-10 font-medium m-2 p-2 text-[var(--lgold)] text-center shadow-black/70 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">Current Jobs</h2>
+        <div className="mb-6 dark:bg-gray-100 dark:border-gray-400 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
+        <h2 className="text-2xl rounded-xl z-10 font-medium dark:bg-gray-100 dark:border-gray-400 m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">Current Jobs</h2>
         <table className="min-w-full mb-4 rounded-md shadow-black/30 text-sm md:text-lg text-gray-200">
           <thead>
             <tr>
@@ -206,10 +206,10 @@ const AddJob = () => {
           <tbody>
             {jobs.map((job) => (
               <tr key={job.id}>
-                <td className="border-[1px] border-[var(--opac)] font-regular text-gray-300 px-4 py-2">{job.title}</td>
-                <td className="border-[1px] border-[var(--opac)] font-regular text-gray-300 px-4 py-2">{job.location}</td>
-                <td className="border-[1px] border-[var(--opac)] font-regular text-gray-300 px-4 py-2">{job.jobType}</td>
-                <td className="border-[1px] border-[var(--opac)] font-regular text-gray-300 px-4 py-2">
+                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">{job.title}</td>
+                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">{job.location}</td>
+                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">{job.jobType}</td>
+                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">
                   <button className="text-blue-500 hover:text-blue-700" onClick={() => handleDetails(job)}>Details</button>
                   <button className="text-blue-500 hover:text-blue-700 ml-4" onClick={() => handleEdit(job)}>Edit</button>
                   <button className="text-red-500 hover:text-red-700 ml-4" onClick={() => handleDelete(job.id)}>Delete</button>
@@ -221,8 +221,8 @@ const AddJob = () => {
       </div>
 
       {showDetails && currentJob && (
-        <div className="fixed inset-0 text-gray-300 flex items-center justify-center">
-          <div className="bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] p-4 rounded-xl md:w-1/2 shadow-black/80 shadow-2xl w-4/5">
+        <div className="fixed inset-0 text-gray-300 dark:text-gray-600 flex items-center justify-center">
+          <div className="bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] dark:border-gray-400 p-4 rounded-xl md:w-1/2 shadow-black/80 dark:shadow-black/40 shadow-2xl w-4/5">
             <h2 className="text-xl font-medium mb-2">Job Details</h2>
 
             <p className="font-light"><strong>Title:</strong> {currentJob.title}</p>
