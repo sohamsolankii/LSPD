@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const saltRounds = 10
 import bcrypt from 'bcryptjs'
+import validator from 'validator'
 
 const userSchema = new Schema(
     {
@@ -9,6 +10,7 @@ const userSchema = new Schema(
         email: {
             type: String,
             unique: true,
+            validate: [validator.isEmail, 'Please provide a valid Email!']
         },
         password: String,
         crimes: [
