@@ -10,8 +10,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 export const appConfig = () => {
-    // dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
-    dotenv.config({path: '.env'}) // !when runnig only the backend server
+    dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
+    // dotenv.config({path: '.env'}) // !when runnig only the backend server
 
     app.use(cors(corsOptions))
     app.use(express.json())
