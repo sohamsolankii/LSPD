@@ -3,6 +3,8 @@ import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
+import {TbMessageChatbot} from 'react-icons/tb'
+
 
 export const SidebarData = [
     {
@@ -36,9 +38,9 @@ export const SidebarData = [
         cName: 'nav-text',
     },
     {
-        title: 'Messages',
-        path: '/messages',
-        icon: <FaIcons.FaEnvelopeOpenText />,
+        title: 'ChatBot',
+        path: '/chat',
+        icon: <TbMessageChatbot />,
         cName: 'nav-text',
     },
     {
