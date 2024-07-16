@@ -23,7 +23,7 @@ import AdminJobDetails from './components/admin/AdminJobDetails.jsx'
 import AddJob from './components/admin/AddJob.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
-
+import Chatbot from './components/chatbot/Chatbot.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -42,6 +42,7 @@ const router = createBrowserRouter(
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
+            <Route path="/chat" element={<Chatbot />} />,
             <Route path="/career"
                 element={
                     <>
@@ -70,18 +71,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </React.StrictMode>,
 )
 
-// this is for the learning perpose
-// const router = createBrowserRouter([
-//     {
-//         path: '/',
-//         element: (
-//             <Navbar />
-//         ),
-//     },
-//     {
-//         path: '/test',
-//         element: (
-// 			<Test />
-// 		),
-//     },
-// ])
+

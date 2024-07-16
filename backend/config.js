@@ -13,6 +13,7 @@ export const appConfig = () => {
     dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
     // dotenv.config({path: '.env'}) // !when runnig only the backend server
 
+
     app.use(cors(corsOptions))
     app.use(express.json())
         .use(morgan('dev'))

@@ -7,6 +7,7 @@ import announcementRoutes from './src/routes/announcement.route.js'
 import reportCrimeRoutes from './src/routes/reportCrime.route.js'
 import jobRoutes from './src/routes/job.route.js'
 import applicationRoutes from './src/routes/application.route.js'
+import chatRoutes from './src/routes/chat.route.js'
 
 import {appConfig, app} from './config.js'
 
@@ -21,3 +22,4 @@ app.use('/api/v1/auth', authRoutes)
     .use('/api/v1/reportCrime', reportCrimeRoutes)
     .use('/api/v1/job', jobRoutes)
     .use('/api/v1/application', applicationRoutes)
+    .use('/api/v1/chat', chatRoutes)
