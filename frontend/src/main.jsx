@@ -20,6 +20,7 @@ import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import JobDetails from './components/Pages/career/JobDetails.jsx'
 import AdminJobDetails from './components/admin/AdminJobDetails.jsx'
+import AdminPanel from './components/admin/AdminPanel.jsx'
 import Footer from './components/Footer/Footer.jsx'
 
 
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
                         <Starter />
                         <Dashboard />
                         <WantedList />
-                        {/* <AdminJobDetails /> */}
+                        <AdminPanel />
 						<Footer/>
                     </>
                 }

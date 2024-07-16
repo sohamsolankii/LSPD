@@ -34,7 +34,7 @@ const Dashboard = () => {
     return (
         <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             <section className="p-4 md:p-12">
-                <div className="text-center m-4 md:m-8 p-4 md:p-12">
+                <div className="text-center m-4 md:m-8 p-4 md:p-12 animate-appear blockanim">
                     <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
                         Welcome to LSPD Eagle-eye
                     </h2>
@@ -44,7 +44,7 @@ const Dashboard = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 ">
                     {dashboardData.map((item, index) => (
                         <div
                             key={index}
@@ -57,7 +57,7 @@ const Dashboard = () => {
                                         ? (window.location.href = '/career')
                                         : (window.location.href = '/news')
                             }}
-                            className="flex cursor-pointer bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-[1px] text-left items-center transform transition-transform duration-300 hover:border-[var(--hover-border-color)] 
+                            className="flex animate-appear blockanim cursor-pointer bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-[1px] text-left items-center transform transition-transform duration-300 hover:border-[var(--hover-border-color)] 
                             hover:dark:border-[var(--dllgold)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)]"
                         >
                             <img
@@ -65,7 +65,7 @@ const Dashboard = () => {
                                 alt={`Image ${index + 1}`}
                                 className="w-1/3 cursor-pointer md:w-1/4 rounded-lg mr-4 md:mr-6"
                             />
-                            <div>
+                            <div className="animate-appear blockanim">
                                 <h3
                                     className={`pricedown cursor-pointer text-lg md:text-4xl mb-1 md:mb-2 ${item.title === 'Most Wanted List' || item.title === 'News and Alerts' ? 'text-[var(--lgold)] dark:text-[#F6B922]' : ''}`}
                                 >
@@ -79,8 +79,8 @@ const Dashboard = () => {
                     ))}
                 </div>
 
-                <div className="bg-[var(--bg1l)] md:flex block dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
-                    <div className="lg:w-2/3 w-[100%] pr-0 lg:pr-10 pb-5 lg:pb-0"><h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
+                <div className="animate-appear blockanim bg-[var(--bg1l)] md:flex block dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
+                    <div className="lg:w-2/3 w-[100%] animate-appear blockanim pr-0 lg:pr-10 pb-5 lg:pb-0"><h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
                         Why LSPD Eagle-eye?
                     </h3>
                     <p className="my-2 poppins md:my-8 text-[var(--ltext)] dark:text-[var(--dlblue)] text-sm md:text-xl">
