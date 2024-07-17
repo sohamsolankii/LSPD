@@ -20,7 +20,7 @@ const ChatbotContainer = () => {
        
         <div 
           onClick={toggleChatbot} 
-          className="relative flex items-center bg-[var(--opac2)] dark:bg-[var(--bg1lop)] backdrop-blur-xl border-[1px] border-[var(--opac2)] dark:border-[var(--bg1lop)] text-white rounded-l-xl shadow-black/70 dark:shadow-black-40 dark:shadow-lg shadow-2xl"
+          className="relative pointer flex items-center bg-[var(--opac2)] dark:bg-[var(--bg1lop)] backdrop-blur-xl border-[1px] border-[var(--opac2)] dark:border-[var(--bg1lop)] text-white rounded-l-xl shadow-black/70 dark:shadow-black-40 dark:shadow-lg shadow-2xl"
         >
           <span className="relative animate-ping inline-flex rounded-full h-3 w-3 bg-[var(--lgold)] hidden md:inline-block"></span>
           {!isChatbotOpen && (<div className="md:mr-20 mr-14 p-3">

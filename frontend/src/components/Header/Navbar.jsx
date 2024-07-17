@@ -10,7 +10,7 @@ import { IconContext } from 'react-icons';
 import logo from '/src/assets/lspd-logo.png';
 import './Navbar.css';
 
-const Navbar = ({ isAdmin = true}) => { //I set this "true" temporarily, logic baad mein...
+const Navbar = ({ isAdmin = false}) => { //I set this "true" temporarily, logic baad mein...
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [sidebar, setSidebar] = useState(false);
 

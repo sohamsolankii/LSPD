@@ -53,7 +53,7 @@ const AdminDashboard = () => {
                                     : index === 1
                                     ? (window.location.href = '/admin/read-tips')
                                     : index === 2
-                                    ? (window.location.href = '/admin/add-job')
+                                    ? (window.location.href = '/admin/AddJob')
                                     : (window.location.href = '/admin/news');
                             }}
                             className="flex cursor-pointer bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 

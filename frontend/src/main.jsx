@@ -21,6 +21,7 @@ import Careers from './components/Pages/career/Careers.jsx'
 import JobDetails from './components/Pages/career/JobDetails.jsx'
 import AdminJobDetails from './components/admin/AdminJobDetails.jsx'
 import AddJob from './components/admin/AddJob.jsx'
+import AddNews from './components/admin/AddNews.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Chatbot from './components/chatbot/Chatbot.jsx'
@@ -56,7 +57,8 @@ const router = createBrowserRouter(
 					<>
 						<AdminDashboard />
                         <AddJob />
-						<AdminJobDetails />
+                        <AddNews />
+						{/* <AdminJobDetails /> */}
 					</>
 				}
 			/>
