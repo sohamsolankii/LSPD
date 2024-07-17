@@ -9,7 +9,7 @@ export const validateAdmin = async (req, res, next) => {
                 return res.sendStatus(403)
             }
             req.user = decoded.user
-            if (req.user.name === 'admin') {
+            if (req.user.name === 'admin' || req.user.email === 'admin@gmail.com'){
                 next()
             } else {
                 res.status(403).json(
