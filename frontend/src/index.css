@@ -28,11 +28,13 @@
     --bg1: #0E182F;
     --bg2: #081022;
     --bg2op: rgba(6, 16, 34, 0.6);
+    --bg5op: rgba(6, 16, 34, 0.318);
     --bg3op: rgba(42, 108, 189, 0.091);
     --bg4op: rgba(89, 164, 255, 0.045);
     --lblue: #75AAF1;
     --ltext: #D2E5FF;
     --lgold: #FCD672;
+    --lgop: rgba(252, 214, 114, 0.3);
     --llgold: #F7F8DF;
     --bg1l: #18284B;
     --bg1lop: #18284bb1;
