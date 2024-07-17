@@ -35,7 +35,9 @@
     --lgold: #FCD672;
     --llgold: #F7F8DF;
     --bg1l: #18284B;
+    --bg1lop: #18284bb1;
     --opac: rgba(123, 182, 255, 0.1);
+    --opac2: rgba(123, 182, 255, 0.3);
     --hover-bg-gradient-start: #18284B;
     --hover-bg-gradient-end: #263E74;
     --ggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
