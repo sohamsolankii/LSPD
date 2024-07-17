@@ -39,7 +39,7 @@ const Chatbot = () => {
   };
 
   return (
-      <div className="rounded-l-xl shadow-lg h-[100%] p-6 w-full max-w-md bg-[var(--opac2)] dark:bg-[var(--bg1lop)] backdrop-blur-xl border-[1px] border-[var(--opac2)] dark:border-[var(--bg1lop)]">
+      <div className="rounded-l-xl shadow-lg h-[100%] font-regular text-gray-200 text-sm p-6 w-full max-w-md bg-[var(--opac2)] dark:bg-[var(--bg1lop)] backdrop-blur-xl border-[1px] border-[var(--opac2)] dark:border-[var(--bg1lop)]">
         <div className="overflow-y-auto h-96 mb-4">
           {chatHistory.map((chat, index) => (
             <div
@@ -47,10 +47,11 @@ const Chatbot = () => {
               className={`mb-2 ${chat.user === 'You' ? 'text-right' : 'text-left'}`}
             >
               <div
-                className={`inline-block p-2 rounded-lg border-[1px] ${chat.user === 'You' ? 'bg-[var(--opac2)] border-[var(--opac2)]' : 'bg-[var(--lgop)] border-[var(--lgop)]'}`}
+                className={`inline-block p-2 rounded-lg border-[1px] shadow-xl ${chat.user === 'You' ? 'bg-[var(--opac2)] border-[var(--opac2)]' : 'bg-[var(--lgop)] border-[var(--lgop)]'}`}
               >
-                <strong>{chat.user}: </strong>
-                {chat.message}
+                <strong>{chat.user}</strong>
+                <hr className="h-px my-1 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                <h3 className="text-xs">{chat.message}</h3>
               </div>
             </div>
           ))}
