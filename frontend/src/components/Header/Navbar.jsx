@@ -4,15 +4,13 @@ import MenuIcon from '@mui/icons-material/Menu'
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded'
 import DarkModeRoundedIcon from '@mui/icons-material/Brightness7Sharp'
 import LightModeIcon from '@mui/icons-material/Brightness4'
-import * as AiIcons from 'react-icons/ai'
-import {SidebarData} from './SidebarData'
 import {IconContext} from 'react-icons'
 import logo from '/src/assets/lspd-logo.png'
 import './Navbar.css'
 import {UserContext} from '../../context/userContext'
 import axios from 'axios'
 import {PiSignInBold} from 'react-icons/pi'
-
+import Sidebar from './Sidebar'
 
 const Navbar = ({isAdmin = false}) => {
     const [isDarkMode, setIsDarkMode] = useState(false)
@@ -133,26 +131,7 @@ const Navbar = ({isAdmin = false}) => {
                         )}
                     </div>
                 </div>
-                <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className="nav-menu-items" onClick={showSidebar}>
-                        <li className="navbar-toggle">
-                            <Link to="#" className="menu-bars">
-                                <AiIcons.AiOutlineClose />
-                            </Link>
-                        </li>
-                        {SidebarData.map((item, index) => (
-                            <li key={index} className={item.cName}>
-                                <Link to={item.path}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {sidebar && (
-                    <div className="overlay" onClick={showSidebar}></div>
-                )}
+                <Sidebar sidebar={sidebar} showSidebar={showSidebar} />
             </div>
         </IconContext.Provider>
     )
