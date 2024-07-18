@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, {useContext, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
-import { toast } from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import {toast} from 'react-hot-toast'
+import {UserContext} from '../../context/userContext'
 
 const Register = () => {
     const navigate = useNavigate()
-
-    const [data, setData] = useState({
+    const { setUser } = useContext(UserContext)
+    const [localData, setLocalData] = useState({
         name: '',
         email: '',
         password: '',
@@ -16,18 +16,22 @@ const Register = () => {
     const registerUser = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('/api/v1/auth/signup', data, {
-                withCredentials: true,
-            })
-            if (response.error) {
-                toast.error(response.error)
+            const response = await axios.post('/api/v1/auth/signup', localData, {withCredentials: true})
+
+            if (response.data.error) {
+                toast.error(response.data.error)
             } else {
-                setData({})
+                setUser(response.data.user)
+                setLocalData({
+                    name: '',
+                    email: '',
+                    password: '',
+                })
                 toast.success(
                     `Welcome, rookie! You've successfully registered. Let's keep Los Santos in check!`,
                     {
                         className:
-                        'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                            'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
                     },
                 )
                 navigate('/login')
@@ -38,7 +42,7 @@ const Register = () => {
                 `Uh-oh, registration hit a snag! Give it another shot, rookie. The LSPD is waiting for you!`,
                 {
                     className:
-                    'bg-[var(--opac)] backdrop-blur-sm mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                        'bg-[var(--opac)] backdrop-blur-sm mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
                 },
             )
         }
@@ -46,11 +50,12 @@ const Register = () => {
 
     return (
         <div
-        className="poppins relative min-h-screen flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/src/assets/formbg3.jpeg')" }}
-    >          
-  <div className="absolute inset-0 bg-[var(--bg2)] opacity-80"></div>
-  <div className="bg-[var(--bg3op)] relative z-10 p-8 text-[var(--lblue)] glassgrad rounded-2xl backdrop-blur-md border-2 border-[#475569] transition ease-in-out delay-300 hover:backdrop-blur-2xl shadow-black/70 shadow-2xl w-[90%] md:w-[70%] lg:w-[25%]">                <h2 className="text-3xl lg:text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
+            className="poppins relative min-h-screen flex items-center justify-center bg-cover bg-center"
+            style={{backgroundImage: "url('/src/assets/formbg3.jpeg')"}}
+        >
+            <div className="absolute inset-0 bg-[var(--bg2)] opacity-80"></div>
+            <div className="bg-[var(--bg3op)] relative z-10 p-8 text-[var(--lblue)] glassgrad rounded-2xl backdrop-blur-md border-2 border-[#475569] transition ease-in-out delay-300 hover:backdrop-blur-2xl shadow-black/70 shadow-2xl w-[90%] md:w-[70%] lg:w-[25%]">
+                <h2 className="text-3xl lg:text-5xl pricedown text-[var(--lgold)] font-bold mb-6 text-center">
                     Register
                 </h2>
                 <form onSubmit={registerUser}>
@@ -60,9 +65,9 @@ const Register = () => {
                             type="text"
                             placeholder="Enter your name"
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
-                            value={data.name}
+                            value={localData.name}
                             onChange={(e) =>
-                                setData({ ...data, name: e.target.value })
+                                setLocalData({...localData, name: e.target.value,})
                             }
                         />
                     </div>
@@ -72,9 +77,9 @@ const Register = () => {
                             type="email"
                             placeholder="Enter your email"
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
-                            value={data.email}
+                            value={localData.email}
                             onChange={(e) =>
-                                setData({ ...data, email: e.target.value })
+                                setLocalData({ ...localData,email: e.target.value,})
                             }
                         />
                     </div>
@@ -84,9 +89,9 @@ const Register = () => {
                             type="password"
                             placeholder="Enter your password"
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
-                            value={data.password}
+                            value={localData.password}
                             onChange={(e) =>
-                                setData({ ...data, password: e.target.value })
+                                setLocalData({ ...localData,password: e.target.value,})
                             }
                         />
                     </div>
