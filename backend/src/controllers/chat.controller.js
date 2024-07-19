@@ -55,7 +55,7 @@ export const chatController = {
             const response = await runChat(userInput)
             res.json({response})
         } catch (error) {
-            console.error('Error in chat endpoint:', error)
+            console.error('Error in chat endpoint:', error) // Log the full error object
             res.status(500).json({error: 'Internal Server Error'})
         }
     },
