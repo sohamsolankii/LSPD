@@ -2,12 +2,26 @@ import React from 'react'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
+import {TbReport} from 'react-icons/tb'
+
 
 export const SidebarData = [
     {
         title: 'Home',
         path: '/',
         icon: <AiIcons.AiFillHome />,
+        cName: 'nav-text',
+    },
+    {
+        title: 'News',
+        path: '/news',
+        icon: <HiMiniNewspaper />,
+        cName: 'nav-text',
+    },
+    {
+        title: 'Careers',
+        path: '/Career',
+        icon: <IoIcons.IoMdRibbon />,
         cName: 'nav-text',
     },
     {
@@ -23,15 +37,9 @@ export const SidebarData = [
         cName: 'nav-text',
     },
     {
-        title: 'News',
-        path: '/news',
-        icon: <HiMiniNewspaper />,
-        cName: 'nav-text',
-    },
-    {
-        title: 'Career',
-        path: '/Career',
-        icon: <IoIcons.IoMdRibbon />,
+        title: 'Report a Crime',
+        path: '/report-crime',
+        icon: <TbReport />,
         cName: 'nav-text',
     },
     {
