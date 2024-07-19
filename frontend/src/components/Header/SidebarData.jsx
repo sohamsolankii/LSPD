@@ -26,7 +26,7 @@ export const SidebarData = [
     },
     {
         title: 'Wanted List',
-        path: '/wanted',
+        path: '/most-wanted',
         icon: <IoIcons.IoMdWarning />,
         cName: 'nav-text',
     },

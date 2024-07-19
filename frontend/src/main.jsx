@@ -28,13 +28,14 @@ import Footer from './components/Footer/Footer.jsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-            <Route path="/"
+            <Route
+                path="/"
                 element={
                     <>
                         <Starter />
                         <Dashboard />
                         <WantedList />
-						<Footer/>
+                        <Footer />
                     </>
                 }
             />
@@ -42,24 +43,18 @@ const router = createBrowserRouter(
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
-            <Route path="/wanted" element={<Wanted />} />,
-            <Route path="/career"
+            <Route path="/most-wanted" element={<Wanted />} />,
+            <Route path="/career" element={<Careers />} />
+            <Route
+                path="/admin"
                 element={
                     <>
-                        <Careers />
+                        <AdminDashboard />
+                        <AddJob />
+                        <AddNews />
                     </>
                 }
             />
-			<Route path="/admin"
-				element={
-					<>
-						<AdminDashboard />
-                        <AddJob />
-                        <AddNews />
-					</>
-				}
-			/>
-            
         </Route>,
     ),
 )
