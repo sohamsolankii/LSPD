@@ -40,7 +40,7 @@ const Chatbot = () => {
 
   return (
       <div className="rounded-l-xl shadow-lg h-[100%] font-regular text-gray-200 text-sm p-6 w-full max-w-md bg-[var(--opac2)] dark:bg-[var(--bg1lop)] backdrop-blur-xl border-[1px] border-[var(--opac2)] dark:border-[var(--bg1lop)]">
-        <div className="overflow-y-auto h-96 mb-4">
+        <div className="overflow-y-auto h-96 mb-4 border-b-[1px]">
           {chatHistory.map((chat, index) => (
             <div
               key={index}
