@@ -4,6 +4,7 @@ import {AsyncHandler} from '../utils/AsyncHandler.js'
 import {ApiError} from '../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import {setToken} from './../utils/setReqToken.js'
+import sendMail from '../helper/sendMail.js'
 
 // * Sign Up
 export const signUp = AsyncHandler(async (req, res) => {
@@ -61,6 +62,11 @@ export const logIn = AsyncHandler(async (req, res) => {
     })
         .status(200)
         .json({user, accessToken})
+	sendMail(
+        email,'Welcome to the LSPD, Rookie!',`Hi ${user.name},\n\nWelcome to the LSPD Eagle Eyes. We're here to support and protect the citizens of Los Santos. Together, we can make our city a safer place! If you have any questions or need assistance, don't hesitate to reach out us at any time. We're always here to help:)\n\nStay sharp,\nThe LSPD Team,`
+    )
+
+
 })
 
 
