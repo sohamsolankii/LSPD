@@ -18,7 +18,6 @@ import WantedList from './components/WantedList.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
-import JobDetails from './components/Pages/career/JobDetails.jsx'
 import AddJob from './components/admin/AddJob.jsx'
 import AddNews from './components/admin/AddNews.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
@@ -46,7 +45,6 @@ const router = createBrowserRouter(
                 element={
                     <>
                         <Careers />
-                        <JobDetails />
                     </>
                 }
             />
