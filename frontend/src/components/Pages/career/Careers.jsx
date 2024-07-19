@@ -17,6 +17,16 @@ const sampleJobs = [
   { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
   { id: 1, title: 'Crime Investication Officer', department: 'Engineering', location: 'New York', salaryRange: '$80k - $100k', description: 'Develop and maintain software applications.', requirements: 'Experience with React.js', jobType: 'Full-time', applicationDeadline: '2024-08-01', contactEmail: 'hr@example.com', postedDate: '2024-07-01' },
   { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
+  { id: 1, title: 'Crime Investication Officer', department: 'Engineering', location: 'New York', salaryRange: '$80k - $100k', description: 'Develop and maintain software applications.', requirements: 'Experience with React.js', jobType: 'Full-time', applicationDeadline: '2024-08-01', contactEmail: 'hr@example.com', postedDate: '2024-07-01' },
+  { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
+  { id: 1, title: 'Crime Investication Officer', department: 'Engineering', location: 'New York', salaryRange: '$80k - $100k', description: 'Develop and maintain software applications.', requirements: 'Experience with React.js', jobType: 'Full-time', applicationDeadline: '2024-08-01', contactEmail: 'hr@example.com', postedDate: '2024-07-01' },
+  { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
+  { id: 1, title: 'Crime Investication Officer', department: 'Engineering', location: 'New York', salaryRange: '$80k - $100k', description: 'Develop and maintain software applications.', requirements: 'Experience with React.js', jobType: 'Full-time', applicationDeadline: '2024-08-01', contactEmail: 'hr@example.com', postedDate: '2024-07-01' },
+  { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
+  { id: 1, title: 'Crime Investication Officer', department: 'Engineering', location: 'New York', salaryRange: '$80k - $100k', description: 'Develop and maintain software applications.', requirements: 'Experience with React.js', jobType: 'Full-time', applicationDeadline: '2024-08-01', contactEmail: 'hr@example.com', postedDate: '2024-07-01' },
+  { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
+  { id: 1, title: 'Crime Investication Officer', department: 'Engineering', location: 'New York', salaryRange: '$80k - $100k', description: 'Develop and maintain software applications.', requirements: 'Experience with React.js', jobType: 'Full-time', applicationDeadline: '2024-08-01', contactEmail: 'hr@example.com', postedDate: '2024-07-01' },
+  { id: 2, title: 'Product Manager', department: 'Product', location: 'San Francisco', salaryRange: '$90k - $120k', description: 'Manage product development lifecycle.', requirements: '5 years experience in product management', jobType: 'Full-time', applicationDeadline: '2024-08-15', contactEmail: 'hr@example.com', postedDate: '2024-07-05' },
 ];
 
 const Careers = () => {
@@ -136,10 +146,10 @@ const Careers = () => {
 
 
       {selectedJob && (
-        <div className="fixed inset-0 text-gray-300 dark:text-gray-600 flex items-center justify-center z-50">
-          <div className="bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] dark:border-gray-400 md:p-6 p-3 rounded-xl lg:w-[85%] shadow-black/80 dark:shadow-black/40 shadow-2xl w-[94%]">
+        <div className="fixed inset-0 text-gray-300 dark:text-gray-600 flex items-center justify-center z-10">
+          <div className="bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] animate-appear blockanim dark:border-gray-400 md:p-6 p-3 rounded-xl lg:w-[85%] shadow-black/80 dark:shadow-black/40 shadow-2xl w-[94%]">
             <h2 className="text-xl font-medium mb-2 text-center">Job Details</h2>
-            <div className="flex items-center grid gap-4 md:grid-cols-3 grid-cols-1 justify-center rounded-lg border border-gray-400 p-4">
+            <div className="flex items-center grid gap-4 md:grid-cols-3 grid-cols-1 justify-center rounded-lg p-4">
           <div className="flex items-center space-x-4">
           <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full"><FaIcons.FaUserTie /></div>
             <div>

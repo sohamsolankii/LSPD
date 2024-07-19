@@ -15,6 +15,7 @@ import Register from './components/Forms/Register.jsx'
 import Starter from './components/Starter.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import WantedList from './components/WantedList.jsx'
+import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
+            <Route path="/wanted" element={<Wanted />} />,
             <Route path="/career"
                 element={
                     <>
@@ -54,7 +56,6 @@ const router = createBrowserRouter(
 						<AdminDashboard />
                         <AddJob />
                         <AddNews />
-						{/* <AdminJobDetails /> */}
 					</>
 				}
 			/>
