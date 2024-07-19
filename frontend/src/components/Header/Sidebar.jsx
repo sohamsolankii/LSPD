@@ -9,6 +9,7 @@ import {UserContext} from '../../context/userContext'
 const Sidebar = ({sidebar, showSidebar}) => {
     const {user} = useContext(UserContext)
 
+	
     return (
         <>
             <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
@@ -18,8 +19,8 @@ const Sidebar = ({sidebar, showSidebar}) => {
                             <AiIcons.AiOutlineClose />
                         </Link>
                     </li>
-                    {!user
-                        ? SidebarData.map((item, index) => (
+                    {(user && user.name == 'admin')
+                        ? AdminSidebarData.map((item, index) => (
                               <li key={index} className={item.cName}>
                                   <Link to={item.path}>
                                       {item.icon}
@@ -27,7 +28,7 @@ const Sidebar = ({sidebar, showSidebar}) => {
                                   </Link>
                               </li>
                           ))
-                        : AdminSidebarData.map((item, index) => (
+                        : SidebarData.map((item, index) => (
                               <li key={index} className={item.cName}>
                                   <Link to={item.path}>
                                       {item.icon}
@@ -43,3 +44,5 @@ const Sidebar = ({sidebar, showSidebar}) => {
 }
 
 export default Sidebar
+
+
