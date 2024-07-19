@@ -116,7 +116,7 @@ const Careers = () => {
     <span className="absolute px-3 font-medium text-[var(--lgold)] -translate-x-1/2 bg-[var(--bg1)] left-1/2 dark:text-[var(--dltext)] dark:bg-gray-100">Explore Careers</span>
 </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredJobs.map((job) => (
               <div key={job.id} className="p-4 bg-[var(--opac)] dark:bg-gray-100 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-md shadow-black/30 dark:shadow-none shadow-md">
                 <h3 className="md:text-lg text-md font-medium text-gray-200 dark:text-[var(--dltext)]">{job.title}</h3>
