@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-// import Dashboard from './Header/Dashboard'
 import './index.css'
 import {
-    createBrowserRouter,
+	createBrowserRouter,
     RouterProvider,
     Route,
     Routes,
     createRoutesFromElements,
 } from 'react-router-dom'
+
+import App from './App.jsx'
 import Login from './components/Forms/Login.jsx'
 import Register from './components/Forms/Register.jsx'
 import Starter from './components/Starter.jsx'
@@ -19,12 +19,11 @@ import SubmitTip from './components/SubmitTip.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import JobDetails from './components/Pages/career/JobDetails.jsx'
-import AdminJobDetails from './components/admin/AdminJobDetails.jsx'
 import AddJob from './components/admin/AddJob.jsx'
 import AddNews from './components/admin/AddNews.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
-import Chatbot from './components/chatbot/Chatbot.jsx'
+
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -43,7 +42,6 @@ const router = createBrowserRouter(
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
-            <Route path="/chat" element={<Chatbot />} />,
             <Route path="/career"
                 element={
                     <>

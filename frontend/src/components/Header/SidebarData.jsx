@@ -1,10 +1,7 @@
 import React from 'react'
-import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
-import {TbMessageChatbot} from 'react-icons/tb'
-
 
 export const SidebarData = [
     {
@@ -35,12 +32,6 @@ export const SidebarData = [
         title: 'Career',
         path: '/Career',
         icon: <IoIcons.IoMdRibbon />,
-        cName: 'nav-text',
-    },
-    {
-        title: 'ChatBot',
-        path: '/chat',
-        icon: <TbMessageChatbot />,
         cName: 'nav-text',
     },
     {

@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
+import {UserContext} from '../../context/userContext'
 
 const Login = () => {
     const navigate = useNavigate()
-
-    const [data, setData] = useState({
+    const {setUser} = useContext(UserContext)
+    const [localData, setLocalData] = useState({
         email: '',
         password: '',
     })
@@ -15,7 +16,7 @@ const Login = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.post('/api/v1/auth/login', data, {
+            const response = await axios.post('/api/v1/auth/login', localData, {
                 withCredentials: true,
             })
             const responseData = response.data
@@ -23,7 +24,8 @@ const Login = () => {
             if (responseData.error) {
                 toast.error(responseData.error)
             } else {
-                setData({
+                setUser(responseData.user)
+                setLocalData({
                     email: '',
                     password: '',
                 })
@@ -33,9 +35,9 @@ const Login = () => {
                         className:
                             'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
                     },
-                )              
-				
-				//! this condition is temporary, will be add jwt check after panel is working
+                )
+
+                //! this condition is temporary, will be add jwt check after panel is working
                 if (responseData.user.email === 'admin@gmail.com') {
                     navigate('/admin')
                 } else {
@@ -75,9 +77,12 @@ const Login = () => {
                             type="email"
                             placeholder="Enter your email"
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
-                            value={data.email}
+                            value={localData.email}
                             onChange={(e) =>
-                                setData({...data, email: e.target.value})
+                                setLocalData({
+                                    ...localData,
+                                    email: e.target.value,
+                                })
                             }
                         />
                     </div>
@@ -87,9 +92,12 @@ const Login = () => {
                             type="password"
                             placeholder="Enter your password"
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
-                            value={data.password}
+                            value={localData.password}
                             onChange={(e) =>
-                                setData({...data, password: e.target.value})
+                                setLocalData({
+                                    ...localData,
+                                    password: e.target.value,
+                                })
                             }
                         />
                     </div>

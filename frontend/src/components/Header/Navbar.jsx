@@ -1,19 +1,24 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect, useContext} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded'
 import DarkModeRoundedIcon from '@mui/icons-material/Brightness7Sharp'
 import LightModeIcon from '@mui/icons-material/Brightness4'
-import * as AiIcons from 'react-icons/ai'
-import {SidebarData} from './SidebarData'
 import {IconContext} from 'react-icons'
 import logo from '/src/assets/lspd-logo.png'
 import './Navbar.css'
+import {UserContext} from '../../context/userContext'
+import axios from 'axios'
+import {PiSignInBold} from 'react-icons/pi'
+import Sidebar from './Sidebar'
 
 const Navbar = ({isAdmin = false}) => {
-    //I set this "true" temporarily, logic baad mein...
     const [isDarkMode, setIsDarkMode] = useState(false)
     const [sidebar, setSidebar] = useState(false)
+    const [popupVisible, setPopupVisible] = useState(false)
+
+    const {user, setUser} = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (isDarkMode) {
@@ -23,11 +28,22 @@ const Navbar = ({isAdmin = false}) => {
         }
     }, [isDarkMode])
 
+    const logout = async () => {
+        try {
+            await axios.get('/api/v1/auth/logout')
+            setUser(null)
+            navigate('/')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode)
     }
 
     const showSidebar = () => setSidebar(!sidebar)
+    const togglePopup = () => setPopupVisible(!popupVisible)
 
     return (
         <IconContext.Provider value={{color: '#fff'}}>
@@ -81,34 +97,41 @@ const Navbar = ({isAdmin = false}) => {
                                 />
                             </button>
                         )}
-                        <Link to="/register" className="group">
-                            <PersonRoundedIcon
-                                sx={{fontSize: 25, md: {fontSize: 30}}}
-                                className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300"
-                            />
-                        </Link>
+                        {!user ? (
+                            <Link to="/register" className="group">
+                                <PersonRoundedIcon
+                                    sx={{fontSize: 25, md: {fontSize: 30}}}
+                                    className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300"
+                                />
+                            </Link>
+                        ) : (
+                            <div className="relative">
+                                <button onClick={togglePopup} className="group">
+                                    <PersonRoundedIcon
+                                        sx={{fontSize: 25, md: {fontSize: 30}}}
+                                        className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300"
+                                    />
+                                </button>
+                                {popupVisible && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-black text-red-500 p-4 rounded-md shadow-lg">
+                                        <div className="flex justify-between items-center">
+                                            <span>{user.name}</span>
+                                        </div>
+                                        <Link
+                                            to="/"
+                                            onClick={logout}
+                                            className="flex justify-between items-center mt-4 hover:text-red-400"
+                                        >
+                                            <span>Sign Out</span>
+                                            <PiSignInBold className="ml-2" />
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className="nav-menu-items" onClick={showSidebar}>
-                        <li className="navbar-toggle">
-                            <Link to="#" className="menu-bars">
-                                <AiIcons.AiOutlineClose />
-                            </Link>
-                        </li>
-                        {SidebarData.map((item, index) => (
-                            <li key={index} className={item.cName}>
-                                <Link to={item.path}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {sidebar && (
-                    <div className="overlay" onClick={showSidebar}></div>
-                )}
+                <Sidebar sidebar={sidebar} showSidebar={showSidebar} />
             </div>
         </IconContext.Provider>
     )
