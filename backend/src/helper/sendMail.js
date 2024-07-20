@@ -20,6 +20,6 @@ export default async function sendMail(to,subject,text,html) {
         html, // html body
     })
 
-    console.log('Message sent: %s', info.messageId)
+    // console.log('Message sent: %s', info.messageId)
     // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 }
