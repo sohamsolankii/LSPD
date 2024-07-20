@@ -13,6 +13,7 @@ import App from './App.jsx'
 import Login from './components/Forms/Login.jsx'
 import Register from './components/Forms/Register.jsx'
 import Starter from './components/Starter.jsx'
+import ReportCrime from './components/ReportCrime.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
             <Route path="/news" element={<News />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
             <Route path="/most-wanted" element={<Wanted />} />,
+            <Route path="/report-crime" element={<ReportCrime />} />,
             <Route path="/career" element={<Careers />} />
             <Route
                 path="/admin"
