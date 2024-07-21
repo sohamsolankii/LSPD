@@ -25,41 +25,51 @@
 }
 
 :root {
-    --bg1: #0E182F;
+    --bg1: #0e182f;
     --bg2: #081022;
     --bg2op: rgba(6, 16, 34, 0.6);
     --bg5op: rgba(6, 16, 34, 0.318);
     --bg3op: rgba(42, 108, 189, 0.091);
     --bg4op: rgba(89, 164, 255, 0.045);
-    --lblue: #75AAF1;
-    --ltext: #D2E5FF;
-    --lgold: #FCD672;
+    --lblue: #75aaf1;
+    --ltext: #d2e5ff;
+    --lgold: #fcd672;
     --lgop: rgba(252, 214, 114, 0.3);
-    --llgold: #F7F8DF;
-    --bg1l: #18284B;
+    --llgold: #f7f8df;
+    --bg1l: #18284b;
     --bg1lop: #18284bb1;
     --opac: rgba(123, 182, 255, 0.1);
     --opac2: rgba(123, 182, 255, 0.3);
-    --hover-bg-gradient-start: #18284B;
-    --hover-bg-gradient-end: #263E74;
-    --ggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
-    --hover-border-color: #263E74;
+    --hover-bg-gradient-start: #18284b;
+    --hover-bg-gradient-end: #263e74;
+    --ggrad: linear-gradient(
+        to right,
+        rgba(242, 180, 23, 0),
+        #f2b417,
+        rgba(242, 180, 23, 0)
+    );
+    --hover-border-color: #263e74;
     --gold: gold;
 
     --dbg1: #e9f4ff;
     --dbg2: #ffffff;
     --dbg2op: rgba(255, 255, 255, 0.6);
-    --dlblue: #18284B;
-    --dltext: #2669CC;
+    --dlblue: #18284b;
+    --dltext: #2669cc;
     --dlgold: #579aff;
     --dllgold: #b7dbff;
     --dbg1l: #f8fcff;
-    --dggrad: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
+    --dggrad: linear-gradient(
+        to right,
+        rgba(242, 180, 23, 0),
+        #f2b417,
+        rgba(242, 180, 23, 0)
+    );
     --dgold: #b38900;
 }
 
 .grad-text {
-    background: linear-gradient(to right, #FCD672, #F7F8DF, rgba#FCD672);
+    background: linear-gradient(to right, #fcd672, #f7f8df, rgba#FCD672);
     -webkit-background-clip: text;
     background-clip: text;
     /* color: transparent; */
@@ -70,45 +80,138 @@
 }
 
 .gradgold {
-    background: linear-gradient(to right, rgba(242, 180, 23, 0), #f2b417, rgba(242, 180, 23, 0));
+    background: linear-gradient(
+        to right,
+        rgba(242, 180, 23, 0),
+        #f2b417,
+        rgba(242, 180, 23, 0)
+    );
 }
 
 .bgpattern {
-    background-color: #0E182F;
+    background-color: #0e182f;
     opacity: 1;
-    background-image: linear-gradient(30deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(150deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(30deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(150deg, #081022 12%, transparent 12.5%, transparent 87%, #081022 87.5%, #081022), linear-gradient(60deg, #08102277 25%, transparent 25.5%, transparent 75%, #08102277 75%, #08102277), linear-gradient(60deg, #08102277 25%, transparent 25.5%, transparent 75%, #08102277 75%, #08102277);
+    background-image: linear-gradient(
+            30deg,
+            #081022 12%,
+            transparent 12.5%,
+            transparent 87%,
+            #081022 87.5%,
+            #081022
+        ),
+        linear-gradient(
+            150deg,
+            #081022 12%,
+            transparent 12.5%,
+            transparent 87%,
+            #081022 87.5%,
+            #081022
+        ),
+        linear-gradient(
+            30deg,
+            #081022 12%,
+            transparent 12.5%,
+            transparent 87%,
+            #081022 87.5%,
+            #081022
+        ),
+        linear-gradient(
+            150deg,
+            #081022 12%,
+            transparent 12.5%,
+            transparent 87%,
+            #081022 87.5%,
+            #081022
+        ),
+        linear-gradient(
+            60deg,
+            #08102277 25%,
+            transparent 25.5%,
+            transparent 75%,
+            #08102277 75%,
+            #08102277
+        ),
+        linear-gradient(
+            60deg,
+            #08102277 25%,
+            transparent 25.5%,
+            transparent 75%,
+            #08102277 75%,
+            #08102277
+        );
     background-size: 46px 81px;
-    background-position: 0 0, 0 0, 23px 40px, 23px 40px, 0 0, 23px 40px;
+    background-position:
+        0 0,
+        0 0,
+        23px 40px,
+        23px 40px,
+        0 0,
+        23px 40px;
 }
 
 .glassgrad {
-    background: linear-gradient(to top, rgba(123, 182, 255, 0.2),rgba(132, 187, 255, 0), rgba(123, 182, 255, 0.2));
+    background: linear-gradient(
+        to top,
+        rgba(123, 182, 255, 0.2),
+        rgba(132, 187, 255, 0),
+        rgba(123, 182, 255, 0.2)
+    );
 }
 
 .glassgrad2 {
-    background: linear-gradient(to right, rgba(123, 182, 255, 0.1),rgba(132, 187, 255, 0), rgba(123, 182, 255, 0.1));
+    background: linear-gradient(
+        to right,
+        rgba(123, 182, 255, 0.1),
+        rgba(132, 187, 255, 0),
+        rgba(123, 182, 255, 0.1)
+    );
 }
 
-.bgp{
-    background: linear-gradient(0deg, transparent 45%, #0E182F 45%, #0E182F 55%, transparent 55%, transparent 20%, #0E182F 20%, #0E182F 30%,transparent 30%), linear-gradient(90deg, transparent 45%, #0E182F 45%, #0E182F 55%, transparent 55%, transparent 20%, #0E182F 20%, #0E182F 30%,transparent 30%);
+.bgp {
+    background: linear-gradient(
+            0deg,
+            transparent 45%,
+            #0e182f 45%,
+            #0e182f 55%,
+            transparent 55%,
+            transparent 20%,
+            #0e182f 20%,
+            #0e182f 30%,
+            transparent 30%
+        ),
+        linear-gradient(
+            90deg,
+            transparent 45%,
+            #0e182f 45%,
+            #0e182f 55%,
+            transparent 55%,
+            transparent 20%,
+            #0e182f 20%,
+            #0e182f 30%,
+            transparent 30%
+        );
     background-size: 1em 1em;
     background-color: #081022;
-    opacity: 1
+    opacity: 1;
+}
+
+.cntblue {
+    @apply shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl;
 }
 
 @keyframes appear {
     from {
-      opacity: 0;
-      transform:translateY(100px);
+        opacity: 0;
+        transform: translateY(100px);
     }
     to {
-      opacity: 1;
-      transform:translateY(0px);
+        opacity: 1;
+        transform: translateY(0px);
     }
-  }
+}
 
-  .blockanim {
+.blockanim {
     animation: appear linear;
     animation-timeline: view();
     animation-range: entry 0% cover 40%;
-  }
+}

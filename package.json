@@ -12,6 +12,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "mongoose": "^8.5.1",
         "prettier": "^3.3.2"
     },
     "devDependencies": {

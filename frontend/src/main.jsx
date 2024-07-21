@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import {
-	createBrowserRouter,
+    createBrowserRouter,
     RouterProvider,
     Route,
     Routes,
@@ -18,13 +18,13 @@ import Dashboard from './components/Dashboard.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
+import Try3D from './components/Try3D.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import AddJob from './components/admin/AddJob.jsx'
 import AddNews from './components/admin/AddNews.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
-
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -66,5 +66,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <RouterProvider router={router} />
     </React.StrictMode>,
 )
-
-

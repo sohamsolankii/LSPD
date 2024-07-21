@@ -113,17 +113,18 @@ const Navbar = ({isAdmin = false}) => {
                                     />
                                 </button>
                                 {popupVisible && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-black text-red-500 p-4 rounded-md shadow-lg">
-                                        <div className="flex justify-between items-center">
-                                            <span>{user.name}</span>
+                                    <div className="absolute poppins right-0 mt-2 w-72 bg-[var(--bg1l)] border-[1px] border-[var(--opac2)] shadow-black/70 shadow-2xl rounded-lg p-3">
+                                        {' '}
+                                        <div className="flex relative text-lg justify-between items-center text-[var(--lgold)]">
+                                            <span>Hello, {user.name}!</span>
                                         </div>
                                         <Link
                                             to="/"
                                             onClick={logout}
-                                            className="flex justify-between items-center mt-4 hover:text-red-400"
+                                            className="flex justify-between text-sm items-center hover:bg-[var(--bg2)] mt-2 p-2 rounded-md border-[1px] border-[var(--opac2)] shadow-black/50 shadow-xl hover:text-red-400"
                                         >
                                             <span>Sign Out</span>
-                                            <PiSignInBold className="ml-2" />
+                                            <PiSignInBold className="ml-4" />
                                         </Link>
                                     </div>
                                 )}
