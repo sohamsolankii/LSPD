@@ -5,29 +5,30 @@ import Tip from '../models/tip.schema.js'
 
 // * Create a new Tip
 export const addTip = AsyncHandler(async (req, res) => {
-    const user = req?.user.id;
-    const tipContent = req.body.tip; // Get the tip content from the request body
+    const user = req?.user.id
+    const tipContent = req.body.message // Get the tip content from the request body
+    const isAnonymous = req.body.isAnonymous
+    console.log('this is backend tip:', tipContent)
+    console.log('isAnonymous:', isAnonymous)
 
     //! Check that the user is not an admin
     if (req.user.name === 'admin') {
-        return res.status(403).json(new ApiError(403, 'Admin cannot add a tip'));
+        return res.status(403).json(new ApiError(403, 'Admin cannot add a tip'))
     }
 
     const newTip = new Tip({
-        user,
+        user: isAnonymous ? null : user, // If anonymous, user is null
         tip: tipContent,
-    });
+    })
 
-    await newTip.save();
+    await newTip.save()
 
-    res.status(200).json(new ApiResponse(200, newTip, 'New Tip Created'));
-});
+    res.status(200).json(new ApiResponse(200, newTip, 'New Tip Created'))
+})
 
 
 // * Fetch Tips
 export const fetchTip = AsyncHandler(async (req, res) => {
-    // const comments = await Tip.find().populate('userID')
-
     const comments = await Tip.aggregate([
         {
             $lookup: {
@@ -48,29 +49,17 @@ export const fetchTip = AsyncHandler(async (req, res) => {
         {
             $unwind: {
                 path: '$user',
+                preserveNullAndEmptyArrays: true, // Allow anonymous tips
             },
         },
     ])
 
-     res.status(200).json(
-         new ApiResponse(200, comments, 'Comments fetched successfully').toJSON(),
-     )
+    res.status(200).json(
+        new ApiResponse(
+            200,
+            comments,
+            'Comments fetched successfully',
+        ).toJSON(),
+    )
 })
 
-//! this is simple function for the fetchTip
-// export const fetchTip = AsyncHandler(async (req, res) => {
-//     const comments = await Tip.find()
-//         .populate({
-//             path: 'user',
-//             select: 'name email ', // Select fields you want from the user
-//         })
-//         .select('user tip createdAt updatedAt') // Select fields you want from the tip
-
-//     res.status(200).json(
-//         new ApiResponse(
-//             200,
-//             comments,
-//             'Comments fetched successfully',
-//         ).toJSON(),
-//     )
-// })

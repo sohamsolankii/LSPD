@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../context/userContext';
+import {UserContext} from '../../context/userContext'
 import LSPDLogo from '/src/assets/lspd-logo.png';
 // import AdminStarter from '../AdminStarter';  // Create a similar starter for admin if necessary
 // import AdminWantedList from './AdminWantedList';  // Admin specific component for CRUD operations
@@ -27,8 +27,11 @@ const adminDashboardData = [
     },
 ];
 
+
+
 const AdminDashboard = () => {
-    const { user } = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext)
+	// console.log("User form Admin: ",user);
 
     return (
         <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">

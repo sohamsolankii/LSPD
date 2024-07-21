@@ -6,7 +6,13 @@ import {UserContext} from '../../context/userContext'
 
 const Login = () => {
     const navigate = useNavigate()
-    const {setUser} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
+	console.log(user);
+
+	// setPasskey
+	const [passkey, setPasskey] = useState('')
+	const [popup, setPopup] = useState(false)
+
     const [localData, setLocalData] = useState({
         email: '',
         password: '',
@@ -25,6 +31,7 @@ const Login = () => {
                 toast.error(responseData.error)
             } else {
                 setUser(responseData.user)
+				console.log("user From login page: ", responseData.user);
                 setLocalData({
                     email: '',
                     password: '',
@@ -116,6 +123,8 @@ const Login = () => {
                         Create new account
                     </Link>
                 </div>
+
+				<Link onClick={() => setPopup(true)}>Admin</Link>
             </div>
         </div>
     )
