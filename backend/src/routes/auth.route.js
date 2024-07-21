@@ -1,6 +1,7 @@
 import express from 'express'
-import {signUp, logIn, logOut} from '../controllers/auth.controller.js'
+import {signUp, logIn, logOut, adminLogin, adminLogout} from '../controllers/auth.controller.js'
 import {authValidator} from '../middleware/auth.middleware.js'
+import { validateAdmin } from '../middleware/validateAdmin.middleware.js'
 
 
 const router = express.Router()
@@ -12,7 +13,12 @@ router.route('/signup').post(signUp)
 router.route('/login').post(logIn)
 
 // * Log out
-router
-	.get("/logout", authValidator, logOut)
+router.get("/logout", authValidator, logOut)
+
+// * amdin logIn
+router.route('/admin-login').post(adminLogin)
+
+// * admin logout
+router.route('/admin-logout').get(validateAdmin, adminLogout)
 
 export default router

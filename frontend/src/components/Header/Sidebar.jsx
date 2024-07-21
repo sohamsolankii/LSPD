@@ -7,8 +7,7 @@ import {UserContext} from '../../context/userContext'
 
 
 const Sidebar = ({sidebar, showSidebar}) => {
-    const {user} = useContext(UserContext)
-
+    const {passkey} = useContext(UserContext)
 	
     return (
         <>
@@ -19,7 +18,7 @@ const Sidebar = ({sidebar, showSidebar}) => {
                             <AiIcons.AiOutlineClose />
                         </Link>
                     </li>
-                    {(user && user.name == 'admin')
+                    {passkey
                         ? AdminSidebarData.map((item, index) => (
                               <li key={index} className={item.cName}>
                                   <Link to={item.path}>

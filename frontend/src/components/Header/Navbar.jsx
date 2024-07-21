@@ -17,7 +17,7 @@ const Navbar = ({isAdmin = false}) => {
     const [sidebar, setSidebar] = useState(false)
     const [popupVisible, setPopupVisible] = useState(false)
 
-    const {user, setUser} = useContext(UserContext)
+    const {user, setUser, passkey, setPasskey} = useContext(UserContext)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -32,6 +32,16 @@ const Navbar = ({isAdmin = false}) => {
         try {
             await axios.get('/api/v1/auth/logout')
             setUser(null)
+            navigate('/')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const adminLogout = async () => {
+        try {
+            await axios.get('/api/v1/auth/admin-logout')
+            setPasskey(new Array(6).fill(''))
             navigate('/')
         } catch (err) {
             console.log(err)
@@ -97,13 +107,38 @@ const Navbar = ({isAdmin = false}) => {
                                 />
                             </button>
                         )}
-                        {!user ? (
+                        {!user &&
+                        (!passkey || passkey.every((digit) => digit === '')) ? (
                             <Link to="/register" className="group">
                                 <PersonRoundedIcon
                                     sx={{fontSize: 25, md: {fontSize: 30}}}
                                     className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300"
                                 />
                             </Link>
+                        ) : user ? (
+                            <div className="relative">
+                                <button onClick={togglePopup} className="group">
+                                    <PersonRoundedIcon
+                                        sx={{fontSize: 25, md: {fontSize: 30}}}
+                                        className="text-[var(--lgold)] dark:text-[var(--dltext)] group-hover:text-[var(--lblue)] dark:group-hover:text-[var(--dlblue)] transition-colors duration-300"
+                                    />
+                                </button>
+                                {popupVisible && (
+                                    <div className="absolute poppins right-0 mt-2 w-72 bg-[var(--bg1l)] border-[1px] border-[var(--opac2)] shadow-black/70 shadow-2xl rounded-lg p-3">
+                                        <div className="flex relative text-lg justify-between items-center text-[var(--lgold)]">
+                                            <span>Hello, {user.name}!</span>
+                                        </div>
+                                        <Link
+                                            to="/"
+                                            onClick={logout}
+                                            className="flex justify-between text-sm items-center hover:bg-[var(--bg2)] mt-2 p-2 rounded-md border-[1px] border-[var(--opac2)] shadow-black/50 shadow-xl hover:text-red-400"
+                                        >
+                                            <span>Sign Out</span>
+                                            <PiSignInBold className="ml-4" />
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
                         ) : (
                             <div className="relative">
                                 <button onClick={togglePopup} className="group">
@@ -114,13 +149,12 @@ const Navbar = ({isAdmin = false}) => {
                                 </button>
                                 {popupVisible && (
                                     <div className="absolute poppins right-0 mt-2 w-72 bg-[var(--bg1l)] border-[1px] border-[var(--opac2)] shadow-black/70 shadow-2xl rounded-lg p-3">
-                                        {' '}
                                         <div className="flex relative text-lg justify-between items-center text-[var(--lgold)]">
-                                            <span>Hello, {user.name}!</span>
+                                            <span>Hello, Admin!</span>
                                         </div>
                                         <Link
                                             to="/"
-                                            onClick={logout}
+                                            onClick={adminLogout}
                                             className="flex justify-between text-sm items-center hover:bg-[var(--bg2)] mt-2 p-2 rounded-md border-[1px] border-[var(--opac2)] shadow-black/50 shadow-xl hover:text-red-400"
                                         >
                                             <span>Sign Out</span>

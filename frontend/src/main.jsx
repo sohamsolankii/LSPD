@@ -26,6 +26,7 @@ import AddNews from './components/admin/AddNews.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import AdminShowTip from './components/admin/AdminShowTip.jsx'
+import AdminLogin from './components/Forms/AdminLogin.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -59,6 +60,7 @@ const router = createBrowserRouter(
                 }
             />
             <Route path="/admin/show-tip" element={<AdminShowTip />}></Route>
+			<Route path="/admin-login" element={<AdminLogin/>}></Route>
         </Route>,
     ),
 )

@@ -5,6 +5,8 @@ import {ApiError} from '../utils/ApiError.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import {setToken} from './../utils/setReqToken.js'
 import sendMail from '../helper/sendMail.js'
+import jwt from 'jsonwebtoken'
+
 
 // * Sign Up
 export const signUp = AsyncHandler(async (req, res) => {
@@ -70,7 +72,6 @@ export const logIn = AsyncHandler(async (req, res) => {
 
 })
 
-
 // * LogOut
 export const logOut = AsyncHandler(async (req, res) => {
     res.clearCookie('userCookie')
@@ -78,3 +79,25 @@ export const logOut = AsyncHandler(async (req, res) => {
         .json(new ApiResponse(200, {}, 'User logged out successfully'));
 });
 
+
+// * Login for the Admin
+export const adminLogin = (req, res) => {
+    const {passkey} = req.body
+    const correctPasskey = process.env.ADMIN_PASSKEY
+
+    if (passkey === correctPasskey) {
+        const token = jwt.sign({user: 'admin'}, process.env.ACCESS_TOKEN, {
+            expiresIn: '2h',
+        })
+        res.cookie('userCookie', token, {httpOnly: true})
+        res.status(200).json({message: 'Access granted'})
+    } else {
+        res.status(401).json({message: 'Incorrect passkey'})
+    }
+}
+
+//* admin logout
+export const adminLogout = (req, res) => {
+    res.clearCookie('userCookie', {httpOnly: true})
+    res.status(200).json({message: 'Logout successful'})
+}
