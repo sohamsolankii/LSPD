@@ -7,7 +7,7 @@ import morgan from 'morgan'
 import {corsOptions} from './corsOptions.js'
 
 const app = express()
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 3000
 
 export const appConfig = () => {
     dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
