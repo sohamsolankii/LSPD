@@ -6,17 +6,17 @@ export const setToken = (req, newUser) => {
             user: {
                 name: newUser.name,
                 email: newUser.email,
-                id: newUser.id,
+                id: newUser._id,
             },
         },
         process.env.ACCESS_TOKEN,
-        // {expiresIn: process.env.EXPIRE_IN},
+        {expiresIn: '1h'}, // Set a reasonable expiration time
     )
 
     req.user = {
         name: newUser.name,
         email: newUser.email,
-        id: newUser.id,
+        id: newUser._id,
     }
 
     return accessToken

@@ -27,7 +27,7 @@ const Login = () => {
                 toast.error(responseData.error)
             } else {
                 setUser(responseData.user)
-                console.log('user From login page: ', responseData.user)
+                console.log('User from login page:', responseData.user)
                 setLocalData({
                     email: '',
                     password: '',
@@ -39,7 +39,8 @@ const Login = () => {
                             'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
                     },
                 )
-				navigate('/')
+
+                navigate('/')
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.error) {

@@ -1,12 +1,9 @@
-import React, {useContext, useState} from 'react'
-import {UserContext} from '../context/userContext'
+import React, {useState} from 'react'
 import axios from 'axios'
 
 const SubmitTip = () => {
     const [tip, setTip] = useState('')
     const [isAnonymous, setIsAnonymous] = useState(false)
-
-    const {user, setUser} = useContext(UserContext)
 
     const handleTipChange = (e) => {
         setTip(e.target.value)

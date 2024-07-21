@@ -1,9 +1,11 @@
 export const corsOptions = {
     origin: function (origin, callback) {
-        callback(
-            null,
-            (origin && origin.startsWith(process.env.CORS_ORIGIN)) || '*',
-        )
+        const allowedOrigin = process.env.CORS_ORIGIN
+        if (origin && origin.startsWith(allowedOrigin)) {
+            callback(null, true)
+        } else {
+            callback(null, '*')
+        }
     },
     credentials: true,
 }

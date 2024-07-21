@@ -15,7 +15,7 @@ export const appConfig = () => {
 
 
     app.use(cors(corsOptions))
-    app.use(express.json())
+    	.use(express.json())
         .use(morgan('dev'))
         .use(express.urlencoded({extended: true}))
         .use(express.static('public'))

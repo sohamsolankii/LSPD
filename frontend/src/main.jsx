@@ -18,7 +18,7 @@ import Dashboard from './components/Dashboard.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
-import Try3D from './components/Try3D.jsx'
+// import Try3D from './components/Try3D.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import AddJob from './components/admin/AddJob.jsx'
@@ -45,8 +45,8 @@ const router = createBrowserRouter(
             <Route path="/login" element={<Login />} />,
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />,
-            <Route path="/submit-tips" element={<SubmitTip />} />,
             <Route path="/most-wanted" element={<Wanted />} />,
+            <Route path="/submit-tip" element={<SubmitTip />} />,
             <Route path="/report-crime" element={<ReportCrime />} />,
             <Route path="/career" element={<Careers />} />
             <Route
@@ -59,7 +59,8 @@ const router = createBrowserRouter(
                     </>
                 }
             />
-            <Route path="/admin/show-tip" element={<AdminShowTip />}></Route>
+            
+			<Route path="/admin/show-tips" element={<AdminShowTip/>}></Route>
 			<Route path="/admin-login" element={<AdminLogin/>}></Route>
         </Route>,
     ),

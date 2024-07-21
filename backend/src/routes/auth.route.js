@@ -21,4 +21,10 @@ router.route('/admin-login').post(adminLogin)
 // * admin logout
 router.route('/admin-logout').get(validateAdmin, adminLogout)
 
+// * final check of user that by jwt token
+router.get('/me', authValidator, (req, res) => {
+    res.json({user: req.user})
+})
+
+
 export default router
