@@ -59,8 +59,8 @@ const AdminShowTip = () => {
                                     <strong>Tip:</strong> {tip.tip}
                                 </p>
                                 <p>
-                                    <strong>User ID:</strong>{' '}
-                                    {tip.user ? tip.user._id : 'Anonymous'}
+                                    <strong>User Name:</strong>{' '}
+                                    {tip.user ? tip.user.name: 'Anonymous'}
                                 </p>
                             </div>
                         ))

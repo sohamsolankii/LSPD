@@ -18,8 +18,8 @@ const Sidebar = ({sidebar, showSidebar}) => {
                             <AiIcons.AiOutlineClose />
                         </Link>
                     </li>
-                    {passkey
-                        ? AdminSidebarData.map((item, index) => (
+                    {(!passkey || passkey.every((digit) => digit === ''))
+                        ? SidebarData.map((item, index) => (
                               <li key={index} className={item.cName}>
                                   <Link to={item.path}>
                                       {item.icon}
@@ -27,7 +27,7 @@ const Sidebar = ({sidebar, showSidebar}) => {
                                   </Link>
                               </li>
                           ))
-                        : SidebarData.map((item, index) => (
+                        : AdminSidebarData.map((item, index) => (
                               <li key={index} className={item.cName}>
                                   <Link to={item.path}>
                                       {item.icon}

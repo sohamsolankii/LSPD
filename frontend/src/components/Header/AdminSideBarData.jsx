@@ -12,7 +12,7 @@ export const AdminSidebarData = [
     },
     {
         title: 'Show Tips',
-        path: '/admin/submit-tip',
+        path: '/admin/show-tips',
         icon: <IoIcons.IoIosText />,
         cName: 'nav-text',
     },

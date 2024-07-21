@@ -45,7 +45,7 @@ const router = createBrowserRouter(
             <Route path="/login" element={<Login />} />,
             <Route path="/register" element={<Register />} />
             <Route path="/news" element={<News />} />,
-            <Route path="/submit-tip" element={<SubmitTip />} />,
+            <Route path="/submit-tips" element={<SubmitTip />} />,
             <Route path="/most-wanted" element={<Wanted />} />,
             <Route path="/report-crime" element={<ReportCrime />} />,
             <Route path="/career" element={<Careers />} />
