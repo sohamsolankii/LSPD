@@ -5,7 +5,6 @@ import {UserContext} from '../../context/userContext'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-
 const AdminLogin = () => {
     const navigate = useNavigate()
     const {passkey, setPasskey} = useContext(UserContext)

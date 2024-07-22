@@ -93,11 +93,7 @@ const WantedList = () => {
                         </Marquee>
                         <div className="mt-6 p-10">
                             <Link to="/most-wanted">
-<<<<<<< HEAD
-                                <button className="text-lg md:text-xl poppins dark:bg-[var(--dhover-bg-gradient-start)] bg-[var(--opac)] text-[var(--ltext)] dark:text-[var(--dltext)] py-2 px-8 md:px-20 rounded-lg shadow-black/40 border-[1px] border-[var(--opac)] shadow-xl hover:shadow-black/70 hover:shadow-2xl hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlgold)] transition ease-in-out duration-1500">
-=======
                                 <button className="text-lg md:text-xl poppins dark:bg-[var(--dltext)] dark:shadow-md bg-[var(--opac)] text-[var(--ltext)] dark:text-white py-2 px-8 md:px-20 rounded-lg shadow-black/40 border-[1px] border-[var(--opac)] shadow-xl hover:shadow-black/70 hover:shadow-2xl hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlblue)] transition ease-in-out duration-1500">
->>>>>>> 1cfca5a7d8bad09c1224e6fb474a3aabf0a7d22f
                                     Check out entire list
                                 </button>
                             </Link>

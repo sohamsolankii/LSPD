@@ -11,28 +11,27 @@ import {UserContext} from '../../context/userContext'
 import axios from 'axios'
 import {PiSignInBold} from 'react-icons/pi'
 import Sidebar from './Sidebar'
-import Cookies from 'js-cookie'; // Import js-cookie
-
+import Cookies from 'js-cookie' // Import js-cookie
 
 const Navbar = ({isAdmin = false}) => {
     const [isDarkMode, setIsDarkMode] = useState(false)
     const [sidebar, setSidebar] = useState(false)
     const [popupVisible, setPopupVisible] = useState(false)
-	const {user, setUser, passkey, setPasskey} = useContext(UserContext)
+    const {user, setUser, passkey, setPasskey} = useContext(UserContext)
 
-	 useEffect(() => {
-         // Fetch user data from cookies
-         const storedUser = Cookies.get('user')
-         if (storedUser) {
-             setUser(JSON.parse(storedUser))
-         }
+    useEffect(() => {
+        // Fetch user data from cookies
+        const storedUser = Cookies.get('user')
+        if (storedUser) {
+            setUser(JSON.parse(storedUser))
+        }
 
-         // Fetch passkey from cookies
-         const storedPasskey = Cookies.get('adminPasskey')
-         if (storedPasskey) {
-             setPasskey(JSON.parse(storedPasskey))
-         }
-     }, [setUser, setPasskey])
+        // Fetch passkey from cookies
+        const storedPasskey = Cookies.get('adminPasskey')
+        if (storedPasskey) {
+            setPasskey(JSON.parse(storedPasskey))
+        }
+    }, [setUser, setPasskey])
 
     const navigate = useNavigate()
 
