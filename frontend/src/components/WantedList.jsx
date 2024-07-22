@@ -1,6 +1,7 @@
 import React from 'react'
 import {Element} from 'react-scroll'
 import styled, {keyframes, css} from 'styled-components'
+import {Link} from 'react-router-dom'
 
 const characters = [
     {id: 1, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
@@ -91,9 +92,11 @@ const WantedList = () => {
                             </MarqueeGroup2>
                         </Marquee>
                         <div className="mt-6 p-10">
-                            <button className="text-lg md:text-xl poppins dark:bg-[var(--dhover-bg-gradient-start)] bg-[var(--hover-bg-gradient-start)] text-[var(--ltext)] dark:text-[var(--dltext)] py-2 px-8 md:px-20 rounded-md hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlgold)] transition ease-in-out duration-1500">
-                                Check out entire list
-                            </button>
+                            <Link to="/most-wanted">
+                                <button className="text-lg md:text-xl poppins dark:bg-[var(--dhover-bg-gradient-start)] bg-[var(--opac)] text-[var(--ltext)] dark:text-[var(--dltext)] py-2 px-8 md:px-20 rounded-lg shadow-black/40 border-[1px] border-[var(--opac)] shadow-xl hover:shadow-black/70 hover:shadow-2xl hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlgold)] transition ease-in-out duration-1500">
+                                    Check out entire list
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
