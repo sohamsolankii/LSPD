@@ -32,7 +32,7 @@ const Dashboard = () => {
     const {user} = useContext(UserContext)
 
     return (
-        <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight dark:moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
+        <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             <section className="p-4 md:p-12">
                 <div className="text-center m-4 md:m-8 p-2 md:p-12 animate-appear blockanim">
                     <h2 className="text-2xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">

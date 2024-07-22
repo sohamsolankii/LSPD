@@ -87,6 +87,7 @@
             hsla(212, 42%, 45%, 1) 0px,
             transparent 50%
         );
+    animation: moveBackground 15s linear infinite;
 }
 
 .gradMeshLight {
@@ -103,7 +104,6 @@
         radial-gradient(at 98% 60%, hsla(210, 54%, 42%, 1) 0px, transparent 50%),
         radial-gradient(at 28% 61%, hsla(206, 71%, 54%, 1) 0px, transparent 50%),
         radial-gradient(at 86% 39%, hsla(74, 100%, 86%, 1) 0px, transparent 50%);
-    animation: moveBackground 15s linear infinite;
 }
 
 @keyframes moveBackground {
