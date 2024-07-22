@@ -34,11 +34,11 @@ const Dashboard = () => {
     return (
         <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight dark:moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             <section className="p-4 md:p-12">
-                <div className="text-center m-4 md:m-8 p-4 md:p-12 animate-appear blockanim">
-                    <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
+                <div className="text-center m-4 md:m-8 p-2 md:p-12 animate-appear blockanim">
+                    <h2 className="text-2xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
                         Welcome to LSPD Eagle-eye
                     </h2>
-                    <p className="text-lg md:text-2xl poppins mb-2 text-[var(--ltext)] dark:text-[var(--bg1l)]">
+                    <p className="text-sm md:text-2xl poppins mb-2 text-[var(--ltext)] dark:text-[var(--bg1l)]">
                         Your Digital Hotline for All Things Los Santos! (Yes,
                         Even the Crazy Stuff)
                     </p>

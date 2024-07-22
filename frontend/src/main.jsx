@@ -15,6 +15,8 @@ import Register from './components/Forms/Register.jsx'
 import Starter from './components/Starter.jsx'
 import ReportCrime from './components/ReportCrime.jsx'
 import Dashboard from './components/Dashboard.jsx'
+import HomeSubmitTip from './components/HomeSubmitTip.jsx'
+import HomeCareers from './components/HomeCareers.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
@@ -37,6 +39,8 @@ const router = createBrowserRouter(
                     <>
                         <Starter />
                         <Dashboard />
+                        <HomeSubmitTip />
+                        <HomeCareers />
                         <WantedList />
                         <Footer />
                     </>
@@ -59,9 +63,8 @@ const router = createBrowserRouter(
                     </>
                 }
             />
-            
-			<Route path="/admin/show-tips" element={<AdminShowTip/>}></Route>
-			<Route path="/admin-login" element={<AdminLogin/>}></Route>
+            <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
+            <Route path="/admin-login" element={<AdminLogin />}></Route>
         </Route>,
     ),
 )
