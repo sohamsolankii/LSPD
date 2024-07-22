@@ -17,6 +17,10 @@ import ReportCrime from './components/ReportCrime.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import HomeSubmitTip from './components/HomeSubmitTip.jsx'
 import HomeCareers from './components/HomeCareers.jsx'
+<<<<<<< HEAD
+=======
+import HomeNews from './components/HomeNews.jsx'
+>>>>>>> 1cfca5a7d8bad09c1224e6fb474a3aabf0a7d22f
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
@@ -42,6 +46,7 @@ const router = createBrowserRouter(
                         <HomeSubmitTip />
                         <HomeCareers />
                         <WantedList />
+                        <HomeNews />
                         <Footer />
                     </>
                 }

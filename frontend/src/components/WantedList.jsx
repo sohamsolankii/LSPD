@@ -15,7 +15,7 @@ const characters = [
 
 const WantedList = () => {
     return (
-        <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlblue)] min-h-screen">
+        <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-white dark:text-[var(--dlblue)] min-h-screen">
             <section className="bg-[var(--bg2)] dark:bg-[var(--dbg2)]">
                 <img
                     src="/src/assets/element.png"
@@ -38,12 +38,12 @@ const WantedList = () => {
             </section>
             <Element
                 name="mostWanted"
-                className="border-y-4 border-[var(--lgold)] py-8 px-4"
+                className="border-t-4 border-[var(--lgold)] dark:border-[var(--dltext)] py-8 px-4"
             >
                 <div className="flex flex-col items-center">
                     <div className="text-center">
                         <div className="p-6 mb-6">
-                            <h2 className="text-2xl md:text-4xl pricedown mb-4 text-[var(--lgold)] dark:text-[var(--dlgold)]">
+                            <h2 className="text-2xl md:text-4xl pricedown mb-4 text-[var(--lgold)] dark:text-[var(--dltext)]">
                                 Los Santos' Most Wanted Criminals
                             </h2>
                             <p className="text-md md:text-xl poppins mb-4 text-[var(--ltext)] dark:text-[var(--dltext)]">
@@ -57,14 +57,14 @@ const WantedList = () => {
                                     {characters.map((character) => (
                                         <div
                                             key={character.id}
-                                            className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] rounded-xl shadow-md p-3 text-[var(--ltext)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 hover:border-[var(--hover-border-color)] hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)]"
+                                            className="bg-[var(--opac)] dark:bg-gray-100 rounded-xl hover:dark:bg-white p-3 text-[var(--ltext)] text-[var(--ltext)] hover:text-[var(--lgold)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 border-[1px] border-[var(--opac)] shadow-black/70 shadow-lg hover:bg-[var(--opac2)] dark:shadow-none dark:border-gray-300 hoaver:dark:bg-gray-100"
                                         >
                                             <img
                                                 src={character.image}
                                                 alt={character.name}
                                                 className="w-full h-auto mb-3 object-contain"
                                             />
-                                            <h3 className="text-md text-left poppins font-medium text-[var(--ltext)] dark:text-[var(--dltext)]">
+                                            <h3 className="text-md text-left poppins font-medium">
                                                 {character.name}
                                             </h3>
                                         </div>
@@ -76,7 +76,7 @@ const WantedList = () => {
                                     {characters.map((character) => (
                                         <div
                                             key={character.id}
-                                            className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] rounded-xl shadow-md p-3 text-[var(--ltext)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 hover:border-[var(--hover-border-color)] hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)]"
+                                            className="bg-[var(--opac)] rounded-xl dark:bg-gray-100 hover:dark:bg-white p-3 text-[var(--ltext)] text-[var(--ltext)] hover:text-[var(--lgold)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 border-[1px] border-[var(--opac)] shadow-black/70 shadow-lg hover:bg-[var(--opac2)] dark:shadow-none dark:border-gray-300 hoaver:dark:bg-gray-100"
                                         >
                                             <img
                                                 src={character.image}
@@ -93,7 +93,11 @@ const WantedList = () => {
                         </Marquee>
                         <div className="mt-6 p-10">
                             <Link to="/most-wanted">
+<<<<<<< HEAD
                                 <button className="text-lg md:text-xl poppins dark:bg-[var(--dhover-bg-gradient-start)] bg-[var(--opac)] text-[var(--ltext)] dark:text-[var(--dltext)] py-2 px-8 md:px-20 rounded-lg shadow-black/40 border-[1px] border-[var(--opac)] shadow-xl hover:shadow-black/70 hover:shadow-2xl hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlgold)] transition ease-in-out duration-1500">
+=======
+                                <button className="text-lg md:text-xl poppins dark:bg-[var(--dltext)] dark:shadow-md bg-[var(--opac)] text-[var(--ltext)] dark:text-white py-2 px-8 md:px-20 rounded-lg shadow-black/40 border-[1px] border-[var(--opac)] shadow-xl hover:shadow-black/70 hover:shadow-2xl hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlblue)] transition ease-in-out duration-1500">
+>>>>>>> 1cfca5a7d8bad09c1224e6fb474a3aabf0a7d22f
                                     Check out entire list
                                 </button>
                             </Link>
