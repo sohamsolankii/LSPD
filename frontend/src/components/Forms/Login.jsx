@@ -1,64 +1,64 @@
-import React, {useState, useContext} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
-import axios from 'axios'
-import {toast} from 'react-hot-toast'
-import {UserContext} from '../../context/userContext'
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { UserContext } from '../../context/userContext';
+import Cookies from 'js-cookie'; // Import js-cookie
 
 const Login = () => {
-    const navigate = useNavigate()
-    const {user, setUser} = useContext(UserContext)
-    console.log(user)
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
 
     const [localData, setLocalData] = useState({
         email: '',
         password: '',
-    })
+    });
 
     const loginUser = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
             const response = await axios.post('/api/v1/auth/login', localData, {
                 withCredentials: true,
-            })
-            const responseData = response.data
+            });
+            const responseData = response.data;
 
             if (responseData.error) {
-                toast.error(responseData.error)
+                toast.error(responseData.error);
             } else {
-                setUser(responseData.user)
-                console.log('User from login page:', responseData.user)
+                setUser(responseData.user);
+                // Store user data in cookies
+                Cookies.set('user', JSON.stringify(responseData.user), { expires: 7 });
                 setLocalData({
                     email: '',
                     password: '',
-                })
+                });
                 toast.success(
                     `Welcome, rookie! You've successfully logged in. Let's keep Los Santos in check!`,
                     {
-                        className:
-                            'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
-                    },
-                )
+                        className: 'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                    }
+                );
 
-                navigate('/')
+                navigate('/');
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.error) {
-                toast.error(err.response.data.error)
+                toast.error(err.response.data.error);
             } else {
                 toast.error(
                     `Busted! Something went sideways. Please try again, Dear NPC.`,
                     {
-                        className:
-                            'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
-                    },
-                )
+                        className: 'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                    }
+                );
             }
-            console.log(err)
+            console.log(err);
         }
-    }
+    };
 
-    return (
+    
+	return (
         <div
             className="poppins relative min-h-screen flex items-center justify-center bg-cover bg-center"
             style={{backgroundImage: "url('/src/assets/formbg3.jpeg')"}}
@@ -126,6 +126,7 @@ const Login = () => {
             </div>
         </div>
     )
-}
 
-export default Login
+};
+
+export default Login;

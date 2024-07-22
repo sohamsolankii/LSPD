@@ -35,6 +35,7 @@ const SubmitTip = () => {
                 },
             )
             console.log('this is tip response', response)
+            alert('Your tip has been sent! Thank you for helping out.')
         } catch (error) {
             console.error('Error submitting tip', error)
         }

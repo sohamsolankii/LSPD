@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react'
 import {UserContext} from '../../context/userContext'
-import LSPDLogo from '/src/assets/lspd-logo.png';
+import LSPDLogo from '/src/assets/lspd-logo.png'
 // import AdminStarter from '../AdminStarter';  // Create a similar starter for admin if necessary
 // import AdminWantedList from './AdminWantedList';  // Admin specific component for CRUD operations
 
@@ -18,23 +18,23 @@ const adminDashboardData = [
     {
         image: '/src/assets/careers.png',
         title: 'Careers at LSPD',
-        description: 'From Rookie to All-Star Cop – Start Your Journey in Los Santos',
+        description:
+            'From Rookie to All-Star Cop – Start Your Journey in Los Santos',
     },
     {
         image: '/src/assets/news.png',
         title: 'Manage News and Alerts',
         description: 'Add, Update, Delete News and Alerts',
     },
-];
-
-
+]
 
 const AdminDashboard = () => {
     const {user, setUser} = useContext(UserContext)
-	// console.log("User form Admin: ",user);
+    // console.log("User form Admin: ",user);
 
     return (
-        <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
+        <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight dark:moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
+            {' '}
             {/* <AdminStarter /> */}
             <section className="p-4 md:p-12">
                 <div className="text-center m-4 md:m-8 p-4 md:p-12">
@@ -52,15 +52,17 @@ const AdminDashboard = () => {
                             key={index}
                             onClick={() => {
                                 index === 0
-                                    ? (window.location.href = '/admin/most-wanted')
+                                    ? (window.location.href =
+                                          '/admin/most-wanted')
                                     : index === 1
-                                    ? (window.location.href = '/admin/read-tips')
-                                    : index === 2
-                                    ? (window.location.href = '/admin/AddJob')
-                                    : (window.location.href = '/admin/news');
+                                      ? (window.location.href =
+                                            '/admin/read-tips')
+                                      : index === 2
+                                        ? (window.location.href =
+                                              '/admin/AddJob')
+                                        : (window.location.href = '/admin/news')
                             }}
-                            className="flex cursor-pointer bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 rounded-2xl shadow-2xl dark:shadow-none dark:border-[var(--dltext)] dark:border-1 text-left items-center transform transition-transform duration-300 hover:scale-105 hover:border-[var(--hover-border-color)] 
-                            hover:dark:border-[var(--dllgold)] hover:border-2 hover:bg-gradient-to-r from-[var(--hover-bg-gradient-start)] to-[var(--hover-bg-gradient-end)] hover:dark:bg-gradient-to-r hover:dark:from-[var(--dllgold)] hover:dark:to-[var(--dbg1l)]"
+                            className="flex animate-appear blockanim cursor-pointer bg-[var(--opac)] dark:bg-[var(--whiteop)] p-4 rounded-2xl shadow-black/40 shadow-2xl border-[1px] border-[var(--opac)] dark:shadow-none dark:border-[var(--whiteop)] dark:border-[1px] text-left items-center transform transition-transform duration-300 hover:bg-[var(--opac2)] hover:dark:bg-white"
                         >
                             <img
                                 src={item.image}
@@ -86,13 +88,19 @@ const AdminDashboard = () => {
                         Why Use Admin Dashboard?
                     </h3>
                     <p className="my-2 poppins md:my-8 text-[var(--ltext)] dark:text-[var(--dlblue)] text-sm md:text-xl">
-                        The Admin Dashboard of LSPD Eagle-eye provides you with the tools and resources you need to manage and oversee all activities within Los Santos. From handling critical updates to ensuring that the most wanted list is always current, your role is crucial in maintaining order and safety. This dashboard streamlines your tasks and helps you perform your duties effectively.
+                        The Admin Dashboard of LSPD Eagle-eye provides you with
+                        the tools and resources you need to manage and oversee
+                        all activities within Los Santos. From handling critical
+                        updates to ensuring that the most wanted list is always
+                        current, your role is crucial in maintaining order and
+                        safety. This dashboard streamlines your tasks and helps
+                        you perform your duties effectively.
                     </p>
                 </div>
             </section>
             {/* <AdminWantedList />  Include admin-specific component for managing most wanted list */}
         </div>
-    );
+    )
 }
 
-export default AdminDashboard;
+export default AdminDashboard

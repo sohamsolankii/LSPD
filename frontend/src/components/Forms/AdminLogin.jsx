@@ -3,6 +3,8 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-hot-toast'
 import {UserContext} from '../../context/userContext'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+
 
 const AdminLogin = () => {
     const navigate = useNavigate()
@@ -28,6 +30,10 @@ const AdminLogin = () => {
                 {withCredentials: true},
             )
             if (response.status === 200) {
+                // Store passkey in cookies
+                Cookies.set('adminPasskey', JSON.stringify(passkey))
+
+                setPasskey(passkey)
                 toast.success('Access granted!')
                 navigate('/admin')
             }
