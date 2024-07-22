@@ -5,3 +5,4 @@ add
 dotenv.config({path: './backend/.env'})  -- when runnig both server concurrently
 dotenv.config({path: '.env'}) -- when runnig backend server only
 
+git check
