@@ -17,6 +17,7 @@ import ReportCrime from './components/ReportCrime.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import HomeSubmitTip from './components/HomeSubmitTip.jsx'
 import HomeCareers from './components/HomeCareers.jsx'
+import HomeNews from './components/HomeNews.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
                         <HomeSubmitTip />
                         <HomeCareers />
                         <WantedList />
+                        <HomeNews />
                         <Footer />
                     </>
                 }

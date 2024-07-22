@@ -58,7 +58,7 @@ const HomeCareers = () => {
                         </div>
                     ))}
                 </div>
-                <div className="flex items-center justify-center animate-appear blockanim md:w-1/2 w-full">
+                <div className="flex items-center justify-center md:w-1/2 w-full">
                     <img
                         src="/src/assets/careers.webp"
                         alt="Careers at LSPD"
@@ -68,7 +68,7 @@ const HomeCareers = () => {
             </div>
 
             <div className="md:col-span-2 pt-10 pb-6 md:pb-0 flex justify-center poppins">
-                <Link to="/careers" className="careers-button">
+                <Link to="/career" className="careers-button">
                     <button
                         type="button"
                         className="p-2 px-5 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--bg4op)] dark:bg-[#2f9b9d] backdrop-blur-md shadow-black/30 hover:shadow-black/40 hover:bg-[var(--opac)] hover:dark:bg-[var(--bg1)] shadow-md hover:shadow-xl text-gray-200 dark:text-[#f5e7a1] flex items-center justify-center"
