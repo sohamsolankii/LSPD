@@ -18,6 +18,7 @@ const Navbar = ({isAdmin = false}) => {
     const [sidebar, setSidebar] = useState(false)
     const [popupVisible, setPopupVisible] = useState(false)
     const {user, setUser, passkey, setPasskey} = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         // Fetch user data from cookies
@@ -33,8 +34,6 @@ const Navbar = ({isAdmin = false}) => {
         }
     }, [setUser, setPasskey])
 
-    const navigate = useNavigate()
-
     useEffect(() => {
         if (isDarkMode) {
             document.documentElement.classList.add('dark')
@@ -48,6 +47,13 @@ const Navbar = ({isAdmin = false}) => {
             await axios.get('/api/v1/auth/logout')
             setUser(null)
             Cookies.remove('user') // Remove user data from cookies
+            toast.success(
+                `Goodbye, rookie! You've successfully logged out. Stay safe out there!`,
+                {
+                    className:
+                        'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                },
+            )
             navigate('/')
         } catch (err) {
             console.log(err)
@@ -59,6 +65,13 @@ const Navbar = ({isAdmin = false}) => {
             await axios.get('/api/v1/auth/admin-logout')
             setPasskey(new Array(6).fill(''))
             Cookies.remove('adminPasskey') // Remove passkey data from cookies
+            toast.success(
+                `Goodbye, officer! You've successfully logged out. Stay safe out there!`,
+                {
+                    className:
+                        'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                },
+            )
             navigate('/')
         } catch (err) {
             console.log(err)

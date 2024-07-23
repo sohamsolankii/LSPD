@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import axios from 'axios'
+import {toast} from 'react-hot-toast'
+import {UserContext} from '../context/userContext'
+import {useNavigate} from 'react-router-dom'
 
 const SubmitTip = () => {
     const [tip, setTip] = useState('')
     const [isAnonymous, setIsAnonymous] = useState(false)
+    const {user} = useContext(UserContext)
+    const navigate = useNavigate()
 
     const handleTipChange = (e) => {
         setTip(e.target.value)
@@ -22,22 +27,29 @@ const SubmitTip = () => {
         setTip('')
         setIsAnonymous(false)
 
-        // * post request
-        try {
-            const response = await axios.post(
-                '/api/v1/tip',
-                {
-                    message: tip,
-                    isAnonymous: isAnonymous,
-                },
-                {
-                    withCredentials: true,
-                },
-            )
-            console.log('this is tip response', response)
-            alert('Your tip has been sent! Thank you for helping out.')
-        } catch (error) {
-            console.error('Error submitting tip', error)
+        if (user) {
+            // * post request
+            try {
+                const response = await axios.post(
+                    '/api/v1/tip',
+                    {
+                        message: tip,
+                        isAnonymous: isAnonymous,
+                    },
+                    {
+                        withCredentials: true,
+                    },
+                )
+                console.log('this is tip response', response)
+                toast('Your tip has been sent! Thank you for helping out.', {
+                    icon: '🫡',
+                })
+            } catch (error) {
+                console.error('Error submitting tip', error)
+            }
+        } else {
+            toast.error('You Have to login first!')
+            navigate('/login')
         }
     }
 
