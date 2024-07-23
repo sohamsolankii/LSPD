@@ -1,259 +1,211 @@
-import React, { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import React, {useState} from 'react'
+import {FaPlus} from 'react-icons/fa'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const AddJob = () => {
-  const [jobs, setJobs] = useState([]);
-  const [newJob, setNewJob] = useState({
-    title: '',
-    location: '',
-    jobType: '',
-    description: '',
-    requirements: '',
-    salaryRange: '',
-    applicationDeadline: '',
-    contactEmail: '',
-    postedDate: ''
-  });
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentJob, setCurrentJob] = useState(null);
-  const [showDetails, setShowDetails] = useState(false);
+    const [jobs, setJobs] = useState([])
+    const [newJob, setNewJob] = useState({
+        title: '',
+        location: '',
+        jobType: '',
+        description: '',
+        requirements: '',
+        salaryRange: '',
+        applicationDeadline: '',
+        contactEmail: '',
+        postedDate: '',
+    })
 
-  const handleChange = (e) => {
-    setNewJob({
-      ...newJob,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleAddJob = () => {
-    if (isEditing) {
-      setJobs(jobs.map((job) => (job.id === currentJob.id ? newJob : job)));
-      setIsEditing(false);
-      setCurrentJob(null);
-    } else {
-      setJobs([...jobs, { ...newJob, id: jobs.length + 1 }]);
+    const handleChange = (e) => {
+        setNewJob({
+            ...newJob,
+            [e.target.name]: e.target.value,
+        })
     }
-    setNewJob({
-      title: '',
-      location: '',
-      jobType: '',
-      description: '',
-      requirements: '',
-      salaryRange: '',
-      applicationDeadline: '',
-      contactEmail: '',
-      postedDate: ''
-    });
-  };
 
-  const handleEdit = (job) => {
-    setIsEditing(true);
-    setCurrentJob(job);
-    setNewJob(job);
-  };
+    const handleAddJob = async () => {
+        try {
+            const response = await axios.post('/api/v1/job', newJob, {
+                withCredentials: true,
+            })
+            toast.success('Job added successfully!')
+            setJobs([...jobs, {...newJob, id: jobs.length + 1}])
+            setNewJob({
+                title: '',
+                location: '',
+                jobType: '',
+                description: '',
+                requirements: '',
+                salaryRange: '',
+                applicationDeadline: '',
+                contactEmail: '',
+                postedDate: '',
+            })
+        } catch (error) {
+            console.error('Error adding job:', error)
+        }
+    }
 
-  const handleDelete = (jobId) => {
-    setJobs(jobs.filter((job) => job.id !== jobId));
-  };
+    const handleDelete = (jobId) => {
+        setJobs(jobs.filter((job) => job.id !== jobId))
+    }
 
-  const handleDetails = (job) => {
-    setCurrentJob(job);
-    setShowDetails(true);
-  };
+    return (
+        <div className="p-4 md:p-6 poppins dark:bg-gray-100 bg-[var(--bg2)]">
+            <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
+                <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70 dark:bg-gray-100 dark:border-gray-400 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
+                    Add Job
+                </h2>
+                <form
+                    className="grid grid-cols-1 gap-5 md:grid-cols-2 p-5"
+                    onSubmit={(e) => e.preventDefault()}
+                >
+                    {[
+                        {
+                            label: 'Job Title',
+                            name: 'title',
+                            type: 'text',
+                            placeholder: 'Job Title',
+                        },
+                        {
+                            label: 'Location',
+                            name: 'location',
+                            type: 'text',
+                            placeholder: 'Location',
+                        },
+                        {
+                            label: 'Job Type',
+                            name: 'jobType',
+                            type: 'select',
+                            options: [
+                                'FullTime',
+                                'PartTime',
+                                'Temporary',
+                                'Contract',
+                                'Internship',
+                            ],
+                        },
+                        {
+                            label: 'Description',
+                            name: 'description',
+                            type: 'textarea',
+                            placeholder: 'Description',
+                        },
+                        {
+                            label: 'Requirements',
+                            name: 'requirements',
+                            type: 'textarea',
+                            placeholder: 'Requirements',
+                        },
+                        {
+                            label: 'Salary Range',
+                            name: 'salaryRange',
+                            type: 'text',
+                            placeholder: 'Salary Range',
+                        },
+                        {
+                            label: 'Application Deadline',
+                            name: 'applicationDeadline',
+                            type: 'date',
+                        },
+                        {
+                            label: 'Contact Email',
+                            name: 'contactEmail',
+                            type: 'email',
+                            placeholder: 'Contact Email',
+                        },
+                        {
+                            label: 'Posted Date',
+                            name: 'postedDate',
+                            type: 'date',
+                        },
+                    ].map((field, index) => (
+                        <div key={index} className="flex flex-col">
+                            <label className="text-sm text-gray-500 pb-2">
+                                {field.label}
+                            </label>
+                            {field.type === 'select' ? (
+                                <select
+                                    name={field.name}
+                                    value={newJob[field.name]}
+                                    onChange={handleChange}
+                                    className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
+                                    required
+                                >
+                                    <option value="" disabled>
+                                        Select {field.label}
+                                    </option>
+                                    {field.options.map((option, i) => (
+                                        <option key={i} value={option}>
+                                            {option}
+                                        </option>
+                                    ))}
+                                </select>
+                            ) : field.type === 'textarea' ? (
+                                <textarea
+                                    name={field.name}
+                                    value={newJob[field.name]}
+                                    onChange={handleChange}
+                                    placeholder={field.placeholder}
+                                    className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[80px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
+                                    required
+                                />
+                            ) : (
+                                <input
+                                    type={field.type}
+                                    name={field.name}
+                                    value={newJob[field.name]}
+                                    onChange={handleChange}
+                                    placeholder={field.placeholder}
+                                    className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
+                                    required
+                                />
+                            )}
+                        </div>
+                    ))}
+                    <div className="md:col-span-2 flex justify-center">
+                        <button
+                            type="submit"
+                            className="p-2 px-5 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--bg4op)] dark:bg-[var(--bg1l)] backdrop-blur-md shadow-black/30 hover:shadow-black/40 hover:bg-[var(--opac)] hover:dark:bg-[var(--bg1)] shadow-md hover:shadow-xl text-gray-200 flex items-center justify-center"
+                            onClick={handleAddJob}
+                        >
+                            Add Job <FaPlus className="ml-2" />
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-  const closeDetails = () => {
-    setShowDetails(false);
-    setCurrentJob(null);
-  };
-
-  return (
-    <div className="p-4 md:p-6 poppins dark:bg-gray-100 bg-[var(--bg2)]">
-      <div className="mb-6 rounded-2xl shadow-black/70  dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
-        <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70 dark:bg-gray-100 dark:border-gray-400 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
-          {isEditing ? 'Edit Job' : 'Add Job'}
-        </h2>
-        <form className="grid grid-cols-1 gap-5 md:grid-cols-2 p-5" onSubmit={(e) => e.preventDefault()}>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Enter the job title</label>
-            <input
-              type="text"
-              name="title"
-              value={newJob.title}
-              onChange={handleChange}
-              placeholder="Job Title"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Enter the job location</label>
-            <input
-              type="text"
-              name="location"
-              value={newJob.location}
-              onChange={handleChange}
-              placeholder="Location"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Specify the type of job</label>
-            <input
-              type="text"
-              name="jobType"
-              value={newJob.jobType}
-              onChange={handleChange}
-              placeholder="Job Type"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Provide a job description</label>
-            <textarea
-              name="description"
-              value={newJob.description}
-              onChange={handleChange}
-              placeholder="Description"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">List the job requirements</label>
-            <textarea
-              name="requirements"
-              value={newJob.requirements}
-              onChange={handleChange}
-              placeholder="Requirements"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">State the salary range</label>
-            <input
-              type="text"
-              name="salaryRange"
-              value={newJob.salaryRange}
-              onChange={handleChange}
-              placeholder="Salary Range"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Set the application deadline</label>
-            <input
-              type="date"
-              name="applicationDeadline"
-              value={newJob.applicationDeadline}
-              onChange={handleChange}
-              placeholder="Application Deadline"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Enter the contact email</label>
-            <input
-              type="email"
-              name="contactEmail"
-              value={newJob.contactEmail}
-              onChange={handleChange}
-              placeholder="Contact Email"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-sm text-gray-500 pb-2">Enter the posted date</label>
-            <input
-              type="date"
-              name="postedDate"
-              value={newJob.postedDate}
-              onChange={handleChange}
-              placeholder="Posted Date"
-              className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-              required
-            />
-          </div>
-          <div className="md:col-span-2 flex justify-center">
-            <button
-              type="submit"
-              className="p-2 px-5 border-[1px] border-[var(--opac)] h-[40px] rounded-md bg-[var(--bg4op)] dark:bg-[var(--bg1l)] backdrop-blur-md shadow-black/30 hover:shadow-black/40 hover:bg-[var(--opac)] hover:dark:bg-[var(--bg1)] shadow-md hover:shadow-xl text-gray-200 flex items-center justify-center"
-              onClick={handleAddJob}
-            >
-              {isEditing ? 'Update Job' : 'Add Job'} <FaPlus className="ml-2" />
-            </button>
-          </div>
-        </form>
-      </div>
-
-
-      <div className="mb-6 dark:bg-gray-100 dark:border-gray-400 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
-        <h2 className="text-2xl rounded-xl z-10 font-medium dark:bg-gray-100 dark:border-gray-400 m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">Current Jobs</h2>
-        <table className="min-w-full mb-4 rounded-md shadow-black/30 text-sm md:text-lg text-gray-200">
-          <thead>
-            <tr>
-              <th className="py-2 font-medium text-gray-500">Job Title</th>
-              <th className="py-2 font-medium text-gray-500">Location</th>
-              <th className="py-2 font-medium text-gray-500">Job Type</th>
-              <th className="py-2 font-medium text-gray-500">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {jobs.map((job) => (
-              <tr key={job.id}>
-                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">{job.title}</td>
-                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">{job.location}</td>
-                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">{job.jobType}</td>
-                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">
-                  <button
-                    onClick={() => handleEdit(job)}
-                    className="border-blue-500 border-[1px] text-sm text-blue-500 hover:text-blue-700 px-2 py-1 mx-1 hover:border-blue-700 rounded-md"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(job.id)}
-                    className="border-red-500 border-[1px] text-sm text-red-500 hover:text-red-700 px-2 py-1 mx-1 hover:border-red-700 rounded-md"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() => handleDetails(job)}
-                    className="border-green-500 border-[1px] text-sm text-green-500 hover:text-green-700 px-2 py-1 mx-1 hover:border-green-700 rounded-md"
-                  >
-                    Details
-                  </button> </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {showDetails && currentJob && (
-        <div className="fixed inset-0 text-gray-300 dark:text-gray-600 flex items-center justify-center">
-          <div className="bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] dark:border-gray-400 p-4 rounded-xl md:w-1/2 shadow-black/80 dark:shadow-black/40 shadow-2xl w-4/5">
-            <h2 className="text-xl font-medium mb-2">Job Details</h2>
-
-            <p className="font-light"><strong>Title:</strong> {currentJob.title}</p>
-            <p className="font-light"><strong>Location:</strong> {currentJob.location}</p>
-            <p className="font-light"><strong>Job Type:</strong> {currentJob.jobType}</p>
-            <p className="font-light"><strong>Description:</strong> {currentJob.description}</p>
-            <p className="font-light"><strong>Requirements:</strong> {currentJob.requirements}</p>
-            <p className="font-light"><strong>Salary Range:</strong> {currentJob.salaryRange}</p>
-            <p className="font-light"><strong>Application Deadline:</strong> {currentJob.applicationDeadline}</p>
-            <p className="font-light"><strong>Contact Email:</strong> {currentJob.contactEmail}</p>
-            <p className="font-light"><strong>Posted Date:</strong> {currentJob.postedDate}</p>
-            <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bgtru-blue-700" onClick={closeDetails}>Close</button>
-          </div>
+            <div className="mb-6 dark:bg-gray-100 dark:border-gray-400 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
+                <h2 className="text-2xl rounded-xl z-10 font-medium dark:bg-gray-100 dark:border-gray-400 m-2 p-2 text-[var(--lgold)] text-center dark:text-[var(--dltext)] bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
+                    Job List
+                </h2>
+                <ul className="p-5 space-y-2">
+                    {jobs.map((job) => (
+                        <li
+                            key={job.id}
+                            className="flex justify-between items-center p-2 border-b border-[var(--opac)] dark:border-gray-300"
+                        >
+                            <div>
+                                <h3 className="font-medium text-gray-800 dark:text-gray-900">
+                                    {job.title}
+                                </h3>
+                                <p className="text-gray-600 dark:text-gray-600">
+                                    {job.location}
+                                </p>
+                            </div>
+                            <button
+                                className="text-red-600 hover:text-red-800"
+                                onClick={() => handleDelete(job.id)}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
-      )}
-    </div>
-  );
-};
+    )
+}
 
-export default AddJob;
+export default AddJob

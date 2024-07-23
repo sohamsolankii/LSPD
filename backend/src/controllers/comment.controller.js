@@ -31,8 +31,9 @@ export const addComment = AsyncHandler(async (req, res) => {
 // * Fetch Comments for a specific news
 export const fetchComment = AsyncHandler(async (req, res) => {
     const news = req.params.news
+    console.log(req.params)
 
-    checkParams(req, 'news', Comment)
+    // checkParams(req, 'news', Comment)
 
     // const comments = await Comment.find().populate('userID')
 
