@@ -10,6 +10,6 @@ const router = express.Router()
 router
     .route('/report-crime')
     .post(authValidator, createCrimeDetails)
-    .get(authValidator, fetchCrimeDetails)
+    .get(fetchCrimeDetails)
 
 export default router
