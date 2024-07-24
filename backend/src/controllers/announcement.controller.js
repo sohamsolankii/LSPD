@@ -7,9 +7,22 @@ import {intoObjectId} from './../utils/ObjectId.js'
 // * Create announcement
 export const createAnnouncement = AsyncHandler(async (req, res) => {
     const {title, description} = req.body
+	const imageFile = req.file?.path
+
+	console.log(req.body, req.file)
+
+	let image
+
+	if (imageFile) {
+		const uploadResult = await uploadOnCloudinary(imageFile)
+		if (uploadResult) {
+			const image = uploadResult.secure_url
+		}
+	}
+	console.log(image)
 
     const newAnnouncement = await Announcement.create({
-        image: '1',
+        image,
         title,
         description,
     })
