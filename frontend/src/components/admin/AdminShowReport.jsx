@@ -15,7 +15,8 @@ const AdminShowReport = () => {
             const res = await axios.get('/api/v1/reportCrime/report-crime', {
                 withCredentials: true,
             })
-            setComplaints(res.data.data) // Adjusted to handle the ApiResponse structure
+            console.log('Fetched data:', res.data.data) // Check data structure
+            setComplaints(res.data.data)
             toast.success('Complaints fetched successfully!')
         } catch (error) {
             console.error(error)
@@ -68,7 +69,7 @@ const AdminShowReport = () => {
                                 <p className="font-medium text-lg">
                                     {complaint.complaint}
                                 </p>
-                                <p className="text-md text-yellow-200 dark:text-blue-600">
+                                <p className="text-sm text-gray-400 dark:text-blue-600 mb-3">
                                     {complaint.description}
                                 </p>
 

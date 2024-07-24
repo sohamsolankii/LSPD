@@ -36,8 +36,8 @@ const AdminShowTip = () => {
     }
 
     return (
-        <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-7 min-h-screen flex items-center justify-center">
-            <div className="my-8 bg-[var(--bg1)] dark:bg-white rounded-2xl shadow-black/70 dark:shadow-black/30 border-[1px] border-[var(--opac)] dark:border-gray-300 shadow-2xl text-gray-100 dark:text-gray-800">
+        <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-0 min-h-screen flex items-center justify-center">
+            <div className="my-6 bg-[var(--bg1)] dark:bg-white rounded-2xl shadow-black/70 dark:shadow-black/30 border-[1px] border-[var(--opac)] dark:border-gray-300 shadow-2xl text-gray-100 dark:text-gray-800">
                 <div className="container flex flex-col items-center mx-auto mb-8 md:p-10 md:px-12 ">
                     <h1 className="text-2xl md:text-4xl pricedown font-bold text-[var(--lgold)] dark:text-[var(--dltext)] mb-2 text-center">
                         All Tips
@@ -55,10 +55,10 @@ const AdminShowTip = () => {
                         tips.map((tip, index) => (
                             <div
                                 key={index}
-                                className="flex flex-col max-w-sm mx-4 my-6 shadow-lg"
+                                className="flex flex-col max-w-sm mx-2 my-2 shadow-lg"
                             >
-                                <div className="px-4 py-10 rounded-t-lg sm:px-8 md:px-12 bg-[var(--opac)] border-t-[1px] border-x-[1px] border-[var(--opac)] dark:border-blue-600 dark:bg-gray-50">
-                                    <p className="relative px-3 py-1 text-lg italic text-center text-gray-100 dark:text-gray-800">
+                                <div className="px-4 py-10 rounded-t-lg sm:px-2 md:px-4 bg-[var(--opac)] border-t-[1px] border-x-[1px] border-[var(--opac)] dark:border-blue-600 dark:bg-gray-50">
+                                    <p className="relative px-3 py-1 md:text-lg text-md italic text-center text-gray-100 dark:text-gray-800">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 512 512"
@@ -86,7 +86,7 @@ const AdminShowTip = () => {
                                         alt=""
                                         className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full  bg-gray-500 dark:bg-gray-500 bg-gray-700 dark:bg-gray-300"
                                     />
-                                    <p className="text-lg font-semibold leading-tight">
+                                    <p className="md:text-lg text-md font-semibold leading-tight">
                                         {tip.user ? tip.user.name : 'Anonymous'}
                                     </p>
                                 </div>

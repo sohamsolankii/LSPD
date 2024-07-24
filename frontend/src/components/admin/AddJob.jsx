@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {FaPlus} from 'react-icons/fa'
+import {FaPlus, FaArrowLeft, FaArrowRight} from 'react-icons/fa'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
@@ -16,6 +16,8 @@ const AddJob = () => {
         contactEmail: '',
         postedDate: '',
     })
+    const [currentPage, setCurrentPage] = useState(1)
+    const jobsPerPage = 5
 
     const handleChange = (e) => {
         setNewJob({
@@ -51,8 +53,22 @@ const AddJob = () => {
         setJobs(jobs.filter((job) => job.id !== jobId))
     }
 
+    const indexOfLastJob = currentPage * jobsPerPage
+    const indexOfFirstJob = indexOfLastJob - jobsPerPage
+    const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob)
+
+    const prevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+    }
+
+    const nextPage = () => {
+        setCurrentPage((prevPage) =>
+            Math.min(prevPage + 1, Math.ceil(jobs.length / jobsPerPage)),
+        )
+    }
+
     return (
-        <div className="p-4 md:p-6 poppins dark:bg-gray-100 bg-[var(--bg2)]">
+        <div className="p-4 md:p-6 poppins dark:bg-gray-100 bg-[var(--bg2)] min-h-screen">
             <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
                 <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70 dark:bg-gray-100 dark:border-gray-400 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
                     Add Job
@@ -181,21 +197,21 @@ const AddJob = () => {
                     Job List
                 </h2>
                 <ul className="p-5 space-y-2">
-                    {jobs.map((job) => (
+                    {currentJobs.map((job) => (
                         <li
                             key={job.id}
                             className="flex justify-between items-center p-2 border-b border-[var(--opac)] dark:border-gray-300"
                         >
                             <div>
-                                <h3 className="font-medium text-gray-800 dark:text-gray-900">
+                                <h3 className="font-semibold text-lg text-gray-200 dark:text-gray-900">
                                     {job.title}
                                 </h3>
-                                <p className="text-gray-600 dark:text-gray-600">
+                                <p className="text-gray-500 text-sm dark:text-gray-600">
                                     {job.location}
                                 </p>
                             </div>
                             <button
-                                className="text-red-600 hover:text-red-800"
+                                className="text-red-600 hover:text-red-800 border-[1px] border-red-600 hover:border-red-800 px-2 rounded-md"
                                 onClick={() => handleDelete(job.id)}
                             >
                                 Delete
@@ -203,6 +219,24 @@ const AddJob = () => {
                         </li>
                     ))}
                 </ul>
+                <div className="flex p-4">
+                    <button
+                        className="bg-yellow-200 text-gray-800 dark:text-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:shadow-none shadow-black/70 shadow-lg hover:dark:bg-blue-700 p-2 mr-3 rounded-full"
+                        onClick={prevPage}
+                        disabled={currentPage === 1}
+                    >
+                        <FaArrowLeft />
+                    </button>
+                    <button
+                        className="bg-yellow-200 text-gray-800 dark:text-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:shadow-none shadow-black/70 shadow-lg hover:dark:bg-blue-700 p-2 rounded-full"
+                        onClick={nextPage}
+                        disabled={
+                            currentPage === Math.ceil(jobs.length / jobsPerPage)
+                        }
+                    >
+                        <FaArrowRight />
+                    </button>
+                </div>
             </div>
         </div>
     )

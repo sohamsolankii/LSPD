@@ -88,7 +88,7 @@ const Navbar = ({isAdmin = false}) => {
     return (
         <IconContext.Provider value={{color: '#fff'}}>
             <div className={`navbar ${sidebar ? 'sidebar-active' : ''}`}>
-                <div className="flex justify-between items-center p-3 fixed w-full top-0 z-50 bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white">
+                <div className="flex justify-between poppins items-center p-3 fixed w-full top-0 z-50 bg-[var(--bg2op)] dark:bg-[var(--dbg2op)] backdrop-blur-xl border-b-4 border-[var(--lgold)] dark:border-[var(--dltext)] text-white">
                     <Link
                         to="#"
                         className="menu-bars ml-3 group"
@@ -101,7 +101,11 @@ const Navbar = ({isAdmin = false}) => {
                     </Link>
 
                     <Link
-                        to="/"
+                        to={
+                            !passkey || passkey.every((digit) => digit === '')
+                                ? '/'
+                                : '/admin'
+                        }
                         className="flex items-center text-xl md:text-2xl font-bold sm:text-[var(--lgold)] text-[var(--lblue)] sm:dark:text-[var(--dltext)] dark:text-[var(--dlblue)]"
                     >
                         <img
@@ -109,15 +113,15 @@ const Navbar = ({isAdmin = false}) => {
                             alt="LSPD Logo"
                             className="invisible md:visible h-8 md:h-10 mr-2"
                         />
-                        {isAdmin ? (
+                        {!passkey || passkey.every((digit) => digit === '') ? (
+                            'LSPD EagleEye'
+                        ) : (
                             <span className="relative">
                                 LSPD EagleEye
-                                <span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-3 py-1 rounded-md hidden md:inline-block">
-                                    ADMIN
+                                <span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-2 py-0 rounded-md shadow-lg hidden md:inline-block">
+                                    <b>ADMIN</b>
                                 </span>
                             </span>
-                        ) : (
-                            'LSPD EagleEye'
                         )}
                     </Link>
 

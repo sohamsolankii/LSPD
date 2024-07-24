@@ -6,41 +6,42 @@ import LSPDLogo from '/src/assets/lspd-logo.png'
 
 const adminDashboardData = [
     {
-        image: '/src/assets/wanted.png',
+        image: '/src/assets/admin/1.jpeg',
         url: '/admin/',
-        title: 'Manage Most Wanted List',
-        description: 'Add, Update, Delete Most Wanted Profiles',
+        title: 'Manage Most Wanted Profiles',
+        description:
+            'Oversee, update, and manage the Most Wanted list for LSPD.',
     },
     {
-        image: '/src/assets/careers.png',
+        image: '/src/assets/admin/2.jpeg',
         url: '/admin/jobs',
-        title: 'Add Jobs for LSPD',
-        description:
-            'From Rookie to All-Star Cop – Start Your Journey in Los Santos',
+        title: 'Post and Manage Job Listings',
+        description: 'Create and maintain job opportunities within the LSPD.',
     },
     {
-        image: '/src/assets/careers.png',
-        title: 'Review Job Applications',
+        image: '/src/assets/admin/3.jpeg',
+        title: 'Review and Approve Applications',
         description:
-            'From Rookie to All-Star Cop – Start Your Journey in Los Santos',
+            'Evaluate job applications and select qualified candidates.',
     },
     {
-        image: '/src/assets/news.png',
+        image: '/src/assets/admin/4.jpeg',
         url: '/admin/news',
         title: 'Manage News and Alerts',
-        description: 'Add, Update, Delete News and Alerts',
+        description:
+            'Publish, edit, and remove news updates and public alerts.',
     },
     {
-        image: '/src/assets/tip.png',
+        image: '/src/assets/admin/5.jpeg',
         url: '/admin/show-tips',
-        title: 'Read Submitted Tips',
-        description: 'View and Manage Tips Submitted by Users',
+        title: 'Review User-Submitted Tips',
+        description: 'Access and manage tips submitted by the public.',
     },
     {
-        image: '/src/assets/news.png',
+        image: '/src/assets/admin/6.jpeg',
         url: '/admin/crime-reports',
-        title: 'Read Submitted Complaints',
-        description: 'Add, Update, Delete News and Alerts',
+        title: 'Manage Crime Reports',
+        description: 'Review and address submitted crime complaints.',
     },
 ]
 
@@ -52,8 +53,8 @@ const AdminDashboard = () => {
         <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight dark:moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             {' '}
             {/* <AdminStarter /> */}
-            <section className="p-4 md:p-12">
-                <div className="text-center m-4 md:m-8 p-4 md:p-12">
+            <section className="p-4 md:p-6">
+                <div className="text-center m-2 md:m-8 p-4 md:p-6">
                     <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
                         Admin Dashboard
                     </h2>
@@ -62,7 +63,7 @@ const AdminDashboard = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     {adminDashboardData.map((item, index) => (
                         <div
                             key={index}
@@ -72,7 +73,7 @@ const AdminDashboard = () => {
                             <img
                                 src={item.image}
                                 alt={`Image ${index + 1}`}
-                                className="w-1/3 cursor-pointer md:w-1/4 rounded-lg mr-4 md:mr-6"
+                                className="w-1/3 cursor-pointer md:w-1/5 border-[1px] border-[var(--opac2)] shadow-black/30 shadow-xl rounded-lg mr-4 md:mr-6"
                             />
                             <div>
                                 <h3
