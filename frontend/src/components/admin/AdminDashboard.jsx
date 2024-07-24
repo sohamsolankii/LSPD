@@ -7,23 +7,39 @@ import LSPDLogo from '/src/assets/lspd-logo.png'
 const adminDashboardData = [
     {
         image: '/src/assets/wanted.png',
+        url: '/admin/',
         title: 'Manage Most Wanted List',
         description: 'Add, Update, Delete Most Wanted Profiles',
     },
     {
-        image: '/src/assets/tip.png',
-        title: 'Read Submitted Tips',
-        description: 'View and Manage Tips Submitted by Users',
+        image: '/src/assets/careers.png',
+        url: '/admin/jobs',
+        title: 'Add Jobs for LSPD',
+        description:
+            'From Rookie to All-Star Cop – Start Your Journey in Los Santos',
     },
     {
         image: '/src/assets/careers.png',
-        title: 'Careers at LSPD',
+        title: 'Review Job Applications',
         description:
             'From Rookie to All-Star Cop – Start Your Journey in Los Santos',
     },
     {
         image: '/src/assets/news.png',
+        url: '/admin/news',
         title: 'Manage News and Alerts',
+        description: 'Add, Update, Delete News and Alerts',
+    },
+    {
+        image: '/src/assets/tip.png',
+        url: '/admin/show-tips',
+        title: 'Read Submitted Tips',
+        description: 'View and Manage Tips Submitted by Users',
+    },
+    {
+        image: '/src/assets/news.png',
+        url: '/admin/crime-reports',
+        title: 'Read Submitted Complaints',
         description: 'Add, Update, Delete News and Alerts',
     },
 ]
@@ -41,28 +57,17 @@ const AdminDashboard = () => {
                     <h2 className="text-3xl md:text-5xl pricedown text-[var(--lblue)] dark:text-[var(--dltext)] mb-2 md:mb-4">
                         Admin Dashboard
                     </h2>
-                    <p className="text-lg md:text-2xl poppins mb-2 text-[var(--ltext)] dark:text-[var(--dgold)]">
+                    <p className="text-lg md:text-2xl poppins mb-2 text-[var(--ltext)] dark:text-white">
                         Manage Everything in Los Santos with Ease and Precision
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                     {adminDashboardData.map((item, index) => (
                         <div
                             key={index}
-                            onClick={() => {
-                                index === 0
-                                    ? (window.location.href =
-                                          '/admin/most-wanted')
-                                    : index === 1
-                                      ? (window.location.href =
-                                            '/admin/read-tips')
-                                      : index === 2
-                                        ? (window.location.href =
-                                              '/admin/AddJob')
-                                        : (window.location.href = '/admin/news')
-                            }}
-                            className="flex animate-appear blockanim cursor-pointer bg-[var(--opac)] dark:bg-[var(--whiteop)] p-4 rounded-2xl shadow-black/40 shadow-2xl border-[1px] border-[var(--opac)] dark:shadow-none dark:border-[var(--whiteop)] dark:border-[1px] text-left items-center transform transition-transform duration-300 hover:bg-[var(--opac2)] hover:dark:bg-white"
+                            onClick={() => (window.location.href = item.url)}
+                            className="flex cursor-pointer bg-[var(--opac)] dark:bg-white p-4 rounded-2xl shadow-black/40 shadow-2xl border-[1px] border-[var(--opac)] dark:border-[var(--whiteop)] dark:border-[1px] text-left items-center transform transition-transform duration-300 hover:bg-[var(--opac2)] hover:dark:bg-white"
                         >
                             <img
                                 src={item.image}
@@ -71,31 +76,16 @@ const AdminDashboard = () => {
                             />
                             <div>
                                 <h3
-                                    className={`pricedown cursor-pointer text-lg md:text-4xl mb-1 md:mb-2 ${item.title === 'Manage Most Wanted List' || item.title === 'Manage News and Alerts' ? 'text-[var(--lgold)] dark:text-[#F6B922]' : ''}`}
+                                    className={`font-bold text-[var(--lgold)] dark:text-blue-700 cursor-pointer text-lg md:text-2xl mb-1 md:mb-2 poppins`}
                                 >
                                     {item.title}
                                 </h3>
-                                <p className="text-[var(--ltext)] cursor-pointer dark:text-[var(--dlblue)] poppins text-sm md:text-xl">
+                                <p className="text-[var(--ltext)] cursor-pointer dark:text-[var(--dlblue)] poppins text-sm md:text-lg">
                                     {item.description}
                                 </p>
                             </div>
                         </div>
                     ))}
-                </div>
-
-                <div className="bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] p-4 md:p-12 rounded-2xl shadow-2xl text-left mt-4 md:mt-8 mb-4 md:mb-10">
-                    <h3 className="text-lg md:text-4xl pricedown text-[var(--lgold)] dark:text-[var(--dlgold)] font-bold mb-4">
-                        Why Use Admin Dashboard?
-                    </h3>
-                    <p className="my-2 poppins md:my-8 text-[var(--ltext)] dark:text-[var(--dlblue)] text-sm md:text-xl">
-                        The Admin Dashboard of LSPD Eagle-eye provides you with
-                        the tools and resources you need to manage and oversee
-                        all activities within Los Santos. From handling critical
-                        updates to ensuring that the most wanted list is always
-                        current, your role is crucial in maintaining order and
-                        safety. This dashboard streamlines your tasks and helps
-                        you perform your duties effectively.
-                    </p>
                 </div>
             </section>
             {/* <AdminWantedList />  Include admin-specific component for managing most wanted list */}

@@ -47,7 +47,7 @@ const AdminShowReport = () => {
 
     return (
         <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-7 min-h-screen flex items-center justify-center">
-            <div className="container bg-[var(--bg1)] dark:bg-[var(--dbg1)] mx-auto p-3 md:p-10 rounded-2xl shadow-black/70 border-[1px] border-[var(--opac)] shadow-2xl">
+            <div className="container bg-[var(--bg1)] dark:bg-[var(--dbg1)] mx-auto p-3 md:p-10 rounded-2xl dark:shadow-none shadow-black/70 border-[1px] border-[var(--opac)] dark:border-[var(--opac2)] shadow-2xl">
                 <h1 className="text-2xl md:text-4xl pricedown font-bold text-[var(--lgold)] dark:text-[var(--dlgold)] mb-2 text-center">
                     All Reports
                 </h1>
@@ -63,18 +63,30 @@ const AdminShowReport = () => {
                         currentComplaints.map((complaint, index) => (
                             <div
                                 key={index}
-                                className="mb-4 p-3 rounded-xl glassgrad2 border-[1px] border-[var(--opac)] shadow-black/20 shadow-lg backdrop-blur-sm dark:border-gray-700 bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] text-[var(--ltext)] dark:text-[var(--dlblue)]"
+                                className="mb-4 p-3 rounded-xl bg-[var(--opac)] border-[1px] border-[var(--opac)] shadow-black/20 shadow-lg backdrop-blur-sm dark:shadow-none dark:border-gray-400 bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] text-[var(--ltext)] dark:text-[var(--dlblue)]"
                             >
-                                <p>{complaint.report}</p>
-                                <p className="text-sm text-yellow-200 dark:text-blue-600">
+                                <p className="font-medium text-lg">
+                                    {complaint.complaint}
+                                </p>
+                                <p className="text-md text-yellow-200 dark:text-blue-600">
                                     {complaint.description}
                                 </p>
 
-                                <p className="text-xs text-[var(--lblue)] dark:text-gray-800">
-                                    {complaint.user
-                                        ? complaint.user.name
-                                        : 'Anonymous'}{' '}
-                                    | {complaint.location}
+                                <p className="text-sm text-[var(--lblue)] dark:text-gray-800 flex items-center">
+                                    {complaint.user ? (
+                                        <>
+                                            <FaIcons.FaUserTie className="mr-2" />{' '}
+                                            {complaint.user.name}
+                                        </>
+                                    ) : (
+                                        <>
+                                            {' '}
+                                            <FaIcons.FaUserSecret className="mr-2" />{' '}
+                                            Anonymous
+                                        </>
+                                    )}
+                                    {' | '}
+                                    {complaint.location}
                                 </p>
                             </div>
                         ))
