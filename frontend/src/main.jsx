@@ -55,18 +55,11 @@ const router = createBrowserRouter(
             <Route path="/submit-tip" element={<SubmitTip />} />,
             <Route path="/report-crime" element={<ReportCrime />} />,
             <Route path="/career" element={<Careers />} />
-            <Route
-                path="/admin"
-                element={
-                    <>
-                        <AdminDashboard />
-                        <AddJob />
-                        <AddNews />
-                    </>
-                }
-            />
-            <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin-login" element={<AdminLogin />}></Route>
+            <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
+            <Route path="/admin/news" element={<AddNews />}></Route>
+            <Route path="/admin/jobs" element={<AddJob />}></Route>
         </Route>,
     ),
 )
