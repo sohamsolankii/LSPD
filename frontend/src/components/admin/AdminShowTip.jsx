@@ -36,15 +36,17 @@ const AdminShowTip = () => {
     }
 
     return (
-        <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-7 min-h-screen flex items-center justify-center bgp">
-            <div className="container bg-[var(--bg1)] dark:bg-[var(--dbg1)] mx-auto p-3 md:p-10 rounded-2xl shadow-black/70 border-[1px] border-[var(--opac)] shadow-2xl">
-                <h1 className="text-2xl md:text-4xl pricedown font-bold text-[var(--lgold)] dark:text-[var(--dlgold)] mb-2 text-center">
-                    All Tips
-                </h1>
-                <h2 className="text-sm md:text-xl poppins text-[var(--ltext)] dark:text-[var(--dltext)] mb-8 text-center">
-                    Submitted by Users
-                </h2>
-                <div className="tips-list">
+        <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-7 min-h-screen flex items-center justify-center">
+            <div className="my-8 bg-[var(--bg1)] dark:bg-white rounded-2xl shadow-black/70 dark:shadow-black/30 border-[1px] border-[var(--opac)] dark:border-gray-300 shadow-2xl text-gray-100 dark:text-gray-800">
+                <div className="container flex flex-col items-center mx-auto mb-8 md:p-10 md:px-12 ">
+                    <h1 className="text-2xl md:text-4xl pricedown font-bold text-[var(--lgold)] dark:text-[var(--dltext)] mb-2 text-center">
+                        All Tips
+                    </h1>
+                    <h2 className="text-sm md:text-xl poppins text-[var(--ltext)] dark:text-blue-900 text-center">
+                        Submitted by Users
+                    </h2>
+                </div>
+                <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-6">
                     {tips.length === 0 ? (
                         <p className="text-center text-[var(--ltext)] dark:text-[var(--dltext)]">
                             No tips available
@@ -53,15 +55,41 @@ const AdminShowTip = () => {
                         tips.map((tip, index) => (
                             <div
                                 key={index}
-                                className="mb-4 p-3 rounded-xl glassgrad2 border-[1px] border-[var(--opac)] shadow-black/20 shadow-lg backdrop-blur-sm dark:border-gray-700 bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] text-[var(--ltext)] dark:text-[var(--dlblue)]"
+                                className="flex flex-col max-w-sm mx-4 my-6 shadow-lg"
                             >
-                                <p>
-                                    <strong>Tip:</strong> {tip.tip}
-                                </p>
-                                <p>
-                                    <strong>User Name:</strong>{' '}
-                                    {tip.user ? tip.user.name: 'Anonymous'}
-                                </p>
+                                <div className="px-4 py-10 rounded-t-lg sm:px-8 md:px-12 bg-[var(--opac)] border-t-[1px] border-x-[1px] border-[var(--opac)] dark:border-blue-600 dark:bg-gray-50">
+                                    <p className="relative px-3 py-1 text-lg italic text-center text-gray-100 dark:text-gray-800">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512"
+                                            fill="currentColor"
+                                            className="w-6 h-6 text-[var(--opac2)] dark:text-blue-600"
+                                        >
+                                            <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
+                                            <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
+                                        </svg>
+                                        {tip.tip}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512"
+                                            fill="currentColor"
+                                            className="absolute right-0 w-6 h-6 text-[var(--opac2)] dark:text-blue-600"
+                                        >
+                                            <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
+                                            <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
+                                        </svg>
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center justify-center shadow-black/30 shadow-lg dark:shadow-sm p-8 rounded-b-lg bg-[var(--opac2)] dark:bg-blue-600 text-gray-300 border-[1px] border-[var(--opac)] dark:text-gray-50">
+                                    <img
+                                        src="/src/assets/criminal.jpg"
+                                        alt=""
+                                        className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full  bg-gray-500 dark:bg-gray-500 bg-gray-700 dark:bg-gray-300"
+                                    />
+                                    <p className="text-lg font-semibold leading-tight">
+                                        {tip.user ? tip.user.name : 'Anonymous'}
+                                    </p>
+                                </div>
                             </div>
                         ))
                     )}

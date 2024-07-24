@@ -111,13 +111,13 @@ const Navbar = ({isAdmin = false}) => {
                         />
                         {isAdmin ? (
                             <span className="relative">
-                                LSPD EAGLE-EYE
+                                LSPD EagleEye
                                 <span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-3 py-1 rounded-md hidden md:inline-block">
                                     ADMIN
                                 </span>
                             </span>
                         ) : (
-                            'LSPD EAGLE-EYE'
+                            'LSPD EagleEye'
                         )}
                     </Link>
 
