@@ -14,7 +14,7 @@ export const AdminSidebarData = [
     },
     {
         title: 'Add Jobs',
-        path: '/admin/news',
+        path: '/admin/jobs',
         icon: <FaLink />,
         cName: 'nav-text',
     },
