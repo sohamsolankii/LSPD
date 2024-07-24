@@ -30,7 +30,7 @@ import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import AdminShowTip from './components/admin/AdminShowTip.jsx'
 import AdminLogin from './components/Forms/AdminLogin.jsx'
-import AdminShowCrime from './components/admin/AdminShowCrime.jsx'
+import AdminShowReport from './components/admin/AdminShowReport.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -61,7 +61,10 @@ const router = createBrowserRouter(
             <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
             <Route path="/admin/news" element={<AddNews />}></Route>
             <Route path="/admin/jobs" element={<AddJob />}></Route>
-            <Route path="/admin/crime-reports" element={<AdminShowCrime />}></Route>
+            <Route
+                path="/admin/crime-reports"
+                element={<AdminShowReport />}
+            ></Route>
         </Route>,
     ),
 )

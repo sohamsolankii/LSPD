@@ -1,88 +1,31 @@
-import React, {useState} from 'react'
+import axios from 'axios'
+import React, {useEffect, useState} from 'react'
+import {toast} from 'react-hot-toast'
+import * as FaIcons from 'react-icons/fa'
 
 const AdminShowReport = () => {
-    // Temporary data for complaints with descriptions and locations
-    const complaints = [
-        {
-            report: 'Complaint about service quality.',
-            description: 'The service was not up to the expected standards.',
-            location: 'New York, NY',
-            user: {name: 'Jane Smith'},
-        },
-        {
-            report: 'Issue with product delivery.',
-            description: 'The product arrived late and was damaged.',
-            location: 'Los Angeles, CA',
-            user: {name: 'Tom Brown'},
-        },
-        {
-            report: 'Request for a refund not processed.',
-            description: 'Refund requested but not processed for weeks.',
-            location: 'Chicago, IL',
-            user: {name: 'Alice Johnson'},
-        },
-        {
-            report: 'Poor customer support experience.',
-            description: 'Customer support was unresponsive and unhelpful.',
-            location: 'Houston, TX',
-            user: null, // Anonymous user
-        },
-        {
-            report: 'Complaint about service quality.',
-            description: 'The service was not up to the expected standards.',
-            location: 'New York, NY',
-            user: {name: 'Jane Smith'},
-        },
-        {
-            report: 'Issue with product delivery.',
-            description: 'The product arrived late and was damaged.',
-            location: 'Los Angeles, CA',
-            user: {name: 'Tom Brown'},
-        },
-        {
-            report: 'Request for a refund not processed.',
-            description: 'Refund requested but not processed for weeks.',
-            location: 'Chicago, IL',
-            user: {name: 'Alice Johnson'},
-        },
-        {
-            report: 'Poor customer support experience.',
-            description: 'Customer support was unresponsive and unhelpful.',
-            location: 'Houston, TX',
-            user: null, // Anonymous user
-        },
-        {
-            report: 'Complaint about service quality.',
-            description: 'The service was not up to the expected standards.',
-            location: 'New York, NY',
-            user: {name: 'Jane Smith'},
-        },
-        {
-            report: 'Issue with product delivery.',
-            description: 'The product arrived late and was damaged.',
-            location: 'Los Angeles, CA',
-            user: {name: 'Tom Brown'},
-        },
-        {
-            report: 'Request for a refund not processed.',
-            description: 'Refund requested but not processed for weeks.',
-            location: 'Chicago, IL',
-            user: {name: 'Alice Johnson'},
-        },
-        {
-            report: 'Poor customer support experience.',
-            description: 'Customer support was unresponsive and unhelpful.',
-            location: 'Houston, TX',
-            user: null, // Anonymous user
-        },
-        // Add more complaints as needed
-    ]
+    const [complaints, setComplaints] = useState([])
 
-    // State for managing pagination
+    useEffect(() => {
+        fetchComplaints()
+    }, [])
+
+    const fetchComplaints = async () => {
+        try {
+            const res = await axios.get('/api/v1/reportCrime/report-crime', {
+                withCredentials: true,
+            })
+            setComplaints(res.data.data) // Adjusted to handle the ApiResponse structure
+            toast.success('Complaints fetched successfully!')
+        } catch (error) {
+            console.error(error)
+            toast.error('Error fetching complaints.')
+        }
+    }
+
     const [currentPage, setCurrentPage] = useState(1)
     const complaintsPerPage = 5
 
-    // Calculate the indices for the current page
     const indexOfLastComplaint = currentPage * complaintsPerPage
     const indexOfFirstComplaint = indexOfLastComplaint - complaintsPerPage
     const currentComplaints = complaints.slice(
@@ -90,7 +33,6 @@ const AdminShowReport = () => {
         indexOfLastComplaint,
     )
 
-    // Function to handle page navigation
     const nextPage = () => {
         if (currentPage < Math.ceil(complaints.length / complaintsPerPage)) {
             setCurrentPage(currentPage + 1)
@@ -138,23 +80,23 @@ const AdminShowReport = () => {
                         ))
                     )}
                 </div>
-                <div className="flex justify-between mt-4">
+                <div className="flex mt-4">
                     <button
-                        className="bg-gray-300 text-gray-600 dark:text-gray-200 dark:bg-gray-600 p-2 rounded"
+                        className="bg-yellow-200 text-gray-800 dark:text-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:shadow-none shadow-black/70 shadow-lg hover:dark:bg-blue-700 p-3 mr-3 rounded-full"
                         onClick={prevPage}
                         disabled={currentPage === 1}
                     >
-                        Previous
+                        <FaIcons.FaArrowLeft />
                     </button>
                     <button
-                        className="bg-gray-300 text-gray-600 dark:text-gray-200 dark:bg-gray-600 p-2 rounded"
+                        className="bg-yellow-200 text-gray-800 dark:text-gray-200 dark:bg-gray-800 hover:bg-blue-500 dark:shadow-none shadow-black/70 shadow-lg hover:dark:bg-blue-700 p-3 rounded-full"
                         onClick={nextPage}
                         disabled={
                             currentPage ===
                             Math.ceil(complaints.length / complaintsPerPage)
                         }
                     >
-                        Next
+                        <FaIcons.FaArrowRight />
                     </button>
                 </div>
             </div>
