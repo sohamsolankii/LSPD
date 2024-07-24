@@ -15,18 +15,18 @@ const AddNews = () => {
     const [currentNews, setCurrentNews] = useState(null)
     const [showDetails, setShowDetails] = useState(false)
 
-    //   useEffect(() => {
-    //     // Fetch the existing news from the API
-    //     const fetchNews = async () => {
-    //       try {
-    //         const response = await axios.get('/api/news');
-    //         setNews(response.data);
-    //       } catch (error) {
-    //         console.error('Error fetching news:', error);
-    //       }
-    //     };
-    //     fetchNews();
-    //   }, []);
+      useEffect(() => {
+        // Fetch the existing news from the API
+        const fetchNews = async () => {
+          try {
+            const response = await axios.get('/api/news');
+            setNews(response.data);
+          } catch (error) {
+            console.error('Error fetching news:', error);
+          }
+        };
+        fetchNews();
+      }, []);
 
     const handleChange = (e) => {
         setNewNews({

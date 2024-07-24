@@ -7,10 +7,11 @@ import {
     deleteAnnouncement,
     fetchSpecificAnnouncement,
 } from '../controllers/announcement.controller.js'
+import {upload} from '../middleware/multer.middleware.js'
 
 const router = express.Router()
 
-router.route('/').post(validateAdmin, createAnnouncement).get(fetchAnnouncement)
+router.route('/').post(upload, createAnnouncement).get(fetchAnnouncement)
 
 router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
 

@@ -7,6 +7,6 @@ const router = express.Router()
 
 // * Create a new Tip
 // * Fetch Tips
-router.route('/').post(authValidator, addTip).get(validateAdmin, fetchTip)
+router.route('/').post(authValidator, addTip).get(fetchTip)
 
 export default router
