@@ -26,6 +26,7 @@ import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import AddJob from './components/admin/AddJob.jsx'
 import AddNews from './components/admin/AddNews.jsx'
+import AdminAddCriminal from './components/admin/AdminAddCriminal.jsx'
 import AdminDashboard from './components/admin/AdminDashboard.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import AdminShowTip from './components/admin/AdminShowTip.jsx'
@@ -61,7 +62,14 @@ const router = createBrowserRouter(
             <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
             <Route path="/admin/news" element={<AddNews />}></Route>
             <Route path="/admin/jobs" element={<AddJob />}></Route>
-            <Route path="/admin/crime-reports" element={<AdminShowReport />}></Route>
+            <Route
+                path="/admin/criminals"
+                element={<AdminAddCriminal />}
+            ></Route>
+            <Route
+                path="/admin/crime-reports"
+                element={<AdminShowReport />}
+            ></Route>
         </Route>,
     ),
 )
