@@ -11,7 +11,8 @@ import {UserContext} from '../../context/userContext'
 import axios from 'axios'
 import {PiSignInBold} from 'react-icons/pi'
 import Sidebar from './Sidebar'
-import Cookies from 'js-cookie' // Import js-cookie
+import Cookies from 'js-cookie'
+import toast from 'react-hot-toast'
 
 const Navbar = ({isAdmin = false}) => {
     const [isDarkMode, setIsDarkMode] = useState(false)
@@ -62,19 +63,28 @@ const Navbar = ({isAdmin = false}) => {
 
     const adminLogout = async () => {
         try {
-            await axios.get('/api/v1/auth/admin-logout')
-            toast.success(
-                `Goodbye, officer! You've successfully logged out. Stay safe out there!`,
-                {
-                    className:
-                        'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
-                },
-            )
-            setPasskey(new Array(6).fill(''))
-            Cookies.remove('adminPasskey') // Remove passkey data from cookies
-            navigate('/')
+            const response = await axios.get('/api/v1/auth/admin-logout', {
+                withCredentials: true,
+            })
+            if (response.status === 200) {
+                toast.success(
+                    `Goodbye, officer! You've successfully logged out. Stay safe out there!`,
+                    {
+                        className:
+                            'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
+                    },
+                )
+                setPasskey(new Array(6).fill(''))
+                Cookies.remove('adminPasskey') // Remove passkey data from cookies
+                navigate('/')
+            } else {
+                toast.error('Failed to log out. Please try again.')
+            }
         } catch (err) {
             console.log(err)
+            toast.error(
+                'An error occurred while logging out. Please try again.',
+            )
         }
     }
 
