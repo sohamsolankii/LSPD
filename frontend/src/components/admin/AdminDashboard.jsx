@@ -20,7 +20,7 @@ const adminDashboardData = [
     },
     {
         image: '/src/assets/admin/3.jpeg',
-        url: '/admin/jobs',
+        url: '/admin/jobs/applications',
         title: 'Review and Approve Applications',
         description:
             'Evaluate job applications and select qualified candidates.',
