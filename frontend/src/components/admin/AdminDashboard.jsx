@@ -7,7 +7,7 @@ import LSPDLogo from '/src/assets/lspd-logo.png'
 const adminDashboardData = [
     {
         image: '/src/assets/admin/1.jpeg',
-        url: '/admin/',
+        url: '/admin/most-wanted',
         title: 'Manage Most Wanted Profiles',
         description:
             'Oversee, update, and manage the Most Wanted list for LSPD.',
@@ -20,6 +20,7 @@ const adminDashboardData = [
     },
     {
         image: '/src/assets/admin/3.jpeg',
+        url: '/admin/jobs',
         title: 'Review and Approve Applications',
         description:
             'Evaluate job applications and select qualified candidates.',

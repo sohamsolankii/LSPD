@@ -38,7 +38,7 @@ export const AdminSidebarData = [
     },
     {
         title: 'Add Criminals',
-        path: '/admin/WantedList',
+        path: '/admin/most-wanted',
         icon: <IoIcons.IoMdWarning />,
         cName: 'nav-text',
     },

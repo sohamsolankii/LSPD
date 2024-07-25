@@ -17,10 +17,10 @@ router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
 
 router
     .route('/update-announcement/:announcementID')
-    .post(validateAdmin, updateAnnouncement)
+    .post(updateAnnouncement)
 
 router
     .route('/delete-announcement/:announcementID')
-    .get(validateAdmin, deleteAnnouncement)
+    .get(deleteAnnouncement)
 
 export default router

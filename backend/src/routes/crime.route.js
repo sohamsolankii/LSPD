@@ -1,6 +1,5 @@
 import express from 'express'
 import {authValidator} from '../middleware/auth.middleware.js'
-import {validateAdmin} from './../middleware/validateAdmin.middleware.js'
 import {
     addCrime,
     fetchMostWantedList,
@@ -9,7 +8,7 @@ import {
 
 const router = express.Router()
 
-router.route('/add-crime/:userID').post(validateAdmin, addCrime)
+router.route('/add-crime/:userID').post(addCrime)
 
 router.route('/wanted-list-user/:userID').get(fetchSpecificWantedUser)
 
