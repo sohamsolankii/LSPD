@@ -11,16 +11,15 @@ import {upload} from '../middleware/multer.middleware.js'
 
 const router = express.Router()
 
-router.route('/').post(upload, createAnnouncement).get(fetchAnnouncement)
+router
+    .route('/')
+    .post(upload.single('image'), createAnnouncement)
+    .get(fetchAnnouncement)
 
 router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
 
-router
-    .route('/update-announcement/:announcementID')
-    .post(updateAnnouncement)
+router.route('/update-announcement/:announcementID').post(updateAnnouncement)
 
-router
-    .route('/delete-announcement/:announcementID')
-    .get(deleteAnnouncement)
+router.route('/delete-announcement/:announcementID').get(deleteAnnouncement)
 
 export default router

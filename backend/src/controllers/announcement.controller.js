@@ -3,23 +3,26 @@ import Announcement from './../models/announcement.schema.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import {checkParams} from './../validators/checkParams.js'
 import {intoObjectId} from './../utils/ObjectId.js'
+import {uploadOnCloudinary} from '../utils/cloudinary.js'
 
 // * Create announcement
 export const createAnnouncement = AsyncHandler(async (req, res) => {
+    console.log('Cloudinary Name:', process.env.CLOUD_NAME)
+
     const {title, description} = req.body
-	const imageFile = req.file?.path
+    const imageFile = req.file?.path
 
-	console.log(req.body, req.file)
+    if (!imageFile) {
+        return res.status(400).json({message: 'No file uploaded'})
+    }
 
-	let image
+    const uploadResult = await uploadOnCloudinary(imageFile)
 
-	if (imageFile) {
-		const uploadResult = await uploadOnCloudinary(imageFile)
-		if (uploadResult) {
-			const image = uploadResult.secure_url
-		}
-	}
-	console.log(image)
+    if (!uploadResult) {
+        return res.status(500).json({message: 'Failed to upload image'})
+    }
+
+    const image = uploadResult.url
 
     const newAnnouncement = await Announcement.create({
         image,

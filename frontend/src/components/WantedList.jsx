@@ -1,150 +1,246 @@
-import React from 'react'
-import {Element} from 'react-scroll'
-import styled, {keyframes, css} from 'styled-components'
-import {Link} from 'react-router-dom'
+import React, {useState} from 'react'
+import StarRating from './UsedComponents/StarRating.jsx'
+import * as FaIcons from 'react-icons/fa'
 
-const characters = [
-    {id: 1, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
-    {id: 2, name: 'Michael De Santa', image: '/src/assets/trevor.png'},
-    {id: 3, name: 'Franklin Clinton', image: '/src/assets/trevor.png'},
-    {id: 4, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
-    {id: 5, name: 'Michael De Santa', image: '/src/assets/trevor.png'},
-    {id: 6, name: 'Franklin Clinton', image: '/src/assets/trevor.png'},
-    // Add more characters as needed
+const criminalsList = [
+    {
+        id: 1,
+        name: 'Micheal DeSanta',
+        image: '/src/assets/criminal.jpg',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 4.5,
+    },
+    {
+        id: 2,
+        name: 'Trevor Philips',
+        image: '/src/assets/trevor.png',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 0.5,
+    },
+    {
+        id: 3,
+        name: 'Franklin Clinton',
+        image: '/src/assets/criminal.jpg',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 5,
+    },
+    {
+        id: 4,
+        name: 'Lester Crest',
+        image: '/src/assets/trevor.png',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 1,
+    },
+    {
+        id: 5,
+        name: 'Lamar Davis',
+        image: '/src/assets/criminal.jpg',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 2,
+    },
+    {
+        id: 6,
+        name: 'Steve Haines',
+        image: '/src/assets/trevor.png',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 3,
+    },
+    {
+        id: 7,
+        name: 'Dave Norton',
+        image: '/src/assets/criminal.jpg',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 4,
+    },
+    {
+        id: 8,
+        name: 'Ron Jakowski',
+        image: '/src/assets/trevor.png',
+        crime: ['Murder', 'Theft', 'Robbery'],
+        location: 'New York',
+        details: 'Develop and maintain software applications.',
+        crimeRate: 2.5,
+    },
 ]
 
-const WantedList = () => {
+const criminals = criminalsList.sort((a, b) => b.crimeRate - a.crimeRate)
+
+const Wanted = () => {
+    const [search, setSearch] = useState('')
+    const [selectedCriminal, setSelectedCriminal] = useState(null)
+
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleSeeMore = (criminal) => {
+        setSelectedCriminal(criminal)
+    }
+
+    const handleCloseDetails = () => {
+        setSelectedCriminal(null)
+    }
+
+    const filteredCriminals = criminals.filter((criminal) =>
+        criminal.name.toLowerCase().includes(search.toLowerCase()),
+    )
+
     return (
-        <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-white dark:text-[var(--dlblue)] min-h-screen">
-            <section className="bg-[var(--bg2)] dark:bg-[var(--dbg2)]">
-                <img
-                    src="/src/assets/element.png"
-                    alt="Do Not Cross"
-                    className="animate-pulse w-full z-50"
-                />
-            </section>
-            <section className="relative flex flex-col items-center justify-center bg-[var(--bg2)] dark:bg-[var(--dbg2)]">
-                <div className="relative text-center md:p-20 p-7">
-                    <h1 className="md:text-3xl text-lg poppins font-medium text-[var(--ltext)] dark:text-[var(--dltext)] md:m-12 m-3 mt-3 md:mt-20">
-                        You didn’t obey the rule, huh? Just kidding... Welcome
-                        to the 'Most Wanted' list! Check out these notorious
-                        troublemakers
-                    </h1>
-                    <p className="md:text-5xl text-2xl sign mb-3 md:mb-10 text-[var(--lblue)] dark:text-[var(--dlblue)]">
-                        and remember - crime doesn't pay (unless you're in GTA
-                        V!)
-                    </p>
-                </div>
-            </section>
-            <Element
-                name="mostWanted"
-                className="border-t-4 border-[var(--lgold)] dark:border-[var(--dltext)] py-8 px-4"
-            >
-                <div className="flex flex-col items-center">
-                    <div className="text-center">
-                        <div className="p-6 mb-6">
-                            <h2 className="text-2xl md:text-4xl pricedown mb-4 text-[var(--lgold)] dark:text-[var(--dltext)]">
-                                Los Santos' Most Wanted Criminals
-                            </h2>
-                            <p className="text-md md:text-xl poppins mb-4 text-[var(--ltext)] dark:text-[var(--dltext)]">
-                                Catch Them if You Can (But Maybe Don’t Try Too
-                                Hard)
-                            </p>
-                        </div>
-                        <Marquee>
-                            <MarqueeGroup>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-4 mb-8">
-                                    {characters.map((character) => (
-                                        <div
-                                            key={character.id}
-                                            className="bg-[var(--opac)] dark:bg-gray-100 rounded-xl hover:dark:bg-white p-3 text-[var(--ltext)] text-[var(--ltext)] hover:text-[var(--lgold)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 border-[1px] border-[var(--opac)] shadow-black/70 shadow-lg hover:bg-[var(--opac2)] dark:shadow-none dark:border-gray-300 hoaver:dark:bg-gray-100"
-                                        >
-                                            <img
-                                                src={character.image}
-                                                alt={character.name}
-                                                className="w-full h-auto mb-3 object-contain"
-                                            />
-                                            <h3 className="text-md text-left poppins font-medium">
-                                                {character.name}
-                                            </h3>
-                                        </div>
-                                    ))}
-                                </div>
-                            </MarqueeGroup>
-                            <MarqueeGroup2>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-4 mb-8">
-                                    {characters.map((character) => (
-                                        <div
-                                            key={character.id}
-                                            className="bg-[var(--opac)] rounded-xl dark:bg-gray-100 hover:dark:bg-white p-3 text-[var(--ltext)] text-[var(--ltext)] hover:text-[var(--lgold)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 border-[1px] border-[var(--opac)] shadow-black/70 shadow-lg hover:bg-[var(--opac2)] dark:shadow-none dark:border-gray-300 hoaver:dark:bg-gray-100"
-                                        >
-                                            <img
-                                                src={character.image}
-                                                alt={character.name}
-                                                className="w-full h-auto mb-3 object-contain"
-                                            />
-                                            <h3 className="text-md text-left poppins font-medium text-[var(--ltext)] dark:text-[var(--dltext)]">
-                                                {character.name}
-                                            </h3>
-                                        </div>
-                                    ))}
-                                </div>
-                            </MarqueeGroup2>
-                        </Marquee>
-                        <div className="mt-6 p-10">
-                            <Link to="/most-wanted">
-                                <button className="text-lg md:text-xl poppins dark:bg-[var(--dltext)] dark:shadow-md bg-[var(--opac)] text-[var(--ltext)] dark:text-white py-2 px-8 md:px-20 rounded-lg shadow-black/40 border-[1px] border-[var(--opac)] shadow-xl hover:shadow-black/70 hover:shadow-2xl hover:text-[var(--bg1)] hover:dark:text-[var(--dbg1)] hover:font-medium hover:bg-[var(--lgold)] hover:dark:bg-[var(--dlblue)] transition ease-in-out duration-1500">
-                                    Check out entire list
-                                </button>
-                            </Link>
+        <div className="p-4 md:p-6 min-h-screen poppins bg-cover dark:bg-gray-100 bg-[var(--bg2)]">
+            <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 dark:bg-gray-100 dark:border-gray-400 border-[var(--opac)] ">
+                <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70  dark:bg-gray-100   ">
+                    Most Wanted Criminals
+                </h2>
+
+                <div className="md:p-5 p-3">
+                    <div className="flex flex-col md:flex-row gap-4 mb-5">
+                        <div className="flex flex-col w-full md:w-1/3">
+                            <label className="text-md text-gray-200 pb-2 dark:text-black">
+                                Search
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Search by name"
+                                value={search}
+                                onChange={handleSearchChange}
+                                className="p-4  rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md    text-gray-200 dark:text-[var(--dltext)]"
+                            />
                         </div>
                     </div>
+
+                    <div className="inline-flex items-center justify-center w-full">
+                        <hr className="w-[90%] h-px my-8 bg-[var(--lgold)] border-0 dark:bg-[var(--dltext)]" />
+                        <span className="absolute invisible md:visible px-3 font-medium text-[var(--lgold)] -translate-x-1/2 bg-[var(--bg2)] left-1/2 text-xl dark:text-[var(--dltext)] dark:bg-gray-100">
+                            Never forget their faces
+                        </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+                        {filteredCriminals.map((criminal) => (
+                            <div
+                                key={criminal.id}
+                                className="md:p-4 p-3 bg-[var(--opac)] dark:bg-gray-100 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-lg shadow-black/30 dark:shadow-none shadow-md transition transform hover:-translate-y-1 hover:shadow-2xl"
+                            >
+                                <img
+                                    className="text-sm text-gray-500 w-full md:h-72 h-48 mb-3 object-cover object-top dark:text-gray-600 rounded-md"
+                                    src={criminal.image}
+                                    alt={criminal.name}
+                                />
+                                <h3 className="md:text-lg text-md font-semibold text-gray-200 dark:text-[var(--dltext)] mb-2">
+                                    {criminal.name}
+                                </h3>
+                                <div className="md:text-md text-sm font-regular mt-2 text-gray-200 dark:text-[var(--dltext)]">
+                                    <StarRating
+                                        crimeRate={criminal.crimeRate}
+                                    />
+                                </div>
+                                <button
+                                    onClick={() => handleSeeMore(criminal)}
+                                    className="mt-4 text-blue-500 border-blue-500 border-[1px] rounded-md px-4 py-2 text-sm hover:text-blue-700 hover:border-blue-700 transition-colors"
+                                >
+                                    See More
+                                    <FaIcons.FaChevronDown className="inline ml-1" />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </Element>
+            </div>
+
+            {selectedCriminal && (
+                <div className="fixed inset-0 text-gray-300 dark:text-gray-600 flex items-center justify-center z-10">
+                    <div className="bg-[var(--bg1lop)] dark:bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] animate           appear blockanim dark:border-gray-400 md:p-6 p-3 rounded-xl lg:w-[85%] shadow-black/80 dark:shadow-black/40 shadow-2xl w-[94%]">
+                        <h2 className="text-xl font-medium mb-2 text-center">
+                            Criminal Details
+                        </h2>
+                        <div className="flex items-center grid gap-4 md:grid-cols-3 grid-cols-1 justify-center rounded-lg p-4">
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <FaIcons.FaUserTie />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">Name</p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedCriminal.name}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <FaIcons.FaUserTag />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">
+                                        Crime Rate
+                                    </p>
+                                    <StarRating
+                                        crimeRate={selectedCriminal.crimeRate}
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <FaIcons.FaLocationArrow />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">
+                                        Location
+                                    </p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedCriminal.location}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <FaIcons.FaInfoCircle />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">
+                                        Details
+                                    </p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedCriminal.details}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <FaIcons.FaTasks />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">Crimes</p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedCriminal.crime.join(', ')}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            className="mt-4 text-white bg-red-700 px-6 py-2 shadow-black/40 hover:text-white  rounded-md hover:bg-red-500"
+                            onClick={handleCloseDetails}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
 
-export default WantedList
-
-const Marquee = styled.div`
-    display: flex;
-    width: 100%;
-    overflow: hidden;
-    user-select: none;
-
-    mask-image: linear-gradient(
-        to right,
-        hsl(0 0% 0% / 0),
-        hsl(0 0% 0% / 1) 10%,
-        hsl(0 0% 0% / 1) 90%,
-        hsl(0 0% 0% / 0)
-    );
-`
-
-const scrollX = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-`
-
-const common = css`
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    white-space: nowrap;
-    width: 100%;
-    animation: ${scrollX} 12s linear infinite;
-`
-
-const MarqueeGroup = styled.div`
-    ${common}
-`
-
-const MarqueeGroup2 = styled.div`
-    ${common}// animation-delay: -3s;
-`
+export default Wanted
