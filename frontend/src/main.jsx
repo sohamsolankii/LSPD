@@ -21,7 +21,6 @@ import HomeNews from './components/HomeNews.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
-// import Try3D from './components/Try3D.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import AddJob from './components/admin/AddJob.jsx'
@@ -64,7 +63,7 @@ const router = createBrowserRouter(
             <Route path="/admin/news" element={<AddNews />}></Route>
             <Route path="/admin/jobs" element={<AddJob />}></Route>
             <Route
-                path="/admin/crime-report"
+                path="/admin/crime-reports"
                 element={<AdminShowReport />}
             ></Route>
             <Route
