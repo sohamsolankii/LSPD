@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {FaPlus} from 'react-icons/fa'
 import {useForm} from 'react-hook-form'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const AddNews = () => {
     const {register, handleSubmit, reset} = useForm()
@@ -15,18 +16,43 @@ const AddNews = () => {
     const [currentNews, setCurrentNews] = useState(null)
     const [showDetails, setShowDetails] = useState(false)
 
-      useEffect(() => {
-        // Fetch the existing news from the API
-        const fetchNews = async () => {
-          try {
-            const response = await axios.get('/api/news');
-            setNews(response.data);
-          } catch (error) {
-            console.error('Error fetching news:', error);
-          }
-        };
-        fetchNews();
-      }, []);
+    const addNews = async (e) => {
+        e.preventDefault()
+        console.log(newNews)
+        try {
+            const formData = new FormData()
+            formData.append('image', newNews.image)
+            formData.append('title', newNews.title)
+            formData.append('description', newNews.description)
+
+            const resposne = await axios.post(
+                '/api/v1/announcement',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                },
+                {
+                    withCredentials: true,
+                },
+            )
+
+            toast.success('New news added successfully')
+        } catch (err) {
+            console.log(err.message)
+        } finally {
+            setNewNews({
+                image: null,
+                title: '',
+                description: '',
+            })
+        }
+    }
+
+    // useEffect(() => {
+
+    // }, [])
 
     const handleChange = (e) => {
         setNewNews({
@@ -43,77 +69,6 @@ const AddNews = () => {
         })
     }
 
-    const handleAddNews = async () => {
-        try {
-            const formData = new FormData()
-            formData.append('image', newNews.image)
-            formData.append('title', newNews.title)
-            formData.append('description', newNews.description)
-
-            if (isEditing) {
-                const response = await axios.put(
-                    `/api/news/${currentNews.id}`,
-                    formData,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                        },
-                    },
-                )
-                setNews(
-                    news.map((newsItem) =>
-                        newsItem.id === currentNews.id
-                            ? response.data
-                            : newsItem,
-                    ),
-                )
-                setIsEditing(false)
-                setCurrentNews(null)
-            } else {
-                const response = await axios.post('/api/news', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                })
-                setNews([...news, response.data])
-            }
-
-            reset()
-            setNewNews({
-                image: null,
-                title: '',
-                description: '',
-            })
-        } catch (error) {
-            console.error('Error adding/updating news:', error)
-        }
-    }
-
-    const handleEdit = (newsItem) => {
-        setIsEditing(true)
-        setCurrentNews(newsItem)
-        setNewNews(newsItem)
-    }
-
-    const handleDelete = async (newsId) => {
-        try {
-            await axios.delete(`/api/news/${newsId}`)
-            setNews(news.filter((newsItem) => newsItem.id !== newsId))
-        } catch (error) {
-            console.error('Error deleting news:', error)
-        }
-    }
-
-    const handleShowDetails = (newsItem) => {
-        setCurrentNews(newsItem)
-        setShowDetails(true)
-    }
-
-    const closeDetails = () => {
-        setShowDetails(false)
-        setCurrentNews(null)
-    }
-
     return (
         <div className="p-4 md:p-6 min-h-screen poppins dark:bg-gray-100 bg-[var(--bg2)]">
             <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
@@ -122,7 +77,7 @@ const AddNews = () => {
                 </h2>
                 <form
                     className="grid grid-cols-1 gap-5 md:grid-cols-2 p-5"
-                    onSubmit={handleSubmit(handleAddNews)}
+                    onSubmit={addNews}
                 >
                     <div className="flex flex-col">
                         <label className="text-sm text-gray-500 pb-2">
@@ -194,81 +149,6 @@ const AddNews = () => {
                     </div>
                 </form>
             </div>
-
-            <div className="mb-6 dark:bg-gray-100 dark:border-gray-400 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
-                <h2 className="text-2xl rounded-xl z-10 font-medium dark:bg-gray-100 dark:border-gray-400 m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
-                    Current News
-                </h2>
-                <table className="min-w-full mb-4 rounded-md shadow-black/30 text-sm md:text-lg text-gray-200">
-                    <thead>
-                        <tr>
-                            <th className="py-2 font-medium text-gray-500">
-                                News Title
-                            </th>
-                            <th className="py-2 font-medium text-gray-500">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {news.map((newsItem) => (
-                            <tr key={newsItem.id}>
-                                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">
-                                    {newsItem.title}
-                                </td>
-                                <td className="border-[1px] border-[var(--opac)] dark:border-gray-300 font-regular text-gray-300 dark:text-gray-500 px-4 py-2">
-                                    <button
-                                        onClick={() =>
-                                            handleShowDetails(newsItem)
-                                        }
-                                        className="border-green-500 border-[1px] text-sm text-green-500 hover:text-green-700 px-2 py-1 mx-1 hover:border-green-700 rounded-md"
-                                    >
-                                        Details
-                                    </button>
-                                    <button
-                                        onClick={() => handleEdit(newsItem)}
-                                        className="border-blue-500 border-[1px] text-sm text-blue-500 hover:text-blue-700 px-2 py-1 mx-1 hover:border-blue-700 rounded-md"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() =>
-                                            handleDelete(newsItem.id)
-                                        }
-                                        className="border-red-500 border-[1px] text-sm text-red-500 hover:text-red-700 px-2 py-1 mx-1 hover:border-red-700 rounded-md"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            {showDetails && currentNews && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
-                        <h3 className="text-2xl font-bold mb-4">
-                            {currentNews.title}
-                        </h3>
-                        {currentNews.image && (
-                            <img
-                                src={currentNews.image}
-                                alt={currentNews.title}
-                                className="mb-4"
-                            />
-                        )}
-                        <p className="mb-4">{currentNews.description}</p>
-                        <button
-                            onClick={closeDetails}
-                            className="border-[1px] border-gray-500 text-sm text-gray-500 hover:text-gray-700 px-4 py-2 hover:border-gray-700 rounded-md"
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>
     )
 }
