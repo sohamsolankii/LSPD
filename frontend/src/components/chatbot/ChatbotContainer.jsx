@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
 import ChatbotImage from '/src/assets/chatbot.png'
-import Chatbot from './Chatbot' // Import the Chatbot component
+import Chatbot from './Chatbot' 
 
 const ChatbotContainer = () => {
     const [isChatbotOpen, setIsChatbotOpen] = useState(false)

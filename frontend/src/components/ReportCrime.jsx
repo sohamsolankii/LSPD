@@ -1,20 +1,22 @@
 import axios from 'axios'
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {FaPlus} from 'react-icons/fa'
 import {toast} from 'react-hot-toast'
+import {UserContext} from '../context/userContext'
+import {useNavigate} from 'react-router-dom'
 
 const ReportCrime = () => {
-    const [complaints, setComplaints] = useState([])
+	const {user} = useContext(UserContext)
+	const navigate = useNavigate()
+
     const [newComplaint, setNewComplaint] = useState({
-        user: '',
         complaint: '',
         location: '',
         description: '',
     })
-    const [isEditing, setIsEditing] = useState(false)
-    const [currentComplaint, setCurrentComplaint] = useState(null)
-    const [showDetails, setShowDetails] = useState(false)
 
+    const [isEditing, setIsEditing] = useState(false)
+   
     const handleChange = (e) => {
         setNewComplaint({
             ...newComplaint,
@@ -23,27 +25,32 @@ const ReportCrime = () => {
     }
 
     const handleReportCrime = async () => {
-        try {
-            const res = await axios.post(
-                '/api/v1/reportCrime/report-crime',
-                newComplaint,
-                {
-                    withCredentials: true,
-                },
-            )
-            console.log(res)
-            toast.success('Complaint submitted successfully!')
-        } catch (error) {
-            console.error(error)
-            toast.error('Error submitting complaint.')
-        } finally {
-            setNewComplaint({
-                user: '',
-                complaint: '',
-                location: '',
-                description: '',
-            })
-        }
+		if(user){
+			try {
+				const res = await axios.post(
+					'/api/v1/reportCrime/report-crime',
+					newComplaint,
+					{
+						withCredentials: true,
+					},
+				)
+				console.log(res)
+				toast.success('Complaint submitted successfully!')
+			} catch (error) {
+				console.error(error)
+				toast.error('Error submitting complaint.')
+			} finally {
+				setNewComplaint({
+					complaint: '',
+					location: '',
+					description: '',
+				})
+			}
+		}
+		else{
+			toast.error('You Have to login first!')
+            navigate('/login')
+		}
     }
 
     return (
@@ -56,7 +63,7 @@ const ReportCrime = () => {
                     className="grid grid-cols-1 gap-5 md:grid-cols-2 p-5"
                     onSubmit={(e) => e.preventDefault()}
                 >
-                    <div className="flex flex-col">
+                    {/* <div className="flex flex-col">
                         <label className="text-sm text-gray-500 pb-2">
                             Enter User ID
                         </label>
@@ -69,7 +76,7 @@ const ReportCrime = () => {
                             className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
                             required
                         />
-                    </div>
+                    </div> */}
                     <div className="flex flex-col">
                         <label className="text-sm text-gray-500 pb-2">
                             Enter the complaint

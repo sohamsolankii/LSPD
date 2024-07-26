@@ -1,13 +1,17 @@
 import axios from 'axios'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {toast} from 'react-hot-toast'
 import * as FaIcons from 'react-icons/fa'
 
 const AdminShowReport = () => {
     const [complaints, setComplaints] = useState([])
+    const fetchedRef = useRef(false)
 
     useEffect(() => {
-        fetchComplaints()
+        if (!fetchedRef.current) {
+            fetchComplaints()
+            fetchedRef.current = true
+        }
     }, [])
 
     const fetchComplaints = async () => {
@@ -15,9 +19,8 @@ const AdminShowReport = () => {
             const res = await axios.get('/api/v1/reportCrime/report-crime', {
                 withCredentials: true,
             })
-            console.log('Fetched data:', res.data.data) // Check data structure
             setComplaints(res.data.data)
-            toast.success('Complaints fetched successfully!')
+            // toast.success('Complaints fetched successfully!')
         } catch (error) {
             console.error(error)
             toast.error('Error fetching complaints.')

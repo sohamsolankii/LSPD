@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import {UserContext} from '../../context/userContext'
-import Cookies from 'js-cookie' // Import js-cookie
+import Cookies from 'js-cookie' 
 
 const Login = () => {
     const navigate = useNavigate()

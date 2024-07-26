@@ -20,9 +20,7 @@ const SubmitTip = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // Handle form submission logic here
-        console.log('Tip:', tip)
-        console.log('Anonymous:', isAnonymous)
+       
         // Reset the form
         setTip('')
         setIsAnonymous(false)
@@ -41,7 +39,7 @@ const SubmitTip = () => {
                     },
                 )
                 console.log('this is tip response', response)
-                toast('Your tip has been sent! Thank you for helping out.', {
+                toast('Thank you for helping out.', {
                     icon: '🫡',
                 })
             } catch (error) {

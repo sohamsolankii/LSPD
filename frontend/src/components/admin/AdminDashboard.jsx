@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {UserContext} from '../../context/userContext'
-import LSPDLogo from '/src/assets/lspd-logo.png'
+// import LSPDLogo from '/src/assets/lspd-logo.png'
 // import AdminStarter from '../AdminStarter';  // Create a similar starter for admin if necessary
 // import AdminWantedList from './AdminWantedList';  // Admin specific component for CRUD operations
 

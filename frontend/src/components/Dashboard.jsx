@@ -1,7 +1,5 @@
 import React, {useContext} from 'react'
-import {UserContext} from '../context/userContext'
-import LSPDLogo from '../assets/lspd-logo.png'
-// import GradBG from '../MeshGradientBackground'
+// import GradBG from '../MeshGradien	tBackground'
 
 const dashboardData = [
     {
@@ -29,8 +27,7 @@ const dashboardData = [
 ]
 
 const Dashboard = () => {
-    const {user} = useContext(UserContext)
-
+    
     return (
         <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             <section className="p-4 md:p-12">
