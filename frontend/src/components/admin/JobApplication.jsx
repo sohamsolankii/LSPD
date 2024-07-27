@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import * as FaIcons from 'react-icons/fa'
+import * as AiIcons from 'react-icons/ai'
 
 const JobApplication = () => {
     const [data, setData] = useState([])
+    const [expandedId, setExpandedId] = useState(null) // Store the ID of the expanded application
 
     const fetchApplications = async () => {
         try {
@@ -35,69 +38,92 @@ const JobApplication = () => {
         }
     }
 
+    const handleExpandClick = (id) => {
+        setExpandedId(expandedId === id ? null : id)
+    }
+
     return (
-        <div className="p-5 max-w-4xl mx-auto bg-gray-100 rounded-lg shadow-lg">
-            <h1 className="text-2xl font-bold text-center mb-5">
+        <div className="poppins bg-[var(--bg1)] poppins dark:bg-[var(--dbg2)] p-3 md:p-8 min-h-screen w-full items-center justify-center">
+            <h1 className="text-3xl font-bold text-[var(--lgold)] dark:text-[var(--dltext)] text-center mb-5">
                 Job Applications
             </h1>
-            {data.map((application) => (
-                <div
-                    key={application._id}
-                    className="bg-white p-5 rounded-lg shadow-md mb-5"
-                >
-                    <div className="mb-5">
-                        <h2 className="text-xl font-semibold mb-2">
-                            Application ID: {application._id}
-                        </h2>
-                        <p className="mb-1">
-                            <strong>Name:</strong> {application.user.name}
-                        </p>
-                        <p className="mb-1">
-                            <strong>Title:</strong> {application.job[0].title}
-                        </p>
-                        <p className="mb-1">
-                            <strong>Location:</strong>{' '}
-                            {application.job[0].location}
-                        </p>
-                        <p className="mb-1">
-                            <strong>Type:</strong> {application.job[0].jobType}
-                        </p>
-                        <p className="mb-1">
-                            <strong>Description:</strong>{' '}
-                            {application.job[0].description}
-                        </p>
-                        <p className="mb-1">
-                            <strong>Requirements:</strong>{' '}
-                            {application.job[0].requirements[0]}
-                        </p>
-                        <p className="mb-1">
-                            <strong>Salary:</strong>{' '}
-                            {application.job[0].salaryRange}
-                        </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 gap-1">
+                {data.map((application) => (
+                    <div
+                        key={application._id}
+                        className="bg-[var(--opac)] dark:bg-gray-100 md:p-5 p-3 rounded-xl border-[1px] border-[var(--opac)] dark:border-gray-300 shadow-md mb-5"
+                    >
+                        <div className="mb-5 text-gray-300 dark:text-gray-600">
+                            <h2 className="md:text-xl text-md font-semibold mb-2 text-[var(--lgold)] dark:text-[var(--dltext)]">
+                                Application ID: {application._id}
+                                <p className="mb-1">
+                                    <strong>Name:</strong>{' '}
+                                    {application.user.name}
+                                </p>
+                            </h2>
+                            <p className="mb-1 md:text-lg text-sm">
+                                {application.job[0].title}
+                                <span className="mr-3">|</span>
+                                {application.job[0].location}
+                                <span className="mr-3">|</span>
+                                {application.job[0].jobType}
+                            </p>
+                            <button
+                                onClick={() =>
+                                    handleExpandClick(application._id)
+                                }
+                                className="text-[var(--lgold)] dark:text-[var(--dltext)]  dark:border-[var(--dltext)] border-[1px] rounded-full border-[var(--lgold)] p-1 mt-1"
+                            >
+                                {expandedId === application._id ? (
+                                    <AiIcons.AiFillCaretUp />
+                                ) : (
+                                    <AiIcons.AiFillCaretDown />
+                                )}
+                            </button>
+                            {expandedId === application._id && (
+                                <div>
+                                    <p className="mb-1">
+                                        <strong>Description:</strong>{' '}
+                                        {application.job[0].description}
+                                    </p>
+                                    <p className="mb-1">
+                                        <strong>Requirements:</strong>{' '}
+                                        {application.job[0].requirements[0]}
+                                    </p>
+                                    <p className="mb-1">
+                                        <strong>Salary:</strong>{' '}
+                                        {application.job[0].salaryRange}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex">
+                            <button
+                                onClick={() =>
+                                    applicationControl(
+                                        application._id,
+                                        'approve',
+                                    )
+                                }
+                                className="text-green-600 text-sm border-[1px] border-green-600 hover:border-blue-500 hover:text-blue-500 px-3 p-1 rounded-md"
+                            >
+                                Approve
+                            </button>
+                            <button
+                                onClick={() =>
+                                    applicationControl(
+                                        application._id,
+                                        'disapprove',
+                                    )
+                                }
+                                className="ml-4 text-sm text-red-600 border-[1px] border-red-600 hover:border-blue-500 hover:text-blue-500 px-3 p-1 rounded-md"
+                            >
+                                Decline
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex justify-between">
-                        <button
-                            onClick={() =>
-                                applicationControl(application._id, 'approve')
-                            }
-                            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                        >
-                            Approve Application
-                        </button>
-                        <button
-                            onClick={() =>
-                                applicationControl(
-                                    application._id,
-                                    'disapprove',
-                                )
-                            }
-                            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-                        >
-                            Disapprove Application
-                        </button>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     )
 }
