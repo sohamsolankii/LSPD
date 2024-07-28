@@ -128,3 +128,33 @@ export const deleteAnnouncement = AsyncHandler(async (req, res) => {
         new ApiResponse(200, delAnnouncement, 'Announcement deleted'),
     )
 })
+
+// * create a like
+export const addLikes = AsyncHandler(async (req, res) => {
+    const id = req.params.announcementID
+    console.log(id)
+
+    const announcement = await Announcement.findOne({_id: id})
+
+    if (!announcement) throw new ApiError(404, 'No announcement found')
+
+    announcement.likes = (announcement.likes || 0) + 1
+    await announcement.save()
+
+    res.status(200).json(new ApiResponse(200, announcement.likes, 'Like Added'))
+})
+// * create a dislike
+export const addDislikes = AsyncHandler(async (req, res) => {
+    const id = req.params.announcementID
+
+    const announcement = await Announcement.findOne({_id: id})
+
+    if (!announcement) throw new ApiError(404, 'No announcement found')
+
+    announcement.dislikes = (announcement.dislikes || 0) + 1
+    await announcement.save()
+
+    res.status(200).json(
+        new ApiResponse(200, announcement.dislikes, 'Like Added'),
+    )
+})

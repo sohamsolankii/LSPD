@@ -5,6 +5,7 @@ import {intoObjectId} from './../utils/ObjectId.js'
 import Application from './../models/application.schema.js'
 import {ApiResponse} from './../utils/ApiResponse.js'
 import {ApiError} from './../utils/ApiError.js'
+import sendMail from '../helper/sendMail.js'
 
 // * Creata a new Application
 export const createNewApplication = AsyncHandler(async (req, res) => {
@@ -114,21 +115,27 @@ export const approveApplications = AsyncHandler(async (req, res) => {
     res.status(200).json(
         new ApiResponse(200, user, 'Applications approved successfully'),
     )
+	//! Will start in expo
+    // sendMail(
+	// 	user.email,'Job Application Updates!',`Hi ${user.name},\n\nThank you for applying for the job!. We're happy to say you are perfect match for us. Together, we can make our city a safer place! If you have any questions or need assistance, don't hesitate to reach out us at any time. We will futher guide you regarding the job.\n\nStay sharp,\nThe LSPD Team,`
+    // )
 })
 
 // * Admin can disapprove an Application
 // ! Not Test
 export const disapproveApplications = AsyncHandler(async (req, res) => {
-    const applicationID = req.params.applicationID
+	const applicationID = req.params.applicationID
     const application = await Application.findOne({_id: applicationID})
-
+	
     if (!application) throw new ApiError(404, 'Application not found')
-
-    const user = await User.findOne({_id: application.user})
-
-    const delApplication = await Application.findByIdAndDelete(applicationID)
-
-    res.status(200).json(
-        new ApiResponse(200, null, 'Applications disapproved '),
-    )
+		
+		const user = await User.findOne({_id: application.user})
+		
+		const delApplication = await Application.findByIdAndDelete(applicationID)
+		
+		res.status(200).json(
+			new ApiResponse(200, null, 'Applications disapproved '),
+		)
+	//! Will start in expo
+	// sendMail(user.email, 'Job Application Updates!',`Hi ${user.name},\n\nThank you for applying for the job!. Sad to say we can't work together if there is future requirement we will inform you.\n\nStay sharp,\nThe LSPD Team,`,)
 })

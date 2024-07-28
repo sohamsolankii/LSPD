@@ -1,13 +1,22 @@
-import React, {useState, useEffect} from 'react'
-import {FaThumbsUp, FaCommentAlt, FaArrowLeft} from 'react-icons/fa'
+import React, {useState, useEffect, useContext} from 'react'
+import {
+    FaThumbsUp,
+    FaCommentAlt,
+    FaArrowLeft,
+    FaThumbsDown,
+} from 'react-icons/fa'
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
+import {UserContext} from '../../../context/userContext'
+import {useNavigate} from 'react-router-dom'
 
 const News = () => {
     const [articles, setArticles] = useState([])
     const [selectedArticle, setSelectedArticle] = useState(null)
     const [comment, setComment] = useState('')
     const [fetchComment, setFetchComments] = useState([])
+    const {user} = useContext(UserContext)
+    const navigate = useNavigate()
 
     const fetchArticles = async () => {
         try {
@@ -17,19 +26,28 @@ const News = () => {
             console.error('Error fetching articles:', error)
         }
     }
+
     useEffect(() => {
         fetchArticles()
     }, [])
+
+    const fetchSpecificArticle = async (id) => {
+        try {
+            const response = await axios.get(`/api/v1/announcement/watch/${id}`)
+            setSelectedArticle(response.data.data)
+        } catch (error) {
+            console.error('Error fetching article:', error)
+        }
+    }
 
     const fetchComments = async (id) => {
         try {
             const response = await axios.get(
                 `/api/v1/comment/fetch-comment/${id}`,
             )
-            console.log(response)
             setFetchComments(response.data.data)
         } catch (err) {
-            console.log(err.message)
+            console.error('Error fetching comments:', err.message)
         }
     }
 
@@ -43,38 +61,71 @@ const News = () => {
     }
 
     const handleLike = async (id) => {
-        try {
-            await axios.post(`/api/v1/like/${id}`, {}, {withCredentials: true})
-            setArticles(
-                articles.map((article) =>
-                    article.id === id
-                        ? {...article, likes: article.likes + 1}
-                        : article,
-                ),
-            )
-        } catch (error) {
-            toast.error('Error liking article.')
-        }
+		if(!user){
+			toast.error('You Have to login first!')
+            navigate('/login')
+		}else{
+			try {
+                const response = await axios.get(
+                    `/api/v1/announcement/add-like/${id}`,
+                    {
+                        withCredentials: true,
+                    },
+                )
+                toast.success('Article liked successfully!')
+                fetchSpecificArticle(id) // Update the specific article after like
+            } catch (error) {
+                toast.error('Error liking article.')
+                console.error('Error liking article:', error)
+            } finally {
+                fetchArticles() // Fetch all articles to update the list
+            }
+		}
+    }
+    const handledislike = async (id) => {
+		if (!user) {
+            toast.error('You Have to login first!')
+            navigate('/login')
+        } else{
+			try {
+                const response = await axios.get(
+                    `/api/v1/announcement/add-dislike/${id}`,
+                    {
+                        withCredentials: true,
+                    },
+                )
+                toast.success('Article liked successfully!')
+                fetchSpecificArticle(id) // Update the specific article after like
+            } catch (error) {
+                toast.error('Error liking article.')
+                console.error('Error liking article:', error)
+            } finally {
+                fetchArticles() // Fetch all articles to update the list
+            }
+		}
     }
 
     const handleComment = async (id) => {
-        if (comment.trim() === '') return
+		if (!user) {
+            toast.error('You Have to login first!')
+            navigate('/login')
+        } else{
+			if (comment.trim() === '') return
 
-        try {
-            const res = await axios.post(
-                `/api/v1/comment/add-comment/${id}`,
-                {comment},
-                {withCredentials: true},
-            )
-            fetchComments(id)
-            console.log(res)
-
-            toast.success('Comment added successfully!')
-
-            setComment('')
-        } catch (error) {
-            toast.error('Error adding comment.')
-        }
+            try {
+                const res = await axios.post(
+                    `/api/v1/comment/add-comment/${id}`,
+                    {comment},
+                    {withCredentials: true},
+                )
+                fetchComments(id)
+                toast.success('Comment added successfully!')
+                setComment('')
+            } catch (error) {
+                toast.error('Error adding comment.')
+                console.error('Error adding comment:', error)
+            }
+		}
     }
 
     return (
@@ -100,17 +151,28 @@ const News = () => {
                             className="w-full h-64 object-cover rounded-lg shadow-md"
                         />
                         <div className="mt-4 text-gray-700 dark:text-gray-300 text-sm md:text-base">
-                            {selectedArticle.content}
+                            {selectedArticle.description}
                         </div>
                     </div>
                     <div className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between border-t border-gray-200 dark:border-gray-600">
-                        <button
-                            onClick={() => handleLike(selectedArticle.id)}
-                            className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition"
-                        >
-                            <FaThumbsUp className="mr-2" />
-                            {selectedArticle.likes}
-                        </button>
+                        <div className="flex space-x-4 justify-between">
+                            <button
+                                onClick={() => handleLike(selectedArticle._id)}
+                                className="flex items-center bg-blue-400 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition"
+                            >
+                                <FaThumbsUp className="mr-2" />
+                                {selectedArticle.likes}
+                            </button>
+                            <button
+                                onClick={() =>
+                                    handledislike(selectedArticle._id)
+                                }
+                                className="flex items-center bg-red-400 text-white px-4 py-2 rounded-full shadow-md hover:bg-red-600 transition"
+                            >
+                                <FaThumbsDown className="mr-2" />
+                                {selectedArticle.dislikes}
+                            </button>
+                        </div>
                         <div className="mt-4 md:mt-0 flex items-center">
                             <input
                                 type="text"
@@ -136,7 +198,7 @@ const News = () => {
                                 key={comment._id}
                                 className="border-b border-gray-200 dark:border-gray-600 py-2"
                             >
-                                {comment.user.name}
+                                <strong>{comment.user.name}</strong>:{' '}
                                 {comment.comment}
                             </div>
                         ))}
@@ -168,10 +230,16 @@ const News = () => {
                                     <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                                         {article.title}
                                     </h3>
-                                    <div className="flex mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                        <div className="flex items-center mr-4">
-                                            <FaThumbsUp className="mr-1" />
-                                            {article.likes}
+                                    <div className="flex justify-between mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <div className="flex justify-between">
+                                            <div className="flex items-center mr-4">
+                                                <FaThumbsUp className="mr-1" />
+                                                {article.likes}
+                                            </div>
+                                            <div className="flex items-center mr-4">
+                                                <FaThumbsDown className="mr-1" />
+                                                {article.dislikes}
+                                            </div>
                                         </div>
                                         <div className="flex items-center">
                                             <FaCommentAlt className="mr-1" />

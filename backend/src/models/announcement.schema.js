@@ -20,6 +20,12 @@ const announcementSchema = new Schema({
             ref: 'Comment',
         },
     ],
+    likes: {
+        type: Number,
+    },
+    dislikes: {
+        type: Number,
+    },
 })
 
 const Announcement = mongoose.model('Announcement', announcementSchema)
