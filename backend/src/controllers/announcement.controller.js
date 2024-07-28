@@ -100,28 +100,49 @@ export const fetchAnnouncement = AsyncHandler(async (req, res) => {
 export const updateAnnouncement = AsyncHandler(async (req, res) => {
     const id = req.params?.announcementID
     const {description, title} = req.body
+    let imageNew = null
 
-    const update = await Announcement.findByIdAndUpdate(id, {
-        description,
-        title,
-    })
+    if (req.file?.path) {
+        const uploadResult = await uploadOnCloudinary(req.file.path)
+        if (!uploadResult) {
+            return res.status(500).json({message: 'Failed to upload image'})
+        }
+        imageNew = uploadResult.url
+    }
 
-    console.log(update)
+    const updatedFields = {description, title}
+    if (imageNew) {
+        updatedFields.image = imageNew
+    }
+
+    const updatedAnnouncement = await Announcement.findByIdAndUpdate(
+        id,
+        updatedFields,
+        {new: true}, // To return the updated document
+    )
+
+    if (!updatedAnnouncement) {
+        return res
+            .status(404)
+            .json(new ApiResponse(404, null, 'Announcement not found'))
+    }
 
     res.status(200).json(
-        new ApiResponse(200, update, 'Announcement updated successfully'),
+        new ApiResponse(
+            200,
+            updatedAnnouncement,
+            'Announcement updated successfully',
+        ),
     )
 })
 
 // * Delete announcement
 export const deleteAnnouncement = AsyncHandler(async (req, res) => {
     const id = req.params?.announcementID
-
-    const findAnnouncement = await Announcement.findById(id)
-
-    console.log(findAnnouncement)
+    console.log(id)
 
     const delAnnouncement = await Announcement.findByIdAndDelete(id)
+
     console.log(delAnnouncement)
 
     res.status(200).json(

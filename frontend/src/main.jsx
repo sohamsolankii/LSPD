@@ -62,18 +62,9 @@ const router = createBrowserRouter(
             <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
             <Route path="/admin/news" element={<AddNews />}></Route>
             <Route path="/admin/jobs" element={<AddJob />}></Route>
-            <Route
-                path="/admin/crime-reports"
-                element={<AdminShowReport />}
-            ></Route>
-            <Route
-                path="/admin/most-wanted"
-                element={<AdminAddCriminal />}
-            ></Route>
-            <Route
-                path="/admin/jobs/applications"
-                element={<JobApplication />}
-            ></Route>
+            <Route path="/admin/crime-reports" element={<AdminShowReport />}></Route>
+            <Route path="/admin/most-wanted" element={<AdminAddCriminal />}></Route>
+            <Route path="/admin/jobs/applications" element={<JobApplication />}></Route>
         </Route>,
     ),
 )

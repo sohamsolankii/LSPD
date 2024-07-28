@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {FaPlus} from 'react-icons/fa'
+import {FaPlus, FaTrash, FaEdit} from 'react-icons/fa'
 import {useForm} from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -14,31 +14,50 @@ const AddNews = () => {
     })
     const [isEditing, setIsEditing] = useState(false)
     const [currentNews, setCurrentNews] = useState(null)
-    const [showDetails, setShowDetails] = useState(false)
+
+    const fetchAnnouncements = async () => {
+        try {
+            const response = await axios.get('/api/v1/announcement')
+            setNews(response.data.data)
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
+    useEffect(() => {
+        fetchAnnouncements()
+    }, [])
 
     const addNews = async (e) => {
         e.preventDefault()
-        console.log(newNews)
         try {
             const formData = new FormData()
             formData.append('image', newNews.image)
             formData.append('title', newNews.title)
             formData.append('description', newNews.description)
 
-            const resposne = await axios.post(
-                '/api/v1/announcement',
-                formData,
-                {
+            if (isEditing && currentNews) {
+                await axios.put(
+                    `/api/v1/announcement/update-announcement/${currentNews._id}`,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        },
+                        withCredentials: true,
+                    },
+                )
+                toast.success('News updated successfully')
+            } else {
+                await axios.post('/api/v1/announcement', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
-                },
-                {
                     withCredentials: true,
-                },
-            )
-
-            toast.success('New news added successfully')
+                })
+                toast.success('New news added successfully')
+            }
+            fetchAnnouncements()
         } catch (err) {
             console.log(err.message)
         } finally {
@@ -47,12 +66,10 @@ const AddNews = () => {
                 title: '',
                 description: '',
             })
+            setIsEditing(false)
+            setCurrentNews(null)
         }
     }
-
-    // useEffect(() => {
-
-    // }, [])
 
     const handleChange = (e) => {
         setNewNews({
@@ -67,6 +84,26 @@ const AddNews = () => {
             ...newNews,
             image: file,
         })
+    }
+
+    const editNews = (newsItem) => {
+        setIsEditing(true)
+        setCurrentNews(newsItem)
+        setNewNews({
+            image: newsItem.image,
+            title: newsItem.title,
+            description: newsItem.description,
+        })
+    }
+
+    const deleteNews = async (id) => {
+        try {
+            await axios.delete(`/api/v1/announcement/delete-announcement/${id}`)
+            toast.success('News deleted successfully')
+            fetchAnnouncements()
+        } catch (err) {
+            console.log(err.message)
+        }
     }
 
     return (
@@ -102,7 +139,6 @@ const AddNews = () => {
                                 </p>
                             </label>
                         </div>
-
                         {newNews.image && (
                             <img
                                 src={URL.createObjectURL(newNews.image)}
@@ -148,6 +184,45 @@ const AddNews = () => {
                         </button>
                     </div>
                 </form>
+            </div>
+            <div className="mt-6">
+                <h2 className="text-xl font-medium text-gray-800 dark:text-gray-200">
+                    Announcements
+                </h2>
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {news.map((newsItem) => (
+                        <div
+                            key={newsItem._id}
+                            className="p-4 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-md shadow-lg bg-white dark:bg-gray-800"
+                        >
+                            <img
+                                src={newsItem.image}
+                                alt={newsItem.title}
+                                className="w-full h-40 object-cover rounded-md"
+                            />
+                            <h3 className="mt-2 text-lg font-semibold">
+                                {newsItem.title}
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-400">
+                                {newsItem.description}
+                            </p>
+                            <div className="mt-4 flex justify-between">
+                                <button
+                                    onClick={() => editNews(newsItem)}
+                                    className="text-blue-500 hover:text-blue-700"
+                                >
+                                    <FaEdit />
+                                </button>
+                                <button
+                                    onClick={() => deleteNews(newsItem._id)}
+                                    className="text-red-500 hover:text-red-700"
+                                >
+                                    <FaTrash />
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

@@ -20,9 +20,8 @@ router
 
 router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
 
-router.route('/update-announcement/:announcementID').post(updateAnnouncement)
-
-router.route('/delete-announcement/:announcementID').get(deleteAnnouncement)
+router.route('/update-announcement/:announcementID').put(updateAnnouncement)
+router.route('/delete-announcement/:announcementID').delete(deleteAnnouncement)
 
 router.route('/add-like/:announcementID').get(addLikes)
 router.route('/add-dislike/:announcementID').get(addDislikes)
