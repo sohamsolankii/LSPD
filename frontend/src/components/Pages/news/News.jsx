@@ -61,11 +61,11 @@ const News = () => {
     }
 
     const handleLike = async (id) => {
-		if(!user){
-			toast.error('You Have to login first!')
+        if (!user) {
+            toast.error('You Have to login first!')
             navigate('/login')
-		}else{
-			try {
+        } else {
+            try {
                 const response = await axios.get(
                     `/api/v1/announcement/add-like/${id}`,
                     {
@@ -80,14 +80,14 @@ const News = () => {
             } finally {
                 fetchArticles() // Fetch all articles to update the list
             }
-		}
+        }
     }
     const handledislike = async (id) => {
-		if (!user) {
+        if (!user) {
             toast.error('You Have to login first!')
             navigate('/login')
-        } else{
-			try {
+        } else {
+            try {
                 const response = await axios.get(
                     `/api/v1/announcement/add-dislike/${id}`,
                     {
@@ -102,15 +102,15 @@ const News = () => {
             } finally {
                 fetchArticles() // Fetch all articles to update the list
             }
-		}
+        }
     }
 
     const handleComment = async (id) => {
-		if (!user) {
+        if (!user) {
             toast.error('You Have to login first!')
             navigate('/login')
-        } else{
-			if (comment.trim() === '') return
+        } else {
+            if (comment.trim() === '') return
 
             try {
                 const res = await axios.post(
@@ -125,22 +125,22 @@ const News = () => {
                 toast.error('Error adding comment.')
                 console.error('Error adding comment:', error)
             }
-		}
+        }
     }
 
     return (
-        <div className="w-full max-w-7xl mx-auto p-4 md:p-6 lg:p-8 min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="w-full mx-auto p-4 md:p-6 lg:p-8 min-h-screen bg-[var(--bg1)] poppins dark:bg-gray-200">
             {selectedArticle ? (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-                    <div className="p-4 md:p-6 flex items-center justify-between bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+                <div className="bg-[var(--opac)] dark:bg-gray-100 border-[1px] border-[var(--opac2)] dark:border-gray-300 rounded-lg shadow-lg overflow-hidden">
+                    <div className="p-4 md:p-6 flex items-center justify-between bg-[var(--opac)] dark:bg-white border-b border-[var(--opac2)] dark:border-gray-300">
                         <button
                             onClick={handleBack}
-                            className="flex items-center p-2 px-4 border border-gray-300 rounded-md bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500 transition"
+                            className="flex items-center p-2 px-4 border border-[var(--bg1)] dark:border-gray-300 rounded-md bg-[var(--lblue)] dark:bg-[var(--dltext)] text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-500 transition"
                         >
                             <FaArrowLeft className="mr-2" />
                             Back to News
                         </button>
-                        <h2 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                        <h2 className="text-xl md:text-2xl font-semibold text-[var(--lblue)] dark:text-[var(--dltext)]">
                             {selectedArticle.title}
                         </h2>
                     </div>
@@ -148,13 +148,13 @@ const News = () => {
                         <img
                             src={selectedArticle.image}
                             alt={selectedArticle.headline}
-                            className="w-full h-64 object-cover rounded-lg shadow-md"
+                            className="h-64 md:mr-5 md:mb-2 mb-0 mr-0 object-cover rounded-lg shadow-md float-left"
                         />
-                        <div className="mt-4 text-gray-700 dark:text-gray-300 text-sm md:text-base">
+                        <div className="mt-4 text-gray-300 dark:text-gray-600 text-sm md:text-base">
                             {selectedArticle.description}
                         </div>
                     </div>
-                    <div className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between border-t border-gray-200 dark:border-gray-600">
+                    <div className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between border-t border-[var(--opac2)] dark:border-gray-300">
                         <div className="flex space-x-4 justify-between">
                             <button
                                 onClick={() => handleLike(selectedArticle._id)}
@@ -179,7 +179,7 @@ const News = () => {
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 placeholder="Add a comment"
-                                className="rounded-l-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-4 py-2 border border-gray-300 dark:border-gray-600"
+                                className="rounded-l-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-4 py-2"
                             />
                             <button
                                 onClick={() =>
@@ -192,11 +192,11 @@ const News = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="p-4 border-t border-gray-200 dark:border-gray-600">
+                    <div className="p-4 border-t border-[var(--opac2)] dark:border-gray-300">
                         {fetchComment.map((comment) => (
                             <div
                                 key={comment._id}
-                                className="border-b border-gray-200 dark:border-gray-600 py-2"
+                                className="border-b border-[var(--opac2)] dark:border-gray-600 py-2"
                             >
                                 <strong>{comment.user.name}</strong>:{' '}
                                 {comment.comment}
@@ -207,30 +207,31 @@ const News = () => {
             ) : (
                 <div>
                     <div className="text-center mb-6">
-                        <h2 className="text-3xl font-semibold text-gray-900 dark:text-gray-100">
+                        <h2 className="text-4xl pricedown font-semibold text-[var(--lgold)] dark:text-[var(--dltext)]">
                             News and Alerts
                         </h2>
-                        <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
+                        <p className="text-lg poppins text-gray-200 dark:text-[var(--dlblue)] mt-2">
                             Stay updated with all news of Los Santos!
                         </p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 poppins md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {articles.map((article) => (
                             <div
                                 key={article._id}
-                                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105"
+                                className="bg-[var(--opac)] dark:bg-white border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-xl shadow-2xl shadow-black/50 dark:shadow-none dark:shadow-black/20 p-2 overflow-hidden cursor-pointer transition-transform transform hover:scale-105"
                                 onClick={() => handleClick(article)}
                             >
                                 <img
                                     src={article.image}
                                     alt={article.headline}
-                                    className="w-full h-40 object-cover"
+                                    className="w-full h-40 object-cover rounded-lg"
                                 />
                                 <div className="p-4">
-                                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                    <h3 className="text-lg font-medium text-gray-200 dark:text-[var(--bg1l)]">
                                         {article.title}
                                     </h3>
-                                    <div className="flex justify-between mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    <hr className="w-full h-px my-3 bg-[var(--opac2)] border-0 dark:bg-gray-400" />
+                                    <div className="flex justify-between mt-2 text-sm text-[var(--opac2)] dark:text-gray-400">
                                         <div className="flex justify-between">
                                             <div className="flex items-center mr-4">
                                                 <FaThumbsUp className="mr-1" />
