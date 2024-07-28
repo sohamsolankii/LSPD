@@ -20,7 +20,7 @@ const SubmitTip = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-       
+
         // Reset the form
         setTip('')
         setIsAnonymous(false)
@@ -52,8 +52,8 @@ const SubmitTip = () => {
     }
 
     return (
-        <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-7 min-h-screen flex items-center justify-center bgp">
-            <div className="container bg-[var(--bg1)] dark:bg-[var(--dbg1)] mx-auto p-3 md:p-10 rounded-2xl shadow-black/70 border-[1px] border-[var(--opac)] shadow-2xl">
+        <div className="bg-[var(--bg2)] poppins dark:bg-gray-100 p-3 md:p-7 min-h-screen flex items-center justify-center">
+            <div className="container bg-[var(--bg1)] dark:bg-white mx-auto p-3 md:p-10 rounded-2xl shadow-black/70 border-[1px] dark:shadow-black/20 dark:shadow-md border-[var(--opac)] dark:border-gray-300 shadow-2xl">
                 <h1 className="text-2xl md:text-4xl pricedown font-bold text-[var(--lgold)] dark:text-[var(--dlgold)] mb-2 text-center">
                     Submit a Tip to LSPD
                 </h1>
@@ -65,7 +65,7 @@ const SubmitTip = () => {
                         <textarea
                             value={tip}
                             onChange={handleTipChange}
-                            className="w-full h-32 md:h-48 p-3 rounded-xl glassgrad2 border-[1px] border-[var(--opac)] shadow-black/20 shadow-lg backdrop-blur-sm dark:border-gray-700 bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] text-[var(--ltext)] dark:text-[var(--dlblue)]"
+                            className="w-full h-32 md:h-48 p-3 rounded-xl glassgrad2 border-[1px] border-[var(--opac)] dark:border-gray-400 shadow-black/20 shadow-lg dark:shadow-none backdrop-blur-sm bg-[var(--bg1l)] dark:bg-[var(--dbg1l)] text-[var(--ltext)] dark:text-[var(--dlblue)]"
                             placeholder="Write your tip here..."
                             required
                         ></textarea>
@@ -84,7 +84,7 @@ const SubmitTip = () => {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="bg-[var(--lblue)] md:mb-0 mb-5 text-[var(--bg1)] shadow-black/50 shadow-xl font-medium px-6 py-2 rounded-lg hover:bg-[var(--lgold)] transition ease-in-out duration-300"
+                            className="bg-[var(--lblue)] md:mb-0 mb-5 text-[var(--bg1)] shadow-black/50 shadow-xl dark:shadow-none font-medium px-6 py-2 rounded-lg hover:bg-[var(--lgold)] transition ease-in-out duration-300"
                         >
                             Submit Tip
                         </button>

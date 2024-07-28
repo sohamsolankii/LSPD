@@ -20,7 +20,7 @@ const WantedList = () => {
                 <img
                     src="/src/assets/element.png"
                     alt="Do Not Cross"
-                    className="animate-pulse w-full z-50"
+                    className="animate-pulse w-full z-50 blockanim2 appear2"
                 />
             </section>
             <section className="relative flex flex-col items-center justify-center bg-[var(--bg2)] dark:bg-[var(--dbg2)]">
