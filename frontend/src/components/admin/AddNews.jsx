@@ -14,6 +14,7 @@ const AddNews = () => {
     })
     const [isEditing, setIsEditing] = useState(false)
     const [currentNews, setCurrentNews] = useState(null)
+    const [expandedNews, setExpandedNews] = useState({}) // Track expanded state
 
     const fetchAnnouncements = async () => {
         try {
@@ -106,6 +107,13 @@ const AddNews = () => {
         }
     }
 
+    const toggleExpand = (id) => {
+        setExpandedNews((prevState) => ({
+            ...prevState,
+            [id]: !prevState[id],
+        }))
+    }
+
     return (
         <div className="p-4 md:p-6 min-h-screen poppins dark:bg-gray-100 bg-[var(--bg2)]">
             <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
@@ -185,37 +193,49 @@ const AddNews = () => {
                     </div>
                 </form>
             </div>
-            <div className="mt-6">
-                <h2 className="text-xl font-medium text-gray-800 dark:text-gray-200">
-                    Announcements
+            <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
+                <h2 className="text-2xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70 dark:bg-gray-100 dark:border-gray-400 bg-[var(--bg1)] border-[1px] border-[var(--opac)] shadow-2xl">
+                    Current News
                 </h2>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="m-4 grid grid-cols-1 md:grid-cols-2 overflow-y-scroll lg:grid-cols-4 gap-6">
                     {news.map((newsItem) => (
                         <div
                             key={newsItem._id}
-                            className="p-4 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-md shadow-lg bg-white dark:bg-gray-800"
+                            className="p-4 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-lg bg-[var(--opac)] dark:bg-gray-100 dark:shadow-none shadow-md"
                         >
                             <img
                                 src={newsItem.image}
-                                alt={newsItem.title}
-                                className="w-full h-40 object-cover rounded-md"
+                                alt="News"
+                                className="w-full h-32 object-cover rounded-md mb-2"
                             />
-                            <h3 className="mt-2 text-lg font-semibold">
+                            <h3 className="font-bold text-md text-[var(--lblue)] my-2 dark:text-[var(--dltext)]">
                                 {newsItem.title}
                             </h3>
-                            <p className="text-gray-600 dark:text-gray-400">
-                                {newsItem.description}
+                            <p className="text-gray-400 text-sm dark:text-gray-600">
+                                {expandedNews[newsItem._id]
+                                    ? newsItem.description
+                                    : newsItem.description.slice(0, 110) +
+                                      '... '}
+                                <button
+                                    className="text-blue-500 text-sm"
+                                    onClick={() => toggleExpand(newsItem._id)}
+                                >
+                                    {expandedNews[newsItem._id]
+                                        ? 'Show Less'
+                                        : 'Read More'}
+                                </button>
                             </p>
+
                             <div className="mt-4 flex justify-between">
                                 <button
+                                    className="text-blue-500"
                                     onClick={() => editNews(newsItem)}
-                                    className="text-blue-500 hover:text-blue-700"
                                 >
                                     <FaEdit />
                                 </button>
                                 <button
+                                    className="text-red-500"
                                     onClick={() => deleteNews(newsItem._id)}
-                                    className="text-red-500 hover:text-red-700"
                                 >
                                     <FaTrash />
                                 </button>
