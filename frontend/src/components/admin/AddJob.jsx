@@ -146,7 +146,7 @@ const AddJob = () => {
                                     name={field.name}
                                     value={newJob[field.name]}
                                     onChange={handleChange}
-                                    className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
+                                    className="select-dropdown p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
                                     required
                                 >
                                     <option value="" disabled>

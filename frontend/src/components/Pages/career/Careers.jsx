@@ -162,7 +162,7 @@ const Careers = () => {
                                     </div>
                                     <button
                                         onClick={() => setSelectedJob(job)}
-                                        className="md:w-1/4 w-1/3 align-right text-xs p-1 font-medium transition-colors hover:text-gray-400 border-[1px] hover:border-gray-400 border-blue-500 text-blue-500 rounded-md"
+                                        className="md:w-1/3 w-1/4 align-right text-xs p-1 font-medium transition-colors hover:text-gray-400 border-[1px] hover:border-gray-400 border-blue-500 text-blue-500 rounded-md"
                                     >
                                         Learn More
                                     </button>

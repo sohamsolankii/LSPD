@@ -2,8 +2,39 @@
     width: 100%;
 }
 
+/* Apply a transition to the background, border, and color properties */
+body,
+.navbar,
+.poppins,
+.p-3,
+.shadow-md,
+.rounded-2xl {
+    transition:
+        background-color 2s,
+        border-color 2s,
+        color 2s;
+}
+
+*,
+*::before,
+*::after {
+    transition:
+        color 2s,
+        background-color 2s,
+        border-color 2s,
+        fill 2s,
+        stroke 2s;
+}
+
+.theme-transition {
+    transition:
+        background-color 2s,
+        border-color 2s,
+        color 2s;
+}
+
 .navbar {
-    /* background-color: #060b26; */
+    background-color: #060b26;
     height: 80px;
     display: flex;
     justify-content: start;

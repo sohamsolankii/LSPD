@@ -37,9 +37,12 @@ const Navbar = ({isAdmin = false}) => {
 
     useEffect(() => {
         if (isDarkMode) {
-            document.documentElement.classList.add('dark')
+            document.documentElement.classList.add('dark', 'theme-transition')
         } else {
-            document.documentElement.classList.remove('dark')
+            document.documentElement.classList.remove(
+                'dark',
+                'theme-transition',
+            )
         }
     }, [isDarkMode])
 
