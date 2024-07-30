@@ -1,19 +1,31 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Element} from 'react-scroll'
 import styled, {keyframes, css} from 'styled-components'
 import {Link} from 'react-router-dom'
-
-const characters = [
-    {id: 1, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
-    {id: 2, name: 'Michael De Santa', image: '/src/assets/trevor.png'},
-    {id: 3, name: 'Franklin Clinton', image: '/src/assets/trevor.png'},
-    {id: 4, name: 'Trevor Philips', image: '/src/assets/trevor.png'},
-    {id: 5, name: 'Michael De Santa', image: '/src/assets/trevor.png'},
-    {id: 6, name: 'Franklin Clinton', image: '/src/assets/trevor.png'},
-    // Add more characters as needed
-]
+import axios from 'axios'
 
 const WantedList = () => {
+    const [characters, setCharacters] = useState([])
+
+    useEffect(() => {
+        const fetchWantedUsers = async () => {
+            try {
+                const response = await axios.get(
+                    '/api/v1/wanted/fetch-wantedUsers',
+                    {
+                        withCredentials: true,
+                    },
+                )
+                const data = response.data.data
+                setCharacters(data.slice(0, 6))
+            } catch (error) {
+                console.error('Error fetching wanted users:', error)
+            }
+        }
+
+        fetchWantedUsers()
+    }, [])
+
     return (
         <div className="bg-[var(--bg1)] text-[var(--lblue)] dark:bg-white dark:text-[var(--dlblue)] min-h-screen">
             <section className="bg-[var(--bg2)] dark:bg-[var(--dbg2)]">
@@ -56,16 +68,16 @@ const WantedList = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-4 mb-8">
                                     {characters.map((character) => (
                                         <div
-                                            key={character.id}
+                                            key={character._id}
                                             className="bg-[var(--opac)] dark:bg-gray-100 rounded-xl hover:dark:bg-white p-3 text-[var(--ltext)] text-[var(--ltext)] hover:text-[var(--lgold)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 border-[1px] border-[var(--opac)] shadow-black/70 shadow-lg hover:bg-[var(--opac2)] dark:shadow-none dark:border-gray-300 hoaver:dark:bg-gray-100"
                                         >
                                             <img
                                                 src={character.image}
-                                                alt={character.name}
+                                                alt={character.user}
                                                 className="w-full h-auto mb-3 object-contain"
                                             />
                                             <h3 className="text-md text-left poppins font-medium">
-                                                {character.name}
+                                                {character.user}
                                             </h3>
                                         </div>
                                     ))}
@@ -75,16 +87,16 @@ const WantedList = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-4 mb-8">
                                     {characters.map((character) => (
                                         <div
-                                            key={character.id}
+                                            key={character._id}
                                             className="bg-[var(--opac)] rounded-xl dark:bg-gray-100 hover:dark:bg-white p-3 text-[var(--ltext)] text-[var(--ltext)] hover:text-[var(--lgold)] dark:text-[var(--dltext)] hover:shadow-4xl transition-transform duration-300 border-[1px] border-[var(--opac)] shadow-black/70 shadow-lg hover:bg-[var(--opac2)] dark:shadow-none dark:border-gray-300 hoaver:dark:bg-gray-100"
                                         >
                                             <img
                                                 src={character.image}
-                                                alt={character.name}
+                                                alt={character.user}
                                                 className="w-full h-auto mb-3 object-contain"
                                             />
                                             <h3 className="text-md text-left poppins font-medium text-[var(--ltext)] dark:text-[var(--dltext)]">
-                                                {character.name}
+                                                {character.user}
                                             </h3>
                                         </div>
                                     ))}
@@ -112,7 +124,6 @@ const Marquee = styled.div`
     width: 100%;
     overflow: hidden;
     user-select: none;
-
     mask-image: linear-gradient(
         to right,
         hsl(0 0% 0% / 0),
@@ -146,5 +157,5 @@ const MarqueeGroup = styled.div`
 `
 
 const MarqueeGroup2 = styled.div`
-    ${common}// animation-delay: -3s;
+    ${common}
 `
