@@ -15,6 +15,7 @@ const AddJob = () => {
         applicationDeadline: '',
         contactEmail: '',
         postedDate: '',
+        responsibilities: '',
     })
     const [currentPage, setCurrentPage] = useState(1)
     const jobsPerPage = 5
@@ -43,6 +44,7 @@ const AddJob = () => {
                 applicationDeadline: '',
                 contactEmail: '',
                 postedDate: '',
+                responsibilities: '',
             })
         } catch (error) {
             console.error('Error adding job:', error)
@@ -113,6 +115,12 @@ const AddJob = () => {
                             name: 'requirements',
                             type: 'textarea',
                             placeholder: 'Requirements',
+                        },
+                        {
+                            label: 'Responsibilities', // New field label
+                            name: 'responsibilities', // New field name
+                            type: 'textarea',
+                            placeholder: 'Responsibilities',
                         },
                         {
                             label: 'Salary Range',

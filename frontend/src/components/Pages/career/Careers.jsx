@@ -10,7 +10,6 @@ import {useNavigate} from 'react-router-dom'
 const Careers = () => {
     const [jobs, setJobs] = useState([])
     const navigate = useNavigate()
-
     const [selectedJob, setSelectedJob] = useState(null)
 
     useEffect(() => {
@@ -19,13 +18,13 @@ const Careers = () => {
 
     const applyJob = async (id) => {
         try {
-            const response = await axios.get(`/api/v1/application/${id}`)
+            await axios.get(`/api/v1/application/${id}`)
             toast.success('Application submitted successfully!')
         } catch (err) {
             if (err.response && err.response.status === 404) {
                 toast.error('This job has already been applied')
             } else {
-                toast.error('You must have to login first!')
+                toast.error('You must login first!')
                 navigate('/login')
             }
             console.log(err)
@@ -37,7 +36,6 @@ const Careers = () => {
             const response = await axios.get('/api/v1/job', {
                 withCredentials: true,
             })
-            console.log(response.data.data)
             setJobs(response.data.data)
         } catch (err) {
             console.log(err)
@@ -46,81 +44,12 @@ const Careers = () => {
 
     return (
         <div className="p-4 md:p-6 min-h-screen poppins bg-cover dark:bg-gray-100 bg-[var(--bg2)]">
-            <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] ">
+            <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)]">
                 <h2 className="text-3xl rounded-xl font-medium m-2 p-2 text-[var(--lgold)] dark:text-[var(--dltext)] text-center dark:shadow-black/10 shadow-black/70 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400">
                     Careers
                 </h2>
 
                 <div className="p-5">
-                    {/* <div className="flex flex-col md:flex-row gap-4 mb-5">
-                        <div className="flex flex-col w-full md:w-1/3">
-                            <label className="text-sm text-gray-500 pb-2">
-                                Search
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Search by job title"
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-                            />
-                        </div>
-                        <div className="flex flex-col w-full md:w-1/3">
-                            <label className="text-sm text-gray-500 pb-2">
-                                Salary Range
-                            </label>
-                            <input
-                                type="text"
-                                name="salaryRange"
-                                value={filters.salaryRange}
-                                onChange={(e) =>
-                                    setFilters({
-                                        ...filters,
-                                        salaryRange: e.target.value,
-                                    })
-                                }
-                                placeholder="Filter by Salary"
-                                className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-                            />
-                        </div>
-                        <div className="flex flex-col w-full md:w-1/3">
-                            <label className="text-sm text-gray-500 pb-2">
-                                Department
-                            </label>
-                            <input
-                                type="text"
-                                name="department"
-                                value={filters.department}
-                                onChange={(e) =>
-                                    setFilters({
-                                        ...filters,
-                                        department: e.target.value,
-                                    })
-                                }
-                                placeholder="Filter by Department"
-                                className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-                            />
-                        </div>
-                        <div className="flex flex-col w-full md:w-1/3">
-                            <label className="text-sm text-gray-500 pb-2">
-                                Location
-                            </label>
-                            <input
-                                type="text"
-                                name="location"
-                                value={filters.location}
-                                onChange={(e) =>
-                                    setFilters({
-                                        ...filters,
-                                        location: e.target.value,
-                                    })
-                                }
-                                placeholder="Filter by Location"
-                                className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
-                            />
-                        </div>
-                    </div> */}
-
                     <div className="inline-flex items-center mb-[50px] justify-center w-full">
                         <hr className="w-[90%] h-px my-8 bg-[var(--lgold)] border-0 dark:bg-[var(--dltext)]"></hr>
                         <span className="absolute px-3 text-lg text-[var(--lgold)] -translate-x-1/2 bg-[var(--bg1)] left-1/2 dark:text-[var(--dltext)] dark:bg-gray-100">
@@ -152,11 +81,12 @@ const Careers = () => {
                                             <FaLocationDot />
                                             <span>{job.location}</span>
                                         </div>
-
                                         <div className="flex items-center gap-2 text-md text-gray-200 dark:text-gray-600">
-                                            <div>
-                                                <FaIcons.FaDollarSign />
-                                            </div>
+                                            <AiIcons.AiOutlineBars />
+                                            <span>{job.jobType}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-md text-gray-200 dark:text-gray-600">
+                                            <FaIcons.FaDollarSign />
                                             <span>{job.salaryRange}</span>
                                         </div>
                                     </div>
@@ -173,8 +103,6 @@ const Careers = () => {
                 </div>
             </div>
 
-            {/* Just make everything simple , dont use too much popup things , */}
-            {/* when You can make just simple card with good layout */}
             {selectedJob && (
                 <div className="fixed inset-0 text-gray-300 dark:text-gray-600 flex items-center justify-center z-10">
                     <div className="bg-[var(--opac)] backdrop-blur-3xl border-[1px] border-[var(--opac)] animate-appear blockanim dark:border-gray-400 md:p-6 p-3 rounded-xl lg:w-[85%] shadow-black/80 dark:shadow-black/40 shadow-2xl w-[94%]">
@@ -225,19 +153,6 @@ const Careers = () => {
                                 </div>
                                 <div>
                                     <p className="font-light text-xs">
-                                        Experience
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.experience}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <IoIcons.IoMdPeople />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
                                         Job Type
                                     </p>
                                     <p className="md:text-lg text-md">
@@ -258,14 +173,53 @@ const Careers = () => {
                             </div>
                             <div className="flex items-center space-x-4">
                                 <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaIcons.FaBuilding />
+                                    <AiIcons.AiOutlineCheckCircle />
                                 </div>
                                 <div>
                                     <p className="font-light text-xs">
-                                        Company
+                                        Responsibilities
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.company}
+                                        {selectedJob.responsibilities}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <IoIcons.IoIosPaper />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">
+                                        Description
+                                    </p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedJob.description}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <IoIcons.IoIosListBox />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">
+                                        Requirements
+                                    </p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedJob.requirements}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <AiIcons.AiOutlineMail />
+                                </div>
+                                <div>
+                                    <p className="font-light text-xs">
+                                        Contact Email
+                                    </p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedJob.contactEmail}
                                     </p>
                                 </div>
                             </div>
@@ -275,10 +229,12 @@ const Careers = () => {
                                 </div>
                                 <div>
                                     <p className="font-light text-xs">
-                                        Posting Date
+                                        Posted Date
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.postingDate}
+                                        {new Date(
+                                            selectedJob.postedDate,
+                                        ).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>
@@ -291,26 +247,23 @@ const Careers = () => {
                                         Application Deadline
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.applicationDeadline}
+                                        {new Date(
+                                            selectedJob.applicationDeadline,
+                                        ).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="mt-4 p-3 bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md rounded-md">
-                            <p className="text-justify">
-                                {selectedJob.details}
-                            </p>
-                        </div> */}
-                        <div className="flex mt-5">
+                        <div className="flex justify-center items-center space-x-6">
                             <button
                                 onClick={() => applyJob(selectedJob._id)}
-                                className="text-green-600 border-[1px] border-green-600 hover:border-blue-500 hover:text-blue-500 px-4 p-1 rounded-md"
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                             >
-                                Apply
+                                Apply Now
                             </button>
                             <button
                                 onClick={() => setSelectedJob(null)}
-                                className="ml-4 text-red-600 border-[1px] border-red-600 hover:border-blue-500 hover:text-blue-500 px-4 p-1 rounded-md"
+                                className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
                             >
                                 Close
                             </button>
