@@ -74,7 +74,7 @@ const WantedList = () => {
                                             <img
                                                 src={character.image}
                                                 alt={character.user}
-                                                className="w-full h-auto mb-3 object-contain"
+                                                className="w-full h-[260px] rounded-md mb-3 object-cover"
                                             />
                                             <h3 className="text-md text-left poppins font-medium">
                                                 {character.user}
@@ -93,7 +93,7 @@ const WantedList = () => {
                                             <img
                                                 src={character.image}
                                                 alt={character.user}
-                                                className="w-full h-auto mb-3 object-contain"
+                                                className="w-full h-[260px] rounded-md mb-3 object-cover"
                                             />
                                             <h3 className="text-md text-left poppins font-medium text-[var(--ltext)] dark:text-[var(--dltext)]">
                                                 {character.user}

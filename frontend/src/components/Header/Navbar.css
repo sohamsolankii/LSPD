@@ -10,27 +10,28 @@ body,
 .shadow-md,
 .rounded-2xl {
     transition:
-        background-color 2s,
-        border-color 2s,
-        color 2s;
+        background-color 1.5s,
+        border-color 1.5s,
+        color 1.5s;
 }
 
 *,
 *::before,
 *::after {
     transition:
-        color 2s,
-        background-color 2s,
-        border-color 2s,
-        fill 2s,
-        stroke 2s;
+        color 1.5s,
+        background-color 1.5s,
+        border-color 1.5s,
+        fill 1.5s,
+        stroke 1.5s,
+        box-shadow 1.5s;
 }
 
 .theme-transition {
     transition:
-        background-color 2s,
-        border-color 2s,
-        color 2s;
+        background-color 1.5s,
+        border-color 1.5s,
+        color 1.5s;
 }
 
 .navbar {
