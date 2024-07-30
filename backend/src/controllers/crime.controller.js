@@ -4,7 +4,7 @@ import {uploadOnCloudinary} from '../utils/cloudinary.js'
 import {AsyncHandler} from './../utils/AsyncHandler.js'
 
 export const addWantedUser = AsyncHandler(async (req, res) => {
-    const {user, crime, rating} = req.body // 'crime' instead of 'crimes'
+    const {user, crime, rating, aliases} = req.body // 'crime' instead of 'crimes'
     const imageFile = req.file?.path
 
     if (!imageFile) {
@@ -23,6 +23,7 @@ export const addWantedUser = AsyncHandler(async (req, res) => {
         crime,
         rating,
         image,
+        aliases,
     })
 
     res.status(200).json(

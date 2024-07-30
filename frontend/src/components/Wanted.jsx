@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import StarRating from './UsedComponents/StarRating.jsx'
 import * as FaIcons from 'react-icons/fa'
 import axios from 'axios'
+import {FaUserFriends} from 'react-icons/fa'
+
 
 const Wanted = () => {
     const [search, setSearch] = useState('')
@@ -40,6 +42,13 @@ const Wanted = () => {
         setSelectedCriminal(null)
     }
 
+    const filteredData = data.filter(
+        (criminal) =>
+            criminal.user &&
+            criminal.user.toLowerCase().includes(search.toLowerCase()),
+    )
+
+
     return (
         <div className="p-4 md:p-6 min-h-screen poppins bg-cover dark:bg-gray-100 bg-[var(--bg2)]">
             <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
@@ -71,37 +80,35 @@ const Wanted = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-                        {data
-                            .map((criminal) => (
-                                <div
-                                    key={criminal._id}
-                                    className="md:p-4 p-3 bg-[var(--opac)] dark:bg-gray-100 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-lg shadow-black/30 dark:shadow-none shadow-md"
-                                >
-                                    <img
-                                        className="text-sm text-gray-500 w-full md:h-72 h-48 mb-3 object-cover object-top dark:text-gray-600 rounded-md"
-                                        src={criminal.image}
-                                        alt={criminal.user}
-                                    />
-									<div className='flex justify-between'>
-										<h3 className="md:text-lg text-md font-semibold text-gray-200 dark:text-[var(--dltext)]">
-											{criminal.user}
-										</h3>
-										<div className="md:text-md text-sm font-regular text-gray-200 dark:text-[var(--dltext)]">
-											<StarRating
-												crimeRate={criminal.rating}
-											/>
-										</div>
-
-									</div>
-                                    <button
-                                        onClick={() => handleSeeMore(criminal)}
-                                        className="mt-4 text-blue-500 border-blue-500 border-[1px] rounded-md px-3 py-1 text-sm hover:text-blue-700 hover:border-blue-700"
-                                    >
-                                        See More
-                                        <FaIcons.FaChevronDown className="inline ml-1" />
-                                    </button>
+                        {filteredData.map((criminal) => (
+                            <div
+                                key={criminal._id}
+                                className="md:p-4 p-3 bg-[var(--opac)] dark:bg-gray-100 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-lg shadow-black/30 dark:shadow-none shadow-md"
+                            >
+                                <img
+                                    className="text-sm text-gray-500 w-full md:h-72 h-48 mb-3 object-cover object-top dark:text-gray-600 rounded-md"
+                                    src={criminal.image}
+                                    alt={criminal.user}
+                                />
+                                <div className="flex justify-between">
+                                    <h3 className="md:text-lg text-md font-semibold text-gray-200 dark:text-[var(--dltext)]">
+                                        {criminal.user}
+                                    </h3>
+                                    <div className="md:text-md text-sm font-regular text-gray-200 dark:text-[var(--dltext)]">
+                                        <StarRating
+                                            crimeRate={criminal.rating}
+                                        />
+                                    </div>
                                 </div>
-                            ))}
+                                <button
+                                    onClick={() => handleSeeMore(criminal)}
+                                    className="mt-4 text-blue-500 border-blue-500 border-[1px] rounded-md px-3 py-1 text-sm hover:text-blue-700 hover:border-blue-700"
+                                >
+                                    See More
+                                    <FaIcons.FaChevronDown className="inline ml-1" />
+                                </button>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -144,6 +151,17 @@ const Wanted = () => {
                                     <p className="font-light text-xs">Crimes</p>
                                     <p className="md:text-lg text-md">
                                         {selectedCriminal.crime}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                    <FaUserFriends />
+                                </div>
+                                <div>
+                                    <p className="font-light text-sm">Aliases</p>
+                                    <p className="md:text-lg text-md">
+                                        {selectedCriminal.aliases}
                                     </p>
                                 </div>
                             </div>
