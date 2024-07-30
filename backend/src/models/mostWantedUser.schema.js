@@ -12,12 +12,16 @@ const mostWantedUserSchema = new Schema({
     },
     crime: {
         type: String,
-		require: true,
+        require: true,
     },
     rating: {
         type: Number,
         require: true,
     },
+    aliases:{
+		type: String,
+		require: true,
+	}
 })
 
 const mostWantedUser = mongoose.model('mostWantedUser', mostWantedUserSchema)

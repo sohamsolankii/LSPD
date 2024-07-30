@@ -9,6 +9,7 @@ const AdminAddCriminal = () => {
         image: null,
         crime: '',
         rating: '',
+        aliases: '',
     })
 
     const handleChange = (e) => {
@@ -34,6 +35,7 @@ const AdminAddCriminal = () => {
         formData.append('user', newCriminal.user)
         formData.append('crime', newCriminal.crime)
         formData.append('rating', newCriminal.rating)
+        formData.append('aliases', newCriminal.aliases)
 
         try {
             const response = await axios.post(
@@ -55,6 +57,7 @@ const AdminAddCriminal = () => {
                 image: null,
                 crime: '',
                 rating: '',
+                aliases: '',
             })
         }
     }
@@ -132,6 +135,20 @@ const AdminAddCriminal = () => {
                             placeholder="Rating"
                             className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
                             required
+                        />
+                    </div>
+
+                    <div className="flex flex-col">
+                        <label className="text-sm text-gray-500 pb-2">
+                            Aliases
+                        </label>
+                        <input
+                            type="text"
+                            name="aliases"
+                            value={newCriminal.aliases}
+                            onChange={handleChange}
+                            placeholder="Aliases"
+                            className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
                         />
                     </div>
 
