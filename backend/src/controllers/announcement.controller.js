@@ -152,30 +152,66 @@ export const deleteAnnouncement = AsyncHandler(async (req, res) => {
 
 // * create a like
 export const addLikes = AsyncHandler(async (req, res) => {
-    const id = req.params.announcementID
-    console.log(id)
+    const id = req.query.id;
+    const userId = req.query.userId;
 
-    const announcement = await Announcement.findOne({_id: id})
+    console.log('this is user id ', userId);
 
-    if (!announcement) throw new ApiError(404, 'No announcement found')
+    const announcement = await Announcement.findOne({ _id: id });
 
-    announcement.likes = (announcement.likes || 0) + 1
-    await announcement.save()
+    if (!announcement) throw new ApiError(404, 'No announcement found');
 
-    res.status(200).json(new ApiResponse(200, announcement.likes, 'Like Added'))
-})
-// * create a dislike
-export const addDislikes = AsyncHandler(async (req, res) => {
-    const id = req.params.announcementID
+    const userHasLiked = announcement.likedBy.includes(userId);
 
-    const announcement = await Announcement.findOne({_id: id})
+    // Ensure likes is a valid number before incrementing/decrementing
+    if (isNaN(announcement.likes)) {
+        announcement.likes = 0;
+    }
 
-    if (!announcement) throw new ApiError(404, 'No announcement found')
+    if (userHasLiked) {
+        // User already liked the post, so unlike it
+        announcement.likes -= 1;
+        announcement.likedBy.pull(userId);
+    } else {
+        // User has not liked the post, so like it
+        announcement.likes += 1;
+        announcement.likedBy.push(userId);
+    }
 
-    announcement.dislikes = (announcement.dislikes || 0) + 1
-    await announcement.save()
+    await announcement.save();
 
     res.status(200).json(
-        new ApiResponse(200, announcement.dislikes, 'Like Added'),
+        new ApiResponse(200, announcement.likes, 'Like status updated'),
+    );
+});
+
+// * create a dislike
+export const addDislikes = AsyncHandler(async (req, res) => {
+    const id = req.query.id
+    const userId = req.query.userId
+
+    const announcement = await Announcement.findOne({_id: id})
+
+    if (!announcement) throw new ApiError(404, 'No announcement found')
+
+    const userDisLiked = announcement.dislikedBy.includes(userId);
+
+	if(isNaN(announcement.dislikes)){
+		announcement.dislikes = 0;
+	}
+
+	if(userDisLiked){
+		announcement.dislikes -= 1
+        announcement.dislikedBy.pull(userId)
+	}
+	else{
+		announcement.dislikes += 1
+        announcement.dislikedBy.push(userId)
+	}
+
+	await announcement.save();
+	res.status(200).json(
+        new ApiResponse(200, announcement.dislikes, 'Like status updated'),
     )
+
 })

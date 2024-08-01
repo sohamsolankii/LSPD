@@ -66,13 +66,20 @@ const News = () => {
             navigate('/login')
         } else {
             try {
+                // console.log('handle like', `${id}`)
+				// console.log('user id', user._id)
+				const userId = user._id
                 const response = await axios.get(
-                    `/api/v1/announcement/add-like/${id}`,
+                    '/api/v1/announcement/add-like',
                     {
+                        params: {
+                            id: id,
+                            userId: userId,
+                        },
                         withCredentials: true,
                     },
                 )
-                toast.success('Article liked successfully!')
+                // toast.success('Article liked successfully!')
                 fetchSpecificArticle(id) // Update the specific article after like
             } catch (error) {
                 toast.error('Error liking article.')
@@ -88,13 +95,19 @@ const News = () => {
             navigate('/login')
         } else {
             try {
+				const userId = user._id
+
                 const response = await axios.get(
-                    `/api/v1/announcement/add-dislike/${id}`,
-                    {
+                    `/api/v1/announcement/add-dislike`,
+                    {	
+						params: {
+							id: id,
+							userId: userId,
+						},
                         withCredentials: true,
                     },
                 )
-                toast.success('Article liked successfully!')
+                // toast.success('Article liked successfully!')
                 fetchSpecificArticle(id) // Update the specific article after like
             } catch (error) {
                 toast.error('Error liking article.')

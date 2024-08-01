@@ -22,10 +22,14 @@ const announcementSchema = new Schema({
     ],
     likes: {
         type: Number,
+        default: 0,
     },
+    likedBy: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     dislikes: {
         type: Number,
+		default: 0,
     },
+    dislikedBy: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
 })
 
 const Announcement = mongoose.model('Announcement', announcementSchema)

@@ -23,7 +23,8 @@ router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
 router.route('/update-announcement/:announcementID').put(updateAnnouncement)
 router.route('/delete-announcement/:announcementID').delete(deleteAnnouncement)
 
-router.route('/add-like/:announcementID').get(addLikes)
-router.route('/add-dislike/:announcementID').get(addDislikes)
+router.route('/add-like').get(addLikes)
+
+router.route('/add-dislike').get(addDislikes)
 
 export default router
