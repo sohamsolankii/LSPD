@@ -33,7 +33,9 @@ const AddNews = () => {
         e.preventDefault()
         try {
             const formData = new FormData()
-            formData.append('image', newNews.image)
+            if (newNews.image instanceof File) {
+                formData.append('image', newNews.image)
+            }
             formData.append('title', newNews.title)
             formData.append('description', newNews.description)
 
@@ -149,7 +151,11 @@ const AddNews = () => {
                         </div>
                         {newNews.image && (
                             <img
-                                src={URL.createObjectURL(newNews.image)}
+                                src={
+                                    newNews.image instanceof File
+                                        ? URL.createObjectURL(newNews.image)
+                                        : newNews.image
+                                }
                                 alt="Uploaded"
                                 className="mt-2 h-40 object-contain"
                             />
