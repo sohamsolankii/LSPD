@@ -27,6 +27,17 @@ const AdminShowTip = () => {
         fetchTips()
     }, [])
 
+    const handleDelete = async (tipId) => {
+        try {
+            await axios.delete(`/api/v1/tip/${tipId}`, {
+                withCredentials: true,
+            })
+            setTips(tips.filter((tip) => tip._id !== tipId))
+        } catch (error) {
+            setError(error.message)
+        }
+    }
+
     if (loading) {
         return <div>Loading...</div>
     }
@@ -38,7 +49,7 @@ const AdminShowTip = () => {
     return (
         <div className="bg-[var(--bg2)] poppins dark:bg-[var(--dbg2)] p-3 md:p-0 min-h-screen flex items-center justify-center">
             <div className="my-6 bg-[var(--bg1)] dark:bg-white rounded-2xl shadow-black/70 dark:shadow-black/30 border-[1px] border-[var(--opac)] dark:border-gray-300 shadow-2xl text-gray-100 dark:text-gray-800">
-                <div className="container flex flex-col items-center mx-auto mb-8 md:p-10 md:px-12 ">
+                <div className="container flex flex-col items-center mx-auto mb-8 md:p-10 md:px-12">
                     <h1 className="text-2xl md:text-4xl pricedown font-bold text-[var(--lgold)] dark:text-[var(--dltext)] mb-2 text-center">
                         All Tips
                     </h1>
@@ -55,7 +66,7 @@ const AdminShowTip = () => {
                         tips.map((tip, index) => (
                             <div
                                 key={index}
-                                className="flex flex-col max-w-sm mx-2 my-2 shadow-lg"
+                                className="relative flex flex-col max-w-sm mx-2 my-2 shadow-lg"
                             >
                                 <div className="px-4 py-10 rounded-t-lg sm:px-2 md:px-4 bg-[var(--opac)] border-t-[1px] border-x-[1px] border-[var(--opac)] dark:border-blue-600 dark:bg-gray-50">
                                     <p className="relative px-3 py-1 md:text-lg text-md italic text-center text-gray-100 dark:text-gray-800">
@@ -79,6 +90,12 @@ const AdminShowTip = () => {
                                             <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
                                         </svg>
                                     </p>
+                                    <button
+                                        onClick={() => handleDelete(tip._id)}
+                                        className="absolute top-0 right-0 mt-2 mr-2 px-2 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:bg-red-200"
+                                    >
+                                        Delete
+                                    </button>
                                 </div>
                                 <div className="flex flex-col items-center justify-center shadow-black/30 shadow-lg dark:shadow-sm p-8 rounded-b-lg bg-[var(--opac2)] dark:bg-blue-600 text-gray-300 border-[1px] border-[var(--opac)] dark:text-gray-50">
                                     <img

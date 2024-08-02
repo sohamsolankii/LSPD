@@ -63,3 +63,19 @@ export const fetchTip = AsyncHandler(async (req, res) => {
     )
 })
 
+
+// * Delete a Tip
+export const deleteTip = AsyncHandler(async (req, res) => {
+    const tipId = req.params.id;
+
+    // Find the tip
+    const tip = await Tip.findById(tipId);
+    if (!tip) {
+        return res.status(404).json(new ApiError(404, 'Tip not found'));
+    }
+
+    await Tip.deleteOne({ _id: tipId });
+
+    res.status(200).json(new ApiResponse(200, null, 'Tip deleted successfully'));
+});
+
