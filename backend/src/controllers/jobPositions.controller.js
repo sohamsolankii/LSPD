@@ -116,9 +116,9 @@ export const approveApplications = AsyncHandler(async (req, res) => {
         new ApiResponse(200, user, 'Applications approved successfully'),
     )
 	//! Will start in expo
-    // sendMail(
-	// 	user.email,'Job Application Updates!',`Hi ${user.name},\n\nThank you for applying for the job!. We're happy to say you are perfect match for us. Together, we can make our city a safer place! If you have any questions or need assistance, don't hesitate to reach out us at any time. We will futher guide you regarding the job.\n\nStay sharp,\nThe LSPD Team,`
-    // )
+    sendMail(
+		user.email,'Job Application Updates!',`Hi ${user.name},\n\nThank you for applying for the job!. We're happy to say you are perfect match for us. Together, we can make our city a safer place! If you have any questions or need assistance, don't hesitate to reach out us at any time. We will futher guide you regarding the job.\n\nStay sharp,\nThe LSPD Team,`
+    )
 })
 
 // * Admin can disapprove an Application
@@ -137,5 +137,5 @@ export const disapproveApplications = AsyncHandler(async (req, res) => {
 			new ApiResponse(200, null, 'Applications disapproved '),
 		)
 	//! Will start in expo
-	// sendMail(user.email, 'Job Application Updates!',`Hi ${user.name},\n\nThank you for applying for the job!. Sad to say we can't work together if there is future requirement we will inform you.\n\nStay sharp,\nThe LSPD Team,`,)
+	sendMail(user.email, 'Job Application Updates!',`Hi ${user.name},\n\nThank you for applying for the job!. Sad to say we can't work together if there is future requirement we will inform you.\n\nStay sharp,\nThe LSPD Team,`,)
 })
