@@ -65,9 +65,9 @@ export const logIn = AsyncHandler(async (req, res) => {
         .status(200)
         .json({user, accessToken})
 	//! will start in expo
-	// sendMail(
-    //     email,'Welcome to the LSPD, Rookie!',`Hi ${user.name},\n\nWelcome to the LSPD Eagle Eyes. We're here to support and protect the citizens of Los Santos. Together, we can make our city a safer place! If you have any questions or need assistance, don't hesitate to reach out us at any time. We're always here to help:)\n\nStay sharp,\nThe LSPD Team,`
-    // )
+	sendMail(
+        email,'Welcome to the LSPD, Rookie!',`Hi ${user.name},\n\nWelcome to the LSPD Eagle Eyes. We're here to support and protect the citizens of Los Santos. Together, we can make our city a safer place! If you have any questions or need assistance, don't hesitate to reach out us at any time. We're always here to help:)\n\nStay sharp,\nThe LSPD Team,`
+    )
 
 })
 

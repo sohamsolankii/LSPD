@@ -9,6 +9,7 @@ import jobRoutes from './src/routes/job.route.js'
 import applicationRoutes from './src/routes/application.route.js'
 import chatRoutes from './src/routes/chat.route.js'
 import wantedUserRoutes from './src/routes/crime.route.js'
+import pressRoutes from './src/routes/press.route.js'
 
 import {appConfig, app} from './config.js'
 
@@ -25,3 +26,5 @@ app.use('/api/v1/auth', authRoutes)
     .use('/api/v1/application', applicationRoutes)
     .use('/api/v1/chat', chatRoutes)
     .use('/api/v1/wanted', wantedUserRoutes)
+	.use('/api/v1/press', pressRoutes)
+
