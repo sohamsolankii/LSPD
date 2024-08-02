@@ -129,12 +129,19 @@ const Navbar = ({isAdmin = false}) => {
                         {!passkey || passkey.every((digit) => digit === '') ? (
                             'LSPD EagleEye'
                         ) : (
-                            <span className="relative">
-                                LSPD EagleEye
-                                <span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-2 py-0 rounded-md shadow-lg hidden md:inline-block">
-                                    <b>ADMIN</b>
+                            <>
+                                <span className="relative">
+                                    LSPD EagleEye
+                                    <span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-2 py-0 rounded-md shadow-lg hidden md:inline-block">
+                                        <b>ADMIN</b>
+                                    </span>
                                 </span>
-                            </span>
+                                <Link to="/press" className="relative">
+                                    <span className="bg-[var(--lgold)] text-lg dark:bg-[var(--dltext)] text-[var(--bg1)] dark:text-[var(--dbg1)] px-2 py-0 rounded-md shadow-lg hidden md:inline-block">
+                                        <b>Live Press</b>
+                                    </span>
+                                </Link>
+                            </>
                         )}
                     </Link>
 

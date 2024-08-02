@@ -8,13 +8,14 @@ import {
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import {UserContext} from '../../../context/userContext'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const News = () => {
     const [articles, setArticles] = useState([])
     const [selectedArticle, setSelectedArticle] = useState(null)
     const [comment, setComment] = useState('')
     const [fetchComment, setFetchComments] = useState([])
+    const [code, setCode] = useState('')
     const {user} = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -51,6 +52,31 @@ const News = () => {
         }
     }
 
+    // const fetchPress = async () => {
+    //     try {
+    //         const response = await axios.get('/api/v1/press/get')
+    //         console.log('Press code:', response.data.data)
+    //     } catch (error) {
+    //         console.error('Error fetching press:', error)
+    //     }
+    // }
+
+    useEffect(() => {
+        const fetchPress = async () => {
+            try {
+                const response = await axios.get('/api/v1/press/get')
+				if(!response){
+					setCode(0);
+				}
+                setCode(response.data.data.code)
+                console.log('Press code:', response.data.data.code)
+            } catch (error) {
+                console.error('Error fetching press:', error)
+            }
+        }
+        fetchPress()
+    })
+
     const handleClick = (article) => {
         fetchComments(article._id)
         setSelectedArticle(article)
@@ -67,8 +93,8 @@ const News = () => {
         } else {
             try {
                 // console.log('handle like', `${id}`)
-				// console.log('user id', user._id)
-				const userId = user._id
+                // console.log('user id', user._id)
+                const userId = user._id
                 const response = await axios.get(
                     '/api/v1/announcement/add-like',
                     {
@@ -95,15 +121,15 @@ const News = () => {
             navigate('/login')
         } else {
             try {
-				const userId = user._id
+                const userId = user._id
 
                 const response = await axios.get(
                     `/api/v1/announcement/add-dislike`,
-                    {	
-						params: {
-							id: id,
-							userId: userId,
-						},
+                    {
+                        params: {
+                            id: id,
+                            userId: userId,
+                        },
                         withCredentials: true,
                     },
                 )
@@ -219,6 +245,10 @@ const News = () => {
                 </div>
             ) : (
                 <div>
+                    <div className="text-3xl">
+                        {code ? <Link to="/press">{code}</Link> : null}
+                    </div>
+
                     <div className="text-center mb-6">
                         <h2 className="text-4xl pricedown font-semibold text-[var(--lgold)] dark:text-[var(--dltext)]">
                             News and Alerts

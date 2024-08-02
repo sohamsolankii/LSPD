@@ -32,6 +32,8 @@ import AdminShowTip from './components/admin/AdminShowTip.jsx'
 import AdminLogin from './components/Forms/AdminLogin.jsx'
 import AdminShowReport from './components/admin/AdminShowReport.jsx'
 import JobApplication from './components/admin/JobApplication.jsx'
+import Press from './components/video/Press.jsx'
+import Room from './components/video/Room.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -57,14 +59,25 @@ const router = createBrowserRouter(
             <Route path="/submit-tip" element={<SubmitTip />} />,
             <Route path="/report-crime" element={<ReportCrime />} />,
             <Route path="/career" element={<Careers />} />
+            <Route path="/press" element={<Press />} />
+            <Route path="/room/:roomID" element={<Room />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin-login" element={<AdminLogin />}></Route>
             <Route path="/admin/show-tips" element={<AdminShowTip />}></Route>
             <Route path="/admin/news" element={<AddNews />}></Route>
             <Route path="/admin/jobs" element={<AddJob />}></Route>
-            <Route path="/admin/crime-reports" element={<AdminShowReport />}></Route>
-            <Route path="/admin/most-wanted" element={<AdminAddCriminal />}></Route>
-            <Route path="/admin/jobs/applications" element={<JobApplication />}></Route>
+            <Route
+                path="/admin/crime-reports"
+                element={<AdminShowReport />}
+            ></Route>
+            <Route
+                path="/admin/most-wanted"
+                element={<AdminAddCriminal />}
+            ></Route>
+            <Route
+                path="/admin/jobs/applications"
+                element={<JobApplication />}
+            ></Route>
         </Route>,
     ),
 )
