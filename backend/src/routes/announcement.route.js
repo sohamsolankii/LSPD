@@ -20,8 +20,12 @@ router
 
 router.route('/watch/:announcementID').get(fetchSpecificAnnouncement)
 
-router.route('/update-announcement/:announcementID').put(updateAnnouncement)
 router.route('/delete-announcement/:announcementID').delete(deleteAnnouncement)
+
+router
+    .route('/update-announcement/:announcementID')
+    .put(upload.single('image'), updateAnnouncement)
+
 
 router.route('/add-like').get(addLikes)
 

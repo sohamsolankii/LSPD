@@ -96,12 +96,12 @@ export const fetchAnnouncement = AsyncHandler(async (req, res) => {
     )
 })
 
-// * Update announcement
 export const updateAnnouncement = AsyncHandler(async (req, res) => {
     const id = req.params?.announcementID
     const {description, title} = req.body
     let imageNew = null
 
+    // Check if a new image is uploaded
     if (req.file?.path) {
         const uploadResult = await uploadOnCloudinary(req.file.path)
         if (!uploadResult) {
@@ -110,23 +110,27 @@ export const updateAnnouncement = AsyncHandler(async (req, res) => {
         imageNew = uploadResult.url
     }
 
+    // Create an object with updated fields
     const updatedFields = {description, title}
     if (imageNew) {
         updatedFields.image = imageNew
     }
 
+    // Find and update the announcement
     const updatedAnnouncement = await Announcement.findByIdAndUpdate(
         id,
         updatedFields,
         {new: true}, // To return the updated document
     )
 
+    // If the announcement does not exist
     if (!updatedAnnouncement) {
         return res
             .status(404)
             .json(new ApiResponse(404, null, 'Announcement not found'))
     }
 
+    // Respond with the updated announcement
     res.status(200).json(
         new ApiResponse(
             200,
