@@ -13,6 +13,7 @@ import App from './App.jsx'
 import Login from './components/Forms/Login.jsx'
 import Register from './components/Forms/Register.jsx'
 import Starter from './components/Starter.jsx'
+import Starter2 from './components/Starter2.jsx'
 import ReportCrime from './components/ReportCrime.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import HomeSubmitTip from './components/HomeSubmitTip.jsx'
@@ -43,7 +44,8 @@ const router = createBrowserRouter(
                 path="/"
                 element={
                     <>
-                        <Starter />
+                        {/* <Starter /> */}
+                        {/* <Starter2 /> */}
                         <Dashboard />
                         {/* <Element /> */}
                         <HomeSubmitTip />

@@ -41,7 +41,11 @@ body,
     justify-content: start;
     align-items: center;
     width: 100%;
-    z-index: 1000; /* Ensure the navbar stays on top */
+    z-index: 1000;
+}
+
+.dark .navbar {
+    background-color: #ffffff;
 }
 
 .menu-bars {
