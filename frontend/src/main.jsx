@@ -7,10 +7,8 @@ import {
     Route,
     Routes,
     createRoutesFromElements,
-    useNavigate,
 } from 'react-router-dom'
 // import {useNavigate} from 'react-router-dom'
-
 
 import App from './App.jsx'
 import Login from './components/Forms/Login.jsx'
@@ -42,10 +40,6 @@ import Room from './components/video/Room.jsx'
 import ForgotPassword from './components/Forms/ForgotPassword.jsx'
 import ResetPassword from './components/Forms/ResetPassword.jsx'
 
-const handleEnter = () => {
-	navigate('/')
-}
-
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
@@ -64,7 +58,7 @@ const router = createBrowserRouter(
                     </>
                 }
             />
-			<Route path="/para" element={<Starter2 onEnter={handleEnter} />} />,
+            <Route path="/para" element={<Starter2 />} />,
             <Route path="/login" element={<Login />} />,
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />}></Route>
