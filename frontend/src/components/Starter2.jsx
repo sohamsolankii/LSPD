@@ -33,7 +33,7 @@ const Starter2 = ({onEnter}) => {
     }
 
     return (
-        <div>
+        <div className="body">
             <div className="front-box">
                 <div className="front"></div>
             </div>
