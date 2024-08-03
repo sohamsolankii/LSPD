@@ -6,7 +6,7 @@ const Starter2 = ({onEnter}) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollThreshold = window.innerHeight * 3
+            const scrollThreshold = window.innerHeight * 0.7
             if (window.scrollY >= scrollThreshold) {
                 setButtonText('Click to enter')
                 document.querySelector('.centered-text').style.display = 'block'

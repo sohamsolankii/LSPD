@@ -42,11 +42,12 @@ import ResetPassword from './components/Forms/ResetPassword.jsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
+            <Route path="/para" element={<Starter2 />} />,
             <Route
                 path="/"
                 element={
                     <>
-                        {/* <Starter /> */}
+                        <Starter />
                         {/* <Starter2 /> */}
                         <Dashboard />
                         {/* <Element /> */}
