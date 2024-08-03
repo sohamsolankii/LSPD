@@ -32,6 +32,7 @@ import AdminShowTip from './components/admin/AdminShowTip.jsx'
 import AdminLogin from './components/Forms/AdminLogin.jsx'
 import AdminShowReport from './components/admin/AdminShowReport.jsx'
 import JobApplication from './components/admin/JobApplication.jsx'
+import Element from './components/Element.jsx'
 import Press from './components/video/Press.jsx'
 import Room from './components/video/Room.jsx'
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
                     <>
                         <Starter />
                         <Dashboard />
+                        {/* <Element /> */}
                         <HomeSubmitTip />
                         <HomeCareers />
                         <WantedList />
