@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import './Starter2.css'
 
-const Starter2 = ({onEnter}) => {
+const Starter2 = () => {
+    const [hasEntered, setHasEntered] = useState(false)
     const [buttonText, setButtonText] = useState('Scroll down')
 
     useEffect(() => {
@@ -20,15 +21,13 @@ const Starter2 = ({onEnter}) => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleClick = () => {
-        // Reset scroll position
-        window.scrollTo(0, 0)
-        // Call the passed in onEnter function
-        if (onEnter) onEnter()
+    const handleEnter = () => {
+        setHasEntered(true)
+        document.body.style.overflow = 'auto' // Restore scrolling
     }
 
     return (
-        <div>
+        <div className={`starter2 ${hasEntered ? 'hidden' : ''}`}>
             <div className="front-box">
                 <div className="front"></div>
             </div>
@@ -36,7 +35,7 @@ const Starter2 = ({onEnter}) => {
                 <div className="back"></div>
             </div>
             <div className="centered-text p-2 px-6 border-y-[2px] border-white poppins">
-                <button onClick={handleClick}>{buttonText}</button>
+                <button onClick={handleEnter}>{buttonText}</button>
             </div>
         </div>
     )

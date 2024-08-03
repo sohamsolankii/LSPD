@@ -22,6 +22,27 @@ body * {
     transform-style: preserve-3d;
 }
 
+.starter2 {
+    position: fixed; /* Ensure the component covers the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Adjust to your design */
+    color: #fff; /* Adjust to your design */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+.starter2.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .front-box {
     z-index: 2;
 }
