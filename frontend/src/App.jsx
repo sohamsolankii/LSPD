@@ -22,12 +22,23 @@ const App = () => {
     //     }
     // }, [hasEntered])
 
+<<<<<<< HEAD
     const hideNavbarPaths = ['/login', '/register', '/admin-login']
     const shouldHideNavbar = hideNavbarPaths.includes(pathname) || !hasEntered
 
     const handleEnter = () => {
         setHasEntered(true)
     }
+=======
+    const hideNavbarPaths = [
+        '/login',
+        '/register',
+        '/admin-login',
+        '/forgot-password',
+        '/reset',
+    ]
+    const shouldHideNavbar = hideNavbarPaths.includes(pathname)
+>>>>>>> refs/remotes/origin/main
 
     return (
         <UserContextProvider>

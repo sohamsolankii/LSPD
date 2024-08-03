@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import {UserContext} from '../../context/userContext'
+import Cookies from 'js-cookie' 
 
 const Register = () => {
     const navigate = useNavigate()
@@ -27,6 +28,9 @@ const Register = () => {
                     email: '',
                     password: '',
                 })
+				Cookies.set('user', JSON.stringify(localData), {
+                    expires: 7,
+                })
                 toast.success(
                     `Welcome, rookie! You've successfully registered. Let's keep Los Santos in check!`,
                     {
@@ -34,7 +38,7 @@ const Register = () => {
                             'bg-[var(--opac)] mx-4 poppins pricedown font-medium text-[#94a3b8] rounded-lg shadow-md rounded-2xl backdrop-blur-sm border-1 border-[#475569] w-[80%] md:w-[60%] lg:w-[25%]',
                     },
                 )
-                navigate('/login')
+                navigate('/')
             }
         } catch (err) {
             console.log(err)
@@ -67,7 +71,10 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
                             value={localData.name}
                             onChange={(e) =>
-                                setLocalData({...localData, name: e.target.value,})
+                                setLocalData({
+                                    ...localData,
+                                    name: e.target.value,
+                                })
                             }
                         />
                     </div>
@@ -79,7 +86,10 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
                             value={localData.email}
                             onChange={(e) =>
-                                setLocalData({ ...localData,email: e.target.value,})
+                                setLocalData({
+                                    ...localData,
+                                    email: e.target.value,
+                                })
                             }
                         />
                     </div>
@@ -91,7 +101,10 @@ const Register = () => {
                             className="w-full p-3 rounded-lg bg-[var(--opac)] backdrop-blur-sm text-[var(--ltext)]"
                             value={localData.password}
                             onChange={(e) =>
-                                setLocalData({ ...localData,password: e.target.value,})
+                                setLocalData({
+                                    ...localData,
+                                    password: e.target.value,
+                                })
                             }
                         />
                     </div>
@@ -108,6 +121,14 @@ const Register = () => {
                         className="text-[var(--lblue)] hover:text-[var(--lgold)]"
                     >
                         Already have an account? Login Now
+                    </Link>
+                </div>
+                <div className="mt-2 text-center">
+                    <Link
+                        to="/admin-login"
+                        className="text-[var(--lblue)] hover:text-[var(--lgold)]"
+                    >
+                        Admin
                     </Link>
                 </div>
             </div>

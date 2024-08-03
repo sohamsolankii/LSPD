@@ -120,10 +120,10 @@ const Login = () => {
 
                 <div className="mt-2 text-center">
                     <Link
-                        to="/admin-login"
+                        to="/forgot-password"
                         className="text-[var(--lblue)] hover:text-[var(--lgold)]"
                     >
-                        Admin
+                        Forgot Pass?
                     </Link>
                 </div>
             </div>
