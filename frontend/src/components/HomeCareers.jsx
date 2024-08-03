@@ -1,6 +1,9 @@
 import React from 'react'
+import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import '../i18n'
 import * as AiIcons from 'react-icons/ai'
+import {useTranslation} from 'react-i18next'
 
 const careers = [
     {
@@ -23,18 +26,44 @@ const careers = [
     },
 ]
 
+const languages = [
+    {value: 'en', text: 'English'},
+    {value: 'hi', text: 'Hindi'},
+    {value: 'bn', text: 'Bengali'},
+]
+
 const HomeCareers = () => {
+    const {t, i18n} = useTranslation()
+    const [lang, setLang] = useState(i18n.language)
+
+    const handleLang = (e) => {
+        const newLang = e.target.value
+        setLang(newLang)
+        i18n.changeLanguage(newLang)
+    }
+
     return (
         <div className="bg-[var(--bg1)] border-t-4 border-[var(--lgold)] dark:bg-white dark:border-[#2f9b9d] p-4 md:p-10">
             <div className="p-6 mb-6 text-center animate-appear blockanim">
                 <h2 className="text-2xl md:text-4xl pricedown mb-2 text-[var(--lgold)] dark:text-[#2f9b9d]">
-                    Careers at LSPD
+                    {t('Careers at LSPD')}
                 </h2>
                 <p className="text-md md:text-xl poppins mb-4 text-[var(--ltext)] dark:text-[#66bea7]">
-                    Explore a fulfilling career with the Los Santos Police
-                    Department.
+                    {t(
+                        'Explore a fulfilling career with the Los Santos Police Department.',
+                    )}
                 </p>
             </div>
+
+            <h1>{t('welcome')}</h1>
+            <label>{t('choose')}</label>
+            <select value={lang} onChange={handleLang}>
+                {languages.map((item) => (
+                    <option key={item.value} value={item.value}>
+                        {item.text}
+                    </option>
+                ))}
+            </select>
 
             <div className="poppins bg-[var(--opac)] animate-appear blockanim flex md:flex-row flex-col md:gap-6 gap-3 dark:bg-gray-100 border-[1px] border-[var(--opac)] dark:border-gray-200 dark:shadow-none shadow-black/60 shadow-2xl rounded-xl md:p-6 p-3">
                 <div className="flex flex-col md:gap-5 gap-3 md:w-1/2 w-full animate-appear blockanim">

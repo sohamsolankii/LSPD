@@ -27,7 +27,6 @@ const dashboardData = [
 ]
 
 const Dashboard = () => {
-    
     return (
         <div className="bg-[var(--bg1)] gradMesh dark:gradMeshLight moveBackground text-[var(--lblue)] dark:bg-[var(--dbg1)] dark:text-[var(--dlgold)] min-h-screen">
             <section className="p-4 md:p-12">
@@ -59,7 +58,7 @@ const Dashboard = () => {
                             <img
                                 src={item.image}
                                 alt={`Image ${index + 1}`}
-                                className="w-1/3 cursor-pointer md:w-1/4 rounded-lg shadow-xl mr-4 md:mr-6"
+                                className="w-1/3 cursor-pointer md:w-1/6 rounded-lg shadow-xl mr-4 md:mr-6"
                             />
                             <div className="animate-appear blockanim">
                                 <h3

@@ -9,6 +9,7 @@ import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import {UserContext} from '../../../context/userContext'
 import {Link, useNavigate} from 'react-router-dom'
+import {IoCopyOutline} from 'react-icons/io5'
 
 const News = () => {
     const [articles, setArticles] = useState([])
@@ -65,9 +66,9 @@ const News = () => {
         const fetchPress = async () => {
             try {
                 const response = await axios.get('/api/v1/press/get')
-				if(!response){
-					setCode(0);
-				}
+                if (!response) {
+                    setCode(0)
+                }
                 setCode(response.data.data.code)
                 console.log('Press code:', response.data.data.code)
             } catch (error) {
@@ -245,9 +246,53 @@ const News = () => {
                 </div>
             ) : (
                 <div>
-                    <div className="text-3xl">
-                        {code ? <Link to="/press">{code}</Link> : null}
-                    </div>
+                    {code && (
+                        <div className="text-center mb-6 bg-[var(--opac)] dark:bg-gray-100 shadow-2xl border-[1px] border-[var(--opac)] dark:border-gray-300 dark:shadow-none rounded-xl p-4">
+                            <h2 className=" text-4xl pricedown font-semibold text-[var(--lgold)] dark:text-[var(--dltext)]">
+                                Live Press
+                            </h2>
+
+                            <div className="justify-between md:flex items-center mt-4 shadow-xl md:text-xl text-lg reflection border-[1px] border-[var(--opac)] dark:bg-gray-100 dark:shadow-none dark:border-gray-300 p-3 rounded-md">
+                                <h3 className="font-bold text-gray-300 dark:text-gray-600 md:mb-0 mb-4">
+                                    Meeting is live now. To join a meeting,
+                                    please use the code provided to you.
+                                </h3>
+
+                                <div className="flex justify-end">
+                                    <div className="w-full max-w-[16rem]">
+                                        <div className="flex mr-4">
+                                            <input
+                                                type="text"
+                                                name="npm-install-copy-button"
+                                                id="npm-install-copy-button"
+                                                readOnly
+                                                className="w-[100%] p-1 px-2 border-gray-300 bg-[var(--opac)] text-lg border-y-[1px] border-l-[1px] border-gray-300 text-gray-300  dark:border-gray-600 dark:text-gray-600 rounded-l-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                                value={code}
+                                            />
+                                            <button
+                                                className="p-1 px-2 text-sm font-medium rounded-r-md border-[1px] border-gray-300 text-gray-300  dark:border-gray-600 dark:text-gray-600 focus:outline-none"
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(
+                                                        code,
+                                                    )
+                                                    toast.success(
+                                                        'Meeting Code copied to clipboard!',
+                                                    )
+                                                }}
+                                            >
+                                                <IoCopyOutline />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <Link to="/press">
+                                        <button className="rounded-md border-[1px] border-gray-300 text-gray-300 dark:border-gray-600 dark:text-gray-600 text-sm px-4 p-2">
+                                            Join
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     <div className="text-center mb-6">
                         <h2 className="text-4xl pricedown font-semibold text-[var(--lgold)] dark:text-[var(--dltext)]">
