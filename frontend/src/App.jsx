@@ -12,7 +12,6 @@ axios.defaults.withCredentials = true
 const App = () => {
     const {pathname} = useLocation()
 
-
     const hideNavbarPaths = [
         '/login',
         '/register',
@@ -21,7 +20,7 @@ const App = () => {
         '/reset',
         '/para',
     ]
-    const shouldHideNavbar = hideNavbarPaths.includes(pathname) 
+    const shouldHideNavbar = hideNavbarPaths.includes(pathname)
 
     return (
         <UserContextProvider>

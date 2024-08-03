@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import './Starter2.css'
 
-const Starter2 = () => {
-    const [hasEntered, setHasEntered] = useState(false)
+const Starter2 = ({onEnter}) => {
     const [buttonText, setButtonText] = useState('Scroll down')
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollThreshold = window.innerHeight * 0.7
+            const scrollThreshold =
+                document.documentElement.scrollHeight * 0.7 - window.innerHeight
             if (window.scrollY >= scrollThreshold) {
-                setButtonText('Click to enter')
+                setButtonText('Enter Website')
                 document.querySelector('.centered-text').style.display = 'block'
             } else {
                 setButtonText('Scroll down')
@@ -21,13 +23,17 @@ const Starter2 = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleEnter = () => {
-        setHasEntered(true)
-        document.body.style.overflow = 'auto' // Restore scrolling
+    const handleClick = () => {
+        // Reset scroll position
+        window.scrollTo(0, 0)
+        // Call the passed in onEnter function
+        if (onEnter) onEnter()
+        // Navigate to the '/' route
+        navigate('/')
     }
 
     return (
-        <div className={`starter2 ${hasEntered ? 'hidden' : ''}`}>
+        <div>
             <div className="front-box">
                 <div className="front"></div>
             </div>
@@ -35,7 +41,7 @@ const Starter2 = () => {
                 <div className="back"></div>
             </div>
             <div className="centered-text p-2 px-6 border-y-[2px] border-white poppins">
-                <button onClick={handleEnter}>{buttonText}</button>
+                <button onClick={handleClick}>{buttonText}</button>
             </div>
         </div>
     )
