@@ -34,6 +34,8 @@ import AdminShowReport from './components/admin/AdminShowReport.jsx'
 import JobApplication from './components/admin/JobApplication.jsx'
 import Press from './components/video/Press.jsx'
 import Room from './components/video/Room.jsx'
+import ForgotPassword from './components/Forms/ForgotPassword.jsx'
+import ResetPassword from './components/Forms/ResetPassword.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -54,6 +56,8 @@ const router = createBrowserRouter(
             />
             <Route path="/login" element={<Login />} />,
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+            <Route path="/reset" element={<ResetPassword />}></Route>
             <Route path="/news" element={<News />} />,
             <Route path="/most-wanted" element={<Wanted />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,

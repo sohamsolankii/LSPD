@@ -79,6 +79,56 @@ export const logOut = AsyncHandler(async (req, res) => {
 });
 
 
+// * Forgot password
+export const forgotPassword = AsyncHandler(async (req, res) => {
+    const { email } = req.body;
+    const oldUser = await User.findOne({ email });
+
+    if (!oldUser) {
+        throw new ApiError(401, 'Invalid Details');
+    }
+
+    // const secret = process.env.JWT_SECRET + oldUser.password;
+    // const token = jwt.sign({ id: oldUser._id, email: oldUser.email }, secret, {
+    //     expiresIn: '3m',
+    // });
+
+    const link = `http://localhost:5173/reset`;
+    console.log(link);
+
+    // Send the email with the reset link
+    await sendMail(
+        email,
+        'Password Reset Request',
+        `Hi ${oldUser.name},\n\nPlease click on the following link to reset your password:\n\n${link}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nThe Team`
+    );
+
+    res.status(200).json({
+        message: 'Password reset link sent to your email',
+    });
+});
+
+
+// Reset password
+export const resetPassword = AsyncHandler(async (req, res) => {
+    const {mail, newPassword, confirmPassword} = req.body
+
+    if (newPassword !== confirmPassword) {
+        throw new ApiError(400, 'Passwords do not match')
+    }
+
+    const oldUser = await User.findOne({email: mail})
+
+    if (!oldUser) {
+        throw new ApiError(401, 'User does not exist')
+    }
+
+
+    oldUser.password = newPassword
+    await oldUser.save()
+    res.status(200).json({message: 'Password has been reset'})
+})
+
 // * Login for the Admin
 export const adminLogin = (req, res) => {
     const {passkey} = req.body

@@ -12,7 +12,13 @@ axios.defaults.withCredentials = true
 const App = () => {
     const {pathname} = useLocation()
 
-    const hideNavbarPaths = ['/login', '/register', '/admin-login']
+    const hideNavbarPaths = [
+        '/login',
+        '/register',
+        '/admin-login',
+        '/forgot-password',
+        '/reset',
+    ]
     const shouldHideNavbar = hideNavbarPaths.includes(pathname)
 
     return (
