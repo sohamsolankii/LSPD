@@ -1,33 +1,42 @@
 import axios from 'axios'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {FaLocationDot} from 'react-icons/fa6'
 import toast from 'react-hot-toast'
 import {useNavigate} from 'react-router-dom'
+import {UserContext} from '../../../context/userContext'
 
 const Careers = () => {
     const [jobs, setJobs] = useState([])
-    const navigate = useNavigate()
     const [selectedJob, setSelectedJob] = useState(null)
+    const {user} = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchCareers()
     }, [])
 
     const applyJob = async (id) => {
-        try {
-            await axios.get(`/api/v1/application/${id}`)
-            toast.success('Application submitted successfully!')
-        } catch (err) {
-            if (err.response && err.response.status === 404) {
-                toast.error('This job has already been applied')
-            } else {
-                toast.error('You must login first!')
-                navigate('/login')
+        if (user) {
+            try {
+                await axios.get(
+                    `/api/v1/application/${id}`,
+                    {withCredentials: true},
+                )
+                toast.success('Application submitted successfully!')
+            } catch (err) {
+                if (err.response && err.response.status === 404) {
+                    toast.error('This job has already been applied')
+                } else {
+                    toast.error('Error submitting application')
+                }
+                console.log(err)
             }
-            console.log(err)
+        } else {
+            toast.error('You must login first!')
+            navigate('/login')
         }
     }
 

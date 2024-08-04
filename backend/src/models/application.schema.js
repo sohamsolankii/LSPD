@@ -3,30 +3,15 @@ const Schema = mongoose.Schema
 
 const applicationSchema = new Schema(
     {
-        job: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Job',
-            required: true,
-        },
         user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'User',
-            required: true,
+            required: [true, 'User is required'],
         },
-        whyHireYou: {
-            type: String,
-            required: true,
-        },
-        pastExperience: {
-            type: String,
-            required: true,
-        },
-        education: {
-            type: String,
-            required: true,
-        },
-        additionalInfo: {
-            type: String,
+        job: {
+            type: Schema.Types.ObjectId,
+            ref: 'Job',
+            required: [true, 'Job is required'],
         },
     },
     {
