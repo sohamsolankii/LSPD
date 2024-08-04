@@ -7,10 +7,94 @@ import {FaLocationDot} from 'react-icons/fa6'
 import toast from 'react-hot-toast'
 import {useNavigate} from 'react-router-dom'
 
+const jobData = [
+    {
+        _id: '1',
+        title: 'Software Engineer',
+        department: 'Engineering',
+        location: 'San Francisco, CA',
+        jobType: 'Full-time',
+        salaryRange: '$100,000 - $120,000',
+        responsibilities:
+            'Develop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to defineDevelop and maintain web applications. Collaborate with cross-functional teams to define, design, and ship new features.',
+        description:
+            'As a Software Engineer, you will be responsible for developing high-quality web applications.',
+        requirements:
+            '3+ years of experience in software development. Proficiency in JavaScript, React, and Node.js.',
+        contactEmail: 'hr@company.com',
+        postedDate: '2024-07-01T00:00:00Z',
+        applicationDeadline: '2024-08-01T00:00:00Z',
+    },
+    {
+        _id: '2',
+        title: 'Product Manager',
+        department: 'Product',
+        location: 'Remote',
+        jobType: 'Full-time',
+        salaryRange: '$90,000 - $110,000',
+        responsibilities:
+            'Define product vision and strategy. Work closely with engineering, design, and marketing teams.',
+        description:
+            'We are looking for a Product Manager to drive product development from ideation to launch.',
+        requirements:
+            '5+ years of experience in product management. Strong understanding of agile methodologies.',
+        contactEmail: 'product@company.com',
+        postedDate: '2024-06-25T00:00:00Z',
+        applicationDeadline: '2024-07-25T00:00:00Z',
+    },
+    {
+        _id: '3',
+        title: 'UX Designer',
+        department: 'Design',
+        location: 'New York, NY',
+        jobType: 'Full-time',
+        salaryRange: '$80,000 - $100,000',
+        responsibilities:
+            'Create user-centered designs by understanding business requirements. Conduct user research and evaluate user feedback.',
+        description:
+            'The UX Designer will be responsible for creating and implementing innovative designs that enhance user experience.',
+        requirements:
+            '2+ years of experience in UX design. Proficiency in design tools such as Sketch, Figma, and Adobe XD.',
+        contactEmail: 'design@company.com',
+        postedDate: '2024-07-05T00:00:00Z',
+        applicationDeadline: '2024-08-05T00:00:00Z',
+    },
+    {
+        _id: '4',
+        title: 'Marketing Specialist',
+        department: 'Marketing',
+        location: 'Los Angeles, CA',
+        jobType: 'Part-time',
+        salaryRange: '$50,000 - $70,000',
+        responsibilities:
+            'Develop and execute marketing campaigns. Analyze market trends and track campaign performance.',
+        description:
+            'We are seeking a Marketing Specialist to help us create and execute effective marketing strategies.',
+        requirements:
+            '3+ years of experience in marketing. Strong analytical and project management skills.',
+        contactEmail: 'marketing@company.com',
+        postedDate: '2024-07-10T00:00:00Z',
+        applicationDeadline: '2024-08-10T00:00:00Z',
+    },
+]
+
 const Careers = () => {
     const [jobs, setJobs] = useState([])
     const navigate = useNavigate()
     const [selectedJob, setSelectedJob] = useState(null)
+    const [showModal, setShowModal] = useState(false)
+    const [modalContent, setModalContent] = useState('')
+    const [modalTitle, setModalTitle] = useState('')
+
+    const handleReadMore = (content, title) => {
+        setModalContent(content)
+        setModalTitle(title)
+        setShowModal(true)
+    }
+
+    const truncateText = (text, length = 22) => {
+        return text.length > length ? `${text.substring(0, length)}...` : text
+    }
 
     useEffect(() => {
         fetchCareers()
@@ -136,7 +220,7 @@ const Careers = () => {
                             </div>
                             <div className="flex items-center space-x-4">
                                 <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaLocationDot />
+                                    <FaIcons.FaMapMarkerAlt />
                                 </div>
                                 <div>
                                     <p className="font-light text-xs">
@@ -180,7 +264,23 @@ const Careers = () => {
                                         Responsibilities
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.responsibilities}
+                                        {truncateText(
+                                            selectedJob.responsibilities,
+                                        )}{' '}
+                                        {selectedJob.responsibilities.length >
+                                            15 && (
+                                            <button
+                                                onClick={() =>
+                                                    handleReadMore(
+                                                        selectedJob.responsibilities,
+                                                        'Responsibilities',
+                                                    )
+                                                }
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Read More
+                                            </button>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -193,7 +293,21 @@ const Careers = () => {
                                         Description
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.description}
+                                        {truncateText(selectedJob.description)}{' '}
+                                        {selectedJob.description.length >
+                                            15 && (
+                                            <button
+                                                onClick={() =>
+                                                    handleReadMore(
+                                                        selectedJob.description,
+                                                        'Description',
+                                                    )
+                                                }
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Read More
+                                            </button>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -206,7 +320,21 @@ const Careers = () => {
                                         Requirements
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.requirements}
+                                        {truncateText(selectedJob.requirements)}{' '}
+                                        {selectedJob.requirements.length >
+                                            15 && (
+                                            <button
+                                                onClick={() =>
+                                                    handleReadMore(
+                                                        selectedJob.requirements,
+                                                        'Requirements',
+                                                    )
+                                                }
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Read More
+                                            </button>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -268,6 +396,24 @@ const Careers = () => {
                                 Close
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+            {showModal && (
+                <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+                        <h2 className="text-2xl text-gray-800 dark:text-gray-100 mb-4">
+                            {modalTitle}
+                        </h2>
+                        <p className="text-gray-800 dark:text-gray-200">
+                            {modalContent}
+                        </p>
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                            Close
+                        </button>
                     </div>
                 </div>
             )}
