@@ -25,7 +25,20 @@ const Room = () => {
         })
     }
 
-    return <div ref={meeting} style={{width: '100vw', height: '100vh'}}></div>
+    return (
+        <div
+            ref={meeting}
+            style={{
+                width: '100vw',
+                height: '100vh',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                zIndex: '10000',
+                backgroundColor: 'rgba(0, 0, 0, 0.8)', // Optional: to add a semi-transparent background
+            }}
+        ></div>
+    )
 }
 
 export default Room
