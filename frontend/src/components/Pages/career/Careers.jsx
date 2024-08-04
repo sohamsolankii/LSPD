@@ -6,13 +6,10 @@ import * as IoIcons from 'react-icons/io'
 import {FaLocationDot} from 'react-icons/fa6'
 import toast from 'react-hot-toast'
 import {useNavigate} from 'react-router-dom'
-import {UserContext} from '../../../context/userContext'
 
 const Careers = () => {
     const [jobs, setJobs] = useState([])
     const [selectedJob, setSelectedJob] = useState(null)
-    const {user} = useContext(UserContext)
-    const navigate = useNavigate()
 
     useEffect(() => {
         fetchCareers()
@@ -145,7 +142,7 @@ const Careers = () => {
                             </div>
                             <div className="flex items-center space-x-4">
                                 <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaLocationDot />
+                                    <FaIcons.FaMapMarkerAlt />
                                 </div>
                                 <div>
                                     <p className="font-light text-xs">
@@ -189,7 +186,23 @@ const Careers = () => {
                                         Responsibilities
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.responsibilities}
+                                        {truncateText(
+                                            selectedJob.responsibilities,
+                                        )}{' '}
+                                        {selectedJob.responsibilities.length >
+                                            15 && (
+                                            <button
+                                                onClick={() =>
+                                                    handleReadMore(
+                                                        selectedJob.responsibilities,
+                                                        'Responsibilities',
+                                                    )
+                                                }
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Read More
+                                            </button>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -202,7 +215,21 @@ const Careers = () => {
                                         Description
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.description}
+                                        {truncateText(selectedJob.description)}{' '}
+                                        {selectedJob.description.length >
+                                            15 && (
+                                            <button
+                                                onClick={() =>
+                                                    handleReadMore(
+                                                        selectedJob.description,
+                                                        'Description',
+                                                    )
+                                                }
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Read More
+                                            </button>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -215,7 +242,21 @@ const Careers = () => {
                                         Requirements
                                     </p>
                                     <p className="md:text-lg text-md">
-                                        {selectedJob.requirements}
+                                        {truncateText(selectedJob.requirements)}{' '}
+                                        {selectedJob.requirements.length >
+                                            15 && (
+                                            <button
+                                                onClick={() =>
+                                                    handleReadMore(
+                                                        selectedJob.requirements,
+                                                        'Requirements',
+                                                    )
+                                                }
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Read More
+                                            </button>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -277,6 +318,24 @@ const Careers = () => {
                                 Close
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+            {showModal && (
+                <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+                        <h2 className="text-2xl text-gray-800 dark:text-gray-100 mb-4">
+                            {modalTitle}
+                        </h2>
+                        <p className="text-gray-800 dark:text-gray-200">
+                            {modalContent}
+                        </p>
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                            Close
+                        </button>
                     </div>
                 </div>
             )}
