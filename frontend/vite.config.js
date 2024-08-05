@@ -12,7 +12,8 @@ export default defineConfig({
             },
         },
     },
+    build: {
+        outDir: 'build', // Change the output directory to 'build'
+    },
     plugins: [react()],
 })
-
-// proxy is used to connect frontend with backend here we it's work like http://localhost:3000/api
