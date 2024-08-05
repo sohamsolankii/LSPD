@@ -1,138 +1,123 @@
-# LSPD Website Documentation
+# LSPD Eagle-eye
 
-## Table of Contents
+**LSPD Eagle-eye** is a comprehensive web application for the Los Santos Police Department (LSPD), inspired by the GTA game series. This project was developed by a team of two as part of the Website Making Challenge (WMC) 5.0 held at Ahmedabad University.
 
--   [API Routes Summary](#api-routes-summary)
-    -   [Most Wanted List](#most-wanted-list)
-    -   [News & Announcements](#news--announcements)
-    -   [Careers at LSPD](#careers-at-lspd)
-    -   [Tips Submission](#tips-submission)
-    -   [Authentication](#authentication)
--   [Bonus Features](#bonus-features)
-    -   [Face Recognition](#face-recognition)
-    -   [Multi-Language Support](#multi-language-support)
-    -   [Notification System](#notification-system)
-    -   [Interactive Maps](#interactive-maps)
-    -   [Crime Alert Subscriptions](#crime-alert-subscriptions)
-    -   [Community Engagement Platform](#community-engagement-platform)
-    -   [Anonymous Feedback System](#anonymous-feedback-system)
+## Project Overview
 
----
+LSPD Eagle-eye is a tool designed for users and citizens to access crucial information and provide necessary inputs to stay informed. The website is feature-rich and aims to enhance communication between the police department and the public.
 
-## API Routes Summary
+## Features
 
-### Most Wanted List
+### User Features
 
-#### done
+-   **Login, Logout, Signup, Forgot Password**: Secure authentication system.
+-   **Most Wanted List**: View information about notorious criminals.
+-   **Careers at LSPD**: Browse and apply for various jobs and internships.
+-   **Submit a Tip**: Users can submit tips anonymously or with their account.
+-   **AI Chatbot - Trevor Salamanca**: Engage with a police officer-styled chatbot that provides informative but sarcastic and non-boring answers relevant to LSPD.
+-   **News Section**: Read, like, dislike, and comment on news articles.
+-   **Live Video Press/News**: Join live video conferences with chat functionality.
+-   **Report a Crime**: Submit crime reports easily.
+-   **Support Page**: Access important helplines and numbers.
 
-| Route Name      | Method | URL Pattern             |
-| --------------- | ------ | ----------------------- |
-| List Criminals  | GET    | `/api/most-wanted`      |
-| Get Criminal    | GET    | `/api/most-wanted/{id}` |
-| Add Criminal    | POST   | `/api/most-wanted`      |
-| Update Criminal | PUT    | `/api/most-wanted/{id}` |
-| Delete Criminal | DELETE | `/api/most-wanted/{id}` |
+### Admin Features
 
-### News & Announcements
+-   **Admin Login with Passcode**: Secure admin access.
+-   **Job Postings**: Add new job postings and manage applications.
+-   **News Articles**: Add and manage news articles.
+-   **Video Press**: Start and manage live video conferences.
+-   **Tips Management**: View and delete tips shared by users.
+-   **Crime Reports Management**: View and manage crime reports.
+-   **Most Wanted Management**: Add, update, and delete most wanted criminals.
+-   **Parallax Animations and Stylish UI**: Enhanced user experience with animations and modern styles.
 
-#### done
+## Technology Stack
 
-| Route Name          | Method | URL Pattern      |
-| ------------------- | ------ | ---------------- |
-| List Announcements  | GET    | `/api/news`      |
-| Get Announcement    | GET    | `/api/news/{id}` |
-| Post Announcement   | POST   | `/api/news`      |
-| Update Announcement | PUT    | `/api/news/{id}` |
-| Delete Announcement | DELETE | `/api/news/{id}` |
+### Frontend
 
-### Careers at LSPD
+-   **React.js**: JavaScript library for building user interfaces.
+-   **Tailwind CSS**: Utility-first CSS framework for styling.
+-   **CSS**: Custom styles for various components.
 
-| Route Name    | Method | URL Pattern               |
-| ------------- | ------ | ------------------------- |
-| List Jobs     | GET    | `/api/careers`            |
-| Get Job       | GET    | `/api/careers/{id}`       |
-| Post Job      | POST   | `/api/careers`            |
-| Update Job    | PUT    | `/api/careers/{id}`       |
-| Delete Job    | DELETE | `/api/careers/{id}`       |
-| Apply for Job | POST   | `/api/careers/{id}/apply` |
+### Backend
 
-### Tips Submission
+-   **MongoDB**: NoSQL database for storing data.
+-   **Express.js**: Web application framework for Node.js.
 
-#### done
+## File Structure
 
-| Route Name             | Method | URL Pattern |
-| ---------------------- | ------ | ----------- |
-| Submit Tip             | POST   | `/api/tips` |
-| List Tips (Admin Only) | GET    | `/api/tips` |
+The project consists of various components, including forms for user authentication, admin dashboards, pages for different functionalities, and utility components.
 
-### Authentication
+### Main Files
 
-#### done
+-   **`main.jsx`**: Entry point of the application, setting up the router and rendering the application.
+-   **`App.jsx`**: Main application component that includes the navbar, toaster notifications, and chatbot.
 
-| Route Name       | Method | URL Pattern         |
-| ---------------- | ------ | ------------------- |
-| User Login       | POST   | `/api/auth/login`   |
-| User Signup      | POST   | `/api/auth/signup`  |
-| User Logout      | POST   | `/api/auth/logout`  |
-| Get User Profile | GET    | `/api/auth/profile` |
+### Components
 
-## Bonus Features
+-   **Forms**: `Login`, `Register`, `ForgotPassword`, `ResetPassword`, `AdminLogin`
+-   **Pages**: `ReportCrime`, `Dashboard`, `HomeSubmitTip`, `HomeCareers`, `HomeNews`, `WantedList`, `About`, `SubmitTip`, `Support`, `News`, `Careers`, `Press`, `Room`
+-   **Admin**: `AddJob`, `AddNews`, `AdminAddCriminal`, `AdminDashboard`, `AdminShowTip`, `AdminShowReport`, `JobApplication`
+-   **Header**: `Navbar`
+-   **Footer**: `Footer`
+-   **Chatbot**: `ChatbotContainer`
 
-### Face Recognition
+## Getting Started
 
--   **Upload Suspect Image**: Users can upload a suspect image, which will be matched against the most wanted list using face recognition technology.
+### Prerequisites
 
-| Route Name    | Method | URL Pattern                  |
-| ------------- | ------ | ---------------------------- |
-| Upload Image  | POST   | `/api/face-recognition`      |
-| Match Results | GET    | `/api/face-recognition/{id}` |
+-   Node.js
+-   MongoDB
 
-### Multi-Language Support
+### Installation
 
--   **Support for Multiple Languages**: The website can be viewed in multiple languages to cater to a diverse user base.
+1. Clone the repository:
 
-### Notification System
+    ```bash
+    git clone https://github.com/your-username/lspd-eagle-eye.git
+    ```
 
--   **Real-time Notifications**: Users receive notifications for new announcements, job postings, and updates on the most wanted list.
+2. Navigate to the project directory:
 
-| Route Name        | Method | URL Pattern                    |
-| ----------------- | ------ | ------------------------------ |
-| Get Notifications | GET    | `/api/notifications`           |
-| Mark as Seen      | PATCH  | `/api/notifications/{id}/seen` |
+    ```bash
+    cd lspd-eagle-eye
+    ```
 
-### Interactive Maps
+3. Install dependencies:
 
--   **Crime Hotspots**: Users can view interactive maps showing crime hotspots and recent incidents in their area.
+    ```bash
+    npm install
+    ```
 
-| Route Name | Method | URL Pattern                |
-| ---------- | ------ | -------------------------- |
-| View Map   | GET    | `/api/maps/crime-hotspots` |
+### Running the Application
 
-### Crime Alert Subscriptions
+1. Start the backend server:
+    ```bash
+    npm run server
+    ```
+2. Start the frontend development server:
+    ```bash
+    npm start
+    ```
 
--   **Email and SMS Alerts**: Users can subscribe to receive crime alerts for their area via email or SMS.
+### Environment Variables
 
-| Route Name         | Method | URL Pattern               |
-| ------------------ | ------ | ------------------------- |
-| Subscribe Alerts   | POST   | `/api/alerts/subscribe`   |
-| Unsubscribe Alerts | POST   | `/api/alerts/unsubscribe` |
+Ensure you have a .env file with the following variables:
 
-### Community Engagement Platform
+    ```bash
+    MONGO_URI=your-mongodb-uri
+    JWT_SECRET=your-jwt-secret
+    PORT=3000
+    ```
 
--   **Forums and Discussions**: Users can engage with the community, share information, and discuss safety concerns.
+### Contribution
 
-| Route Name        | Method | URL Pattern           |
-| ----------------- | ------ | --------------------- |
-| List Discussions  | GET    | `/api/community`      |
-| Post Discussion   | POST   | `/api/community`      |
-| Get Discussion    | GET    | `/api/community/{id}` |
-| Delete Discussion | DELETE | `/api/community/{id}` |
+Contributions are welcome! Please open an issue or submit a pull request.
 
-### Anonymous Feedback System
+### License
 
--   **Feedback on Police Services**: Users can provide anonymous feedback on police services to help improve public safety efforts.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-| Route Name            | Method | URL Pattern     |
-| --------------------- | ------ | --------------- |
-| Submit Feedback       | POST   | `/api/feedback` |
-| List Feedback (Admin) | GET    | `/api/feedback` |
+### Acknowledgements
+
+We would like to thank the organizers of the Website Making Challenge (WMC) 5.0 at Ahmedabad University for providing this opportunity.
