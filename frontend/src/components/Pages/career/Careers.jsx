@@ -1,41 +1,46 @@
 import axios from 'axios'
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {FaLocationDot} from 'react-icons/fa6'
 import toast from 'react-hot-toast'
 import {useNavigate} from 'react-router-dom'
-import {UserContext} from '../../../context/userContext'
 
 const Careers = () => {
     const [jobs, setJobs] = useState([])
-    const [selectedJob, setSelectedJob] = useState(null)
-    const {user} = useContext(UserContext)
     const navigate = useNavigate()
+    const [selectedJob, setSelectedJob] = useState(null)
+    const [showModal, setShowModal] = useState(false)
+    const [modalContent, setModalContent] = useState('')
+    const [modalTitle, setModalTitle] = useState('')
+
+    const handleReadMore = (content, title) => {
+        setModalContent(content)
+        setModalTitle(title)
+        setShowModal(true)
+    }
+
+    const truncateText = (text, length = 20) => {
+        return text.length > length ? `${text.substring(0, length)}...` : text
+    }
 
     useEffect(() => {
         fetchCareers()
     }, [])
 
     const applyJob = async (id) => {
-        if (user) {
-            try {
-                await axios.get(`/api/v1/application/${id}`, {
-                    withCredentials: true,
-                })
-                toast.success('Application submitted successfully!')
-            } catch (err) {
-                if (err.response && err.response.status === 404) {
-                    toast.error('This job has already been applied')
-                } else {
-                    toast.error('Error submitting application')
-                }
-                console.log(err)
+        try {
+            await axios.get(`/api/v1/application/${id}`)
+            toast.success('Application submitted successfully!')
+        } catch (err) {
+            if (err.response && err.response.status === 404) {
+                toast.error('This job has already been applied')
+            } else {
+                toast.error('You must login first!')
+                navigate('/login')
             }
-        } else {
-            toast.error('You must login first!')
-            navigate('/login')
+            console.log(err)
         }
     }
 
@@ -118,149 +123,110 @@ const Careers = () => {
                             Job Details
                         </h2>
                         <div className="flex items-center grid gap-4 md:grid-cols-3 grid-cols-1 justify-center rounded-lg p-4">
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaIcons.FaUserTie />
+                            {[
+                                {
+                                    icon: <FaIcons.FaUserTie />,
+                                    label: 'Title',
+                                    value: selectedJob.title,
+                                },
+                                {
+                                    icon: <FaIcons.FaUserTag />,
+                                    label: 'Department',
+                                    value: selectedJob.department || 'LSPD',
+                                },
+                                {
+                                    icon: <FaIcons.FaMapMarkerAlt />,
+                                    label: 'Location',
+                                    value: selectedJob.location,
+                                },
+                                {
+                                    icon: <AiIcons.AiOutlineBars />,
+                                    label: 'Job Type',
+                                    value: selectedJob.jobType,
+                                },
+                                {
+                                    icon: <FaIcons.FaDollarSign />,
+                                    label: 'Salary',
+                                    value: selectedJob.salaryRange,
+                                },
+                                {
+                                    icon: <AiIcons.AiOutlineCheckCircle />,
+                                    label: 'Responsibilities',
+                                    value: truncateText(
+                                        selectedJob.responsibilities,
+                                    ),
+                                    fullValue: selectedJob.responsibilities,
+                                    type: 'Responsibilities',
+                                },
+                                {
+                                    icon: <IoIcons.IoIosPaper />,
+                                    label: 'Description',
+                                    value: truncateText(
+                                        selectedJob.description,
+                                    ),
+                                    fullValue: selectedJob.description,
+                                    type: 'Description',
+                                },
+                                {
+                                    icon: <IoIcons.IoIosListBox />,
+                                    label: 'Requirements',
+                                    value: truncateText(
+                                        selectedJob.requirements,
+                                    ),
+                                    fullValue: selectedJob.requirements,
+                                    type: 'Requirements',
+                                },
+                                {
+                                    icon: <AiIcons.AiOutlineMail />,
+                                    label: 'Contact Email',
+                                    value: selectedJob.contactEmail,
+                                },
+                                {
+                                    icon: <FaIcons.FaCalendarAlt />,
+                                    label: 'Posted Date',
+                                    value: new Date(
+                                        selectedJob.postedDate,
+                                    ).toLocaleDateString(),
+                                },
+                                {
+                                    icon: <FaIcons.FaClock />,
+                                    label: 'Application Deadline',
+                                    value: new Date(
+                                        selectedJob.applicationDeadline,
+                                    ).toLocaleDateString(),
+                                },
+                            ].map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="flex items-center space-x-4"
+                                >
+                                    <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
+                                        {item.icon}
+                                    </div>
+                                    <div>
+                                        <p className="font-light text-xs">
+                                            {item.label}
+                                        </p>
+                                        <p className="md:text-lg text-md">
+                                            {item.value}
+                                            {item.fullValue &&
+                                                item.fullValue.length > 15 && (
+                                                    <button
+                                                        onClick={() =>
+                                                            handleReadMore(
+                                                                item.fullValue,
+                                                                item.type,
+                                                            )
+                                                        }
+                                                        className="text-blue-500 hover:underline"
+                                                    >
+                                                        Read More
+                                                    </button>
+                                                )}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="font-light text-xs">Title</p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.title}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaIcons.FaUserTag />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Department
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.department || 'LSPD'}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaLocationDot />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Location
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.location}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <AiIcons.AiOutlineBars />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Job Type
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.jobType}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaIcons.FaDollarSign />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">Salary</p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.salaryRange}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <AiIcons.AiOutlineCheckCircle />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Responsibilities
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.responsibilities}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <IoIcons.IoIosPaper />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Description
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.description}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <IoIcons.IoIosListBox />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Requirements
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.requirements}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <AiIcons.AiOutlineMail />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Contact Email
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {selectedJob.contactEmail}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaIcons.FaCalendarAlt />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Posted Date
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {new Date(
-                                            selectedJob.postedDate,
-                                        ).toLocaleDateString()}
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <div className="w-10 h-10 border-[1px] dark:border-gray-400 flex justify-center items-center rounded-full">
-                                    <FaIcons.FaClock />
-                                </div>
-                                <div>
-                                    <p className="font-light text-xs">
-                                        Application Deadline
-                                    </p>
-                                    <p className="md:text-lg text-md">
-                                        {new Date(
-                                            selectedJob.applicationDeadline,
-                                        ).toLocaleDateString()}
-                                    </p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className="flex justify-center items-center space-x-6">
                             <button
@@ -276,6 +242,23 @@ const Careers = () => {
                                 Close
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {showModal && (
+                <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+                        <h2 className="text-2xl mb-4">{modalTitle}</h2>
+                        <p className="text-gray-800 dark:text-gray-200">
+                            {modalContent}
+                        </p>
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        >
+                            Close
+                        </button>
                     </div>
                 </div>
             )}
