@@ -6,9 +6,9 @@ export default defineConfig({
     server: {
         proxy: {
             '/api/v1': {
-                target: 'http://localhost:3000/',
+                target: 'https://lspd-mq7j.onrender.com',
                 changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
+                rewrite: (path) => path.replace(/^\/api\/v1/, '/v1'), // Corrected this line
             },
         },
     },
