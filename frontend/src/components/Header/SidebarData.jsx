@@ -4,7 +4,6 @@ import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
 import {TbReport} from 'react-icons/tb'
 
-
 export const SidebarData = [
     {
         title: 'Home',
@@ -45,6 +44,12 @@ export const SidebarData = [
     {
         title: 'Support',
         path: '/support',
+        icon: <IoIcons.IoMdHelpCircle />,
+        cName: 'nav-text',
+    },
+    {
+        title: 'About',
+        path: '/about',
         icon: <IoIcons.IoMdHelpCircle />,
         cName: 'nav-text',
     },

@@ -116,7 +116,7 @@ const Navbar = ({isAdmin = false}) => {
                     <Link
                         to={
                             !passkey || passkey.every((digit) => digit === '')
-                                ? '/home'
+                                ? '/'
                                 : '/admin'
                         }
                         className="flex items-center text-xl md:text-2xl font-bold sm:text-[var(--lgold)] text-[var(--lblue)] sm:dark:text-[var(--dltext)] dark:text-[var(--dlblue)]"

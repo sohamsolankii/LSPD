@@ -22,7 +22,9 @@ import HomeCareers from './components/HomeCareers.jsx'
 import HomeNews from './components/HomeNews.jsx'
 import WantedList from './components/WantedList.jsx'
 import Wanted from './components/Wanted.jsx'
+import About from './components/About.jsx'
 import SubmitTip from './components/SubmitTip.jsx'
+import Support from './components/Support.jsx'
 import News from './components/Pages/news/News.jsx'
 import Careers from './components/Pages/career/Careers.jsx'
 import AddJob from './components/admin/AddJob.jsx'
@@ -67,7 +69,9 @@ const router = createBrowserRouter(
             <Route path="/most-wanted" element={<Wanted />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
             <Route path="/report-crime" element={<ReportCrime />} />,
+            <Route path="/about" element={<About />} />,
             <Route path="/career" element={<Careers />} />
+            <Route path="/support" element={<Support />} />
             <Route path="/press" element={<Press />} />
             <Route path="/room/:roomID" element={<Room />} />
             <Route path="/admin" element={<AdminDashboard />} />
