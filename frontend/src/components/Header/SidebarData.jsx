@@ -3,6 +3,7 @@ import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
 import {TbReport} from 'react-icons/tb'
+import {MdOutlineContactPage} from 'react-icons/md'
 
 export const SidebarData = [
     {
@@ -50,7 +51,7 @@ export const SidebarData = [
     {
         title: 'About',
         path: '/about',
-        icon: <IoIcons.IoMdHelpCircle />,
+        icon: <MdOutlineContactPage />,
         cName: 'nav-text',
     },
 ]

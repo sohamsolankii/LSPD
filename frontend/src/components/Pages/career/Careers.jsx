@@ -9,11 +9,52 @@ import {useNavigate} from 'react-router-dom'
 
 const Careers = () => {
     const [jobs, setJobs] = useState([])
+    const [filteredJobs, setFilteredJobs] = useState([])
     const navigate = useNavigate()
     const [selectedJob, setSelectedJob] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [modalContent, setModalContent] = useState('')
     const [modalTitle, setModalTitle] = useState('')
+
+    const [titleFilter, setTitleFilter] = useState('')
+    const [locationFilter, setLocationFilter] = useState('')
+    const [salaryFilter, setSalaryFilter] = useState('')
+    const [jobTypeFilter, setJobTypeFilter] = useState('')
+
+    useEffect(() => {
+        fetchCareers()
+    }, [])
+
+    useEffect(() => {
+        applyFilters()
+    }, [titleFilter, locationFilter, salaryFilter, jobTypeFilter, jobs])
+
+    const applyFilters = () => {
+        let filtered = jobs
+        if (titleFilter) {
+            filtered = filtered.filter((job) =>
+                job.title.toLowerCase().includes(titleFilter.toLowerCase()),
+            )
+        }
+        if (locationFilter) {
+            filtered = filtered.filter((job) =>
+                job.location
+                    .toLowerCase()
+                    .includes(locationFilter.toLowerCase()),
+            )
+        }
+        if (salaryFilter) {
+            filtered = filtered.filter((job) =>
+                job.salaryRange.includes(salaryFilter),
+            )
+        }
+        if (jobTypeFilter) {
+            filtered = filtered.filter((job) =>
+                job.jobType.toLowerCase().includes(jobTypeFilter.toLowerCase()),
+            )
+        }
+        setFilteredJobs(filtered)
+    }
 
     const handleReadMore = (content, title) => {
         setModalContent(content)
@@ -24,10 +65,6 @@ const Careers = () => {
     const truncateText = (text, length = 20) => {
         return text.length > length ? `${text.substring(0, length)}...` : text
     }
-
-    useEffect(() => {
-        fetchCareers()
-    }, [])
 
     const applyJob = async (id) => {
         try {
@@ -70,8 +107,39 @@ const Careers = () => {
                         </span>
                     </div>
 
+                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <input
+                            type="text"
+                            placeholder="Filter by title"
+                            value={titleFilter}
+                            onChange={(e) => setTitleFilter(e.target.value)}
+                            className="p-2 rounded-md border-gray-300 bg-[var(--opac)] text-white hover:dark:bg-blue-100"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Filter by location"
+                            value={locationFilter}
+                            onChange={(e) => setLocationFilter(e.target.value)}
+                            className="p-2 rounded-md border-gray-300 bg-[var(--opac)] text-white hover:dark:bg-blue-100"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Filter by salary"
+                            value={salaryFilter}
+                            onChange={(e) => setSalaryFilter(e.target.value)}
+                            className="p-2 rounded-md border-gray-300 bg-[var(--opac)] text-white hover:dark:bg-blue-100"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Filter by job type"
+                            value={jobTypeFilter}
+                            onChange={(e) => setJobTypeFilter(e.target.value)}
+                            className="p-2 rounded-md border-gray-100 bg-[var(--opac)] text-white hover:dark:bg-blue-100"
+                        />
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {jobs.map((job) => (
+                        {filteredJobs.map((job) => (
                             <div
                                 key={job._id}
                                 className="p-6 bg-[var(--opac)] dark:bg-gray-100 border-[1px] border-[var(--opac)] dark:border-gray-300 rounded-lg shadow-black/50 shadow-lg dark:shadow-none hover:bg-[var(--opac2)] hover:dark:bg-blue-100"
