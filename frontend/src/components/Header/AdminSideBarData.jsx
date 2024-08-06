@@ -4,6 +4,7 @@ import * as IoIcons from 'react-icons/io'
 import {HiMiniNewspaper} from 'react-icons/hi2'
 import {MdLocalPolice} from 'react-icons/md'
 import {FaLink} from 'react-icons/fa6'
+import {ImUserTie} from 'react-icons/im'
 
 export const AdminSidebarData = [
     {
@@ -42,4 +43,11 @@ export const AdminSidebarData = [
         icon: <IoIcons.IoMdWarning />,
         cName: 'nav-text',
     },
+    {
+        title: 'Job Applications',
+        path: '/admin/jobs/applications',
+        icon: <ImUserTie />,
+        cName: 'nav-text',
+    },
 ]
+
