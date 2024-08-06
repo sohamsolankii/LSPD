@@ -16,13 +16,13 @@ const About = () => {
             email: 'johndoe@example.com',
         },
         {
-            name: 'Jane Smith',
-            designation: 'Backend Developer',
-            skills: ['Node.js', 'Express', 'MongoDB'],
+            name: 'Soham Solanki',
+            designation: 'Fullstack Developer',
+            skills: ['React', 'Node.js', 'Express', 'MongoDB'],
             photo: 'https://via.placeholder.com/150',
-            linkedin: 'https://linkedin.com/in/janesmith',
-            github: 'https://github.com/janesmith',
-            email: 'janesmith@example.com',
+            linkedin: 'https://www.linkedin.com/in/sohamsolankii/',
+            github: 'https://github.com/SohamSolankii',
+            email: 'sohammsolanki@gmail.com',
         },
     ]
 
