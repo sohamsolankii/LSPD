@@ -44,24 +44,6 @@ LSPD Eagle-eye is a tool designed for users and citizens to access crucial infor
 -   **MongoDB**: NoSQL database for storing data.
 -   **Express.js**: Web application framework for Node.js.
 
-## File Structure
-
-The project consists of various components, including forms for user authentication, admin dashboards, pages for different functionalities, and utility components.
-
-### Main Files
-
--   **`main.jsx`**: Entry point of the application, setting up the router and rendering the application.
--   **`App.jsx`**: Main application component that includes the navbar, toaster notifications, and chatbot.
-
-### Components
-
--   **Forms**: `Login`, `Register`, `ForgotPassword`, `ResetPassword`, `AdminLogin`
--   **Pages**: `ReportCrime`, `Dashboard`, `HomeSubmitTip`, `HomeCareers`, `HomeNews`, `WantedList`, `About`, `SubmitTip`, `Support`, `News`, `Careers`, `Press`, `Room`
--   **Admin**: `AddJob`, `AddNews`, `AdminAddCriminal`, `AdminDashboard`, `AdminShowTip`, `AdminShowReport`, `JobApplication`
--   **Header**: `Navbar`
--   **Footer**: `Footer`
--   **Chatbot**: `ChatbotContainer`
-
 ## Getting Started
 
 ### Prerequisites
@@ -92,10 +74,13 @@ The project consists of various components, including forms for user authenticat
 ### Running the Application
 
 1. Start the backend server:
+
     ```bash
     npm run server
     ```
+
 2. Start the frontend development server:
+
     ```bash
     npm start
     ```

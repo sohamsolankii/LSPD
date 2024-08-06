@@ -236,10 +236,14 @@ const News = () => {
                         {fetchComment.map((comment) => (
                             <div
                                 key={comment._id}
-                                className="border-b border-[var(--opac2)] dark:border-gray-600 py-2"
+                                className="border-b border-[var(--opac2)] dark:border-gray-300 py-2"
                             >
-                                <strong>{comment.user.name}</strong>:{' '}
-                                {comment.comment}
+                                <div className="text-[var(--lgold)] dark:text-[var(--dltext)]">
+                                    <strong>{comment.user.name}</strong>
+                                </div>
+                                <div className="text-sm text-gray-300 dark:text-gray-600">
+                                    {comment.comment}
+                                </div>
                             </div>
                         ))}
                     </div>
