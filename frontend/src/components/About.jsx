@@ -3,6 +3,7 @@ import {FaLinkedin, FaGithub, FaEnvelope} from 'react-icons/fa'
 import {FaLinkedinIn} from 'react-icons/fa6'
 import {FiGithub} from 'react-icons/fi'
 import {HiOutlineMail} from 'react-icons/hi'
+import dp from '../assets/dp.jpg'
 
 const About = () => {
     const profiles = [
@@ -19,7 +20,7 @@ const About = () => {
             name: 'Soham Solanki',
             designation: 'Fullstack Developer',
             skills: ['React', 'Node.js', 'Express', 'MongoDB'],
-            photo: 'https://via.placeholder.com/150',
+            photo: dp,
             linkedin: 'https://www.linkedin.com/in/sohamsolankii/',
             github: 'https://github.com/SohamSolankii',
             email: 'sohammsolanki@gmail.com',
