@@ -3,18 +3,19 @@ import {FaLinkedin, FaGithub, FaEnvelope} from 'react-icons/fa'
 import {FaLinkedinIn} from 'react-icons/fa6'
 import {FiGithub} from 'react-icons/fi'
 import {HiOutlineMail} from 'react-icons/hi'
-import dp from '../assets/dp.jpg'
+import dp from '../assets/dp.png'
+import dp1 from '../assets/dp1.png'
 
 const About = () => {
     const profiles = [
         {
-            name: 'John Doe',
+            name: 'Meet Suthar',
             designation: 'Frontend Developer',
-            skills: ['React', 'JavaScript', 'CSS'],
-            photo: 'https://via.placeholder.com/150',
-            linkedin: 'https://linkedin.com/in/johndoe',
-            github: 'https://github.com/johndoe',
-            email: 'johndoe@example.com',
+            skills: ['React', 'JavaScript', 'HTML', 'CSS'],
+            photo: dp1,
+            linkedin: 'https://www.linkedin.com/in/meet-suthar-03126a257/',
+            github: 'https://github.com/meetsuthar27',
+            email: 'meetsuthar2005@gmail.com',
         },
         {
             name: 'Soham Solanki',
@@ -43,7 +44,7 @@ const About = () => {
                             <img
                                 src={profile.photo}
                                 alt={`${profile.name}`}
-                                className="w-full rounded-xl mx-auto mb-4"
+                                className="w-full rounded-xl mx-auto border-[1px] border-[var(--opac2)] mb-4"
                             />
                             <h2 className="text-3xl pricedown text-[var(--lgold)] dark:text-[var(--dltext)] font-semibold text-center mb-2">
                                 {profile.name}
