@@ -48,19 +48,9 @@ LSPD Eagle-eye is a tool designed for users and citizens to access crucial infor
 
 The project consists of various components, including forms for user authentication, admin dashboards, pages for different functionalities, and utility components.
 
-### Main Files
+### Design
 
--   **`main.jsx`**: Entry point of the application, setting up the router and rendering the application.
--   **`App.jsx`**: Main application component that includes the navbar, toaster notifications, and chatbot.
-
-### Components
-
--   **Forms**: `Login`, `Register`, `ForgotPassword`, `ResetPassword`, `AdminLogin`
--   **Pages**: `ReportCrime`, `Dashboard`, `HomeSubmitTip`, `HomeCareers`, `HomeNews`, `WantedList`, `About`, `SubmitTip`, `Support`, `News`, `Careers`, `Press`, `Room`
--   **Admin**: `AddJob`, `AddNews`, `AdminAddCriminal`, `AdminDashboard`, `AdminShowTip`, `AdminShowReport`, `JobApplication`
--   **Header**: `Navbar`
--   **Footer**: `Footer`
--   **Chatbot**: `ChatbotContainer`
+Figma Design file link : https://www.figma.com/design/Bg1OfgHJE4JNCtTZSPh7kN/WMC-V---GTA-V---LSPD?node-id=0-1&t=U1mBHtedgYLJ0M2C-1
 
 ## Getting Started
 
