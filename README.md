@@ -82,13 +82,10 @@ Figma Design file link : https://www.figma.com/design/Bg1OfgHJE4JNCtTZSPh7kN/WMC
 ### Running the Application
 
 1. Start the backend server:
-
     ```bash
     npm run server
     ```
-
 2. Start the frontend development server:
-
     ```bash
     npm start
     ```
