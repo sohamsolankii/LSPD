@@ -3,7 +3,8 @@ import StarRating from './UsedComponents/StarRating.jsx'
 import * as FaIcons from 'react-icons/fa'
 import axios from 'axios'
 import {FaUserFriends} from 'react-icons/fa'
-
+import {LuScanFace} from 'react-icons/lu'
+import { Link } from 'react-router-dom'
 
 const Wanted = () => {
     const [search, setSearch] = useState('')
@@ -48,7 +49,6 @@ const Wanted = () => {
             criminal.user.toLowerCase().includes(search.toLowerCase()),
     )
 
-
     return (
         <div className="p-4 md:p-6 min-h-screen poppins bg-cover dark:bg-gray-100 bg-[var(--bg2)]">
             <div className="mb-6 rounded-2xl shadow-black/70 dark:shadow-black/10 bg-[var(--bg1)] dark:bg-gray-100 dark:border-gray-400 border-[1px] border-[var(--opac)] shadow-2xl">
@@ -57,7 +57,7 @@ const Wanted = () => {
                 </h2>
 
                 <div className="md:p-5 p-3">
-                    <div className="flex flex-col md:flex-row gap-4 mb-5">
+                    <div className="flex flex-col justify-between md:flex-row gap-4 mb-5">
                         <div className="flex flex-col w-full md:w-1/3">
                             <label className="text-sm text-gray-500 pb-2">
                                 Search
@@ -69,6 +69,20 @@ const Wanted = () => {
                                 onChange={handleSearchChange}
                                 className="p-2 border-[1px] border-[var(--opac)] dark:border-gray-300 h-[40px] rounded-md bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md shadow-black/30 dark:shadow-none shadow-md text-gray-200 dark:text-[var(--dltext)]"
                             />
+                        </div>
+                        <div className="flex flex-col w-full md:w-1/6">
+                            <label className="text-sm text-gray-500 pb-2">
+                                Match faces of criminals using
+                            </label>
+                            <Link to='/face' 
+                                className="p-2 border-[1px] border-[var(--opac)]
+                            dark:border-gray-300 h-[40px] rounded-md
+                            bg-[var(--opac)] dark:bg-gray-100 backdrop-blur-md
+                            shadow-black/30 dark:shadow-none shadow-md
+                            text-gray-200 dark:text-[var(--dltext)]"
+                            >
+                                Face Recognition
+                            </Link>
                         </div>
                     </div>
 
@@ -159,7 +173,9 @@ const Wanted = () => {
                                     <FaUserFriends />
                                 </div>
                                 <div>
-                                    <p className="font-light text-sm">Aliases</p>
+                                    <p className="font-light text-sm">
+                                        Aliases
+                                    </p>
                                     <p className="md:text-lg text-md">
                                         {selectedCriminal.aliases}
                                     </p>

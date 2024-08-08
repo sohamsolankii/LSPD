@@ -41,6 +41,7 @@ import Press from './components/video/Press.jsx'
 import Room from './components/video/Room.jsx'
 import ForgotPassword from './components/Forms/ForgotPassword.jsx'
 import ResetPassword from './components/Forms/ResetPassword.jsx'
+import Face from './components/Face.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -66,6 +67,7 @@ const router = createBrowserRouter(
             <Route path="/forgot-password" element={<ForgotPassword />}></Route>
             <Route path="/reset" element={<ResetPassword />}></Route>
             <Route path="/news" element={<News />} />,
+            <Route path="/face" element={<Face />} />,
             <Route path="/most-wanted" element={<Wanted />} />,
             <Route path="/submit-tip" element={<SubmitTip />} />,
             <Route path="/report-crime" element={<ReportCrime />} />,
