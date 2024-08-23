@@ -5,13 +5,7 @@ const whitelist = [
 ]
 
 export const corsOptions = {
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true) // Allow the request
-        } else {
-            callback(new Error('Not allowed by CORS')) // Reject the request
-        }
-    },
+    origin: whitelist,
     credentials: true, // Allow cookies/auth to be passed
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed methods
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Specify allowed headers
