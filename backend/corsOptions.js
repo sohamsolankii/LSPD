@@ -13,6 +13,6 @@ export const corsOptions = {
         }
     },
     credentials: true, // Allow cookies/auth to be passed
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
-    // allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+    methods: ['*'], // Specify allowed methods
+    allowedHeaders: ['*'], // Specify allowed headers
 }
