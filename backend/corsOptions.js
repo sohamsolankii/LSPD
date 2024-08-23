@@ -7,12 +7,12 @@ const whitelist = [
 export const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
+            callback(null, true) // Allow the request
         } else {
-            callback(new Error('Not allowed by CORS'))
+            callback(new Error('Not allowed by CORS')) // Reject the request
         }
     },
     credentials: true, // Allow cookies/auth to be passed
-    methods: ['*'], // Specify allowed methods
-    allowedHeaders: ['*'], // Specify allowed headers
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Specify allowed headers
 }
