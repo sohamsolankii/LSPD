@@ -52,6 +52,11 @@ The project consists of various components, including forms for user authenticat
 
 Figma Design file link : https://www.figma.com/design/Bg1OfgHJE4JNCtTZSPh7kN/WMC-V---GTA-V---LSPD?node-id=0-1&t=U1mBHtedgYLJ0M2C-1
 
+### Project Vidoes
+
+Videos and core functionality : https://lnkd.in/dFqK_BFT
+
+
 ## Getting Started
 
 ### Prerequisites
