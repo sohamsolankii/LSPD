@@ -10,12 +10,12 @@ import {fileURLToPath} from 'url'
 
 dotenv.config()
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export const appConfig = () => {
-    // dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
+    dotenv.config({path: './backend/.env'}) // !when runnig both server concurrently
     // dotenv.config({path: '.env'}) // !when runnig only the backend server
 
     app.use(cors(corsOptions))
